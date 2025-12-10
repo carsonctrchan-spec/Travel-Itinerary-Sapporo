@@ -2,111 +2,70 @@
 <html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
-<title>2026 札幌雪祭｜保證點得到的最終版</title>
+<title>2026 札幌雪祭｜總覽 + 詳細日程表（HK$）</title>
 <style>
-    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;}
+    body{margin:0;font-family:"Playfair Display, Georgia, serif;background:#FFFFF0;color:#333;}
     .header{background:linear-gradient(135deg,#4682B4,#FFD700);color:white;padding:3rem 1rem;text-align:center;}
-    .tabs{max-width:1500px;margin:2rem auto;display:flex;justify-content:center;border-bottom:3px solid #FFD700;}
-    .tab-btn{background:#fff;padding:1.2rem 3rem;font-size:1.4rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0 1rem;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+    h1{font-size:2.9rem;margin:0;} h2{font-size:2.1rem;margin:1rem 0;}
+    .tabs{max-width:1200px;margin:2rem auto;display:flex;justify-content:center;border-bottom:4px solid #FFD700;}
+    .tab-btn{background:#fff;padding:1.2rem 3rem;font-size:1.5rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0 1rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
     .tab-btn.active{background:#FFD700;color:#333;font-weight:bold;}
-    .content{max-width:1500px;margin:2rem auto;padding:0 1rem;display:none;}
+    .content{max-width:1100px;margin:2rem auto;padding:0 2rem;display:none;}
     .content.active{display:block;}
-    .main{display:grid;grid-template-columns:1fr 540px;gap:2rem;}
     .day{background:white;padding:2.5rem;border-radius:20px;box-shadow:0 12px 35px rgba(0,0,0,0.12);
          margin-bottom:2rem;border-left:10px solid #FFD700;position:relative;}
-    .day:hover{transform:translateY(-10px);}
-    .big-btn{background:#FFD700;color:#333;padding:1.2rem;font-size:1.4rem;width:100%;border:none;
-             border-radius:12px;margin-top:1.5rem;cursor:pointer;font-weight:bold;box-shadow:0 6px 15px rgba(0,0,0,0.2);}
+    .day:hover{transform:translateY(-8px);}
+    .big-btn{background:#FFD700;color:#333;padding:1.3rem;font-size:1.5rem;width:100%;border:none;
+             border-radius:15px;margin-top:1.5rem;cursor:pointer;font-weight:bold;}
     .big-btn:hover{background:#FFA500;color:white;}
-    #map{height:620px;border:6px solid #4682B4;border-radius:22px;}
-    .detail-day{background:white;padding:3rem;border-radius:25px;box-shadow:0 15px 45px rgba(0,0,0,0.15);margin:2rem 0;}
-    .step{margin:1.8rem 0;padding:1.5rem;background:#f0f8ff;border-left:7px solid #4682B4;border-radius:12px;font-size:1.1rem;}
-    .distance{color:#e74c3c;font-weight:bold;font-size:1.2rem;}
-    @media(max-width:960px){.main{grid-template-columns:1fr;}}
+    .detail-day{background:white;padding:3rem;border-radius:25px;box-shadow:0 15px 50px rgba(0,0,0,0.15);margin:2rem auto;}
+    .step{margin:1.8rem 0;padding:1.6rem;background:#f0f8ff;border-left:8px solid #4682B4;border-radius:12px;line-height:1.7;}
+    .links a{margin:0.8rem 1.2rem 0.8rem 0;display:inline-block;background:#e3f2fd;padding:0.8rem 1.4rem;border-radius:10px;font-weight:bold;}
+    .distance{color:#e74c3c;font-weight:bold;font-size:1.3rem;}
+    .highlight{background:#fff3e0;padding:2rem;border-radius:15px;margin:2rem 0;text-align:center;font-size:1.3rem;}
+    @media(max-width:768px){.tabs{flex-direction:column;}.tab-btn{margin:0.5rem auto;}}
 </style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
 <div class="header">
     <h1>2026 札幌雪祭 7 天行程</h1>
-    <p style="font-size:1.5rem;">點下方金色大按鈕 → 看詳細動線與距離</p>
+    <p style="font-size:1.5rem;">1月30日 – 2月5日　｜　全部金額以 HK$ Hong Kong Dollar 顯示</p>
 </div>
 
 <div class="tabs">
-    <div class="tab-btn active" onclick="openTab('overview')">總覽 + 地圖</div>
+    <div class="tab-btn active" onclick="openTab('overview')">總覽</div>
     <div class="tab-btn" onclick="openTab('details')">詳細日程表</div>
 </div>
 
-<!-- Tab 1: 總覽 -->
+<!-- 頁籤 1：總覽（無地圖，超乾淨） -->
 <div id="overview" class="content active">
-    <div class="main">
-        <div>
-            <div class="day">
-                <h3>1月30日（五）Day 1｜抵達＋電視塔夜景</h3>
-                <p>新千歲機場 → 札幌站 → 電視塔</p>
-                <button class="big-btn" onclick="showDetail(1)">查看詳細距離與交通</button>
-            </div>
+    <div style="max-width:900px;margin:0 auto;">
+        <div class="day"><h2>1月30日（五）Day 1｜抵達＋電視塔夜景</h2><button class="big-btn" onclick="showDetail(1)">查看詳細行程＋Google Maps</button></div>
+        <div class="day"><h2>1月31日（六）Day 2｜小樽運河浪漫一日</h2><button class="big-btn" onclick="showDetail(2)">查看詳細行程＋Google Maps</button></div>
+        <div class="day"><h2>2月1日（日）Day 3｜啤酒博物館＋狸小路購物</h2><button class="big-btn" onclick="showDetail(3)">查看詳細行程＋Google Maps</button></div>
+        <div class="day"><h2>2月2日（一）Day 4｜藻岩山夜景</h2><button class="big-btn" onclick="showDetail(4)">查看詳細行程＋Google Maps</button></div>
+        <div class="day"><h2>2月3日（二）Day 5｜定山溪溫泉放空</h2><button class="big-btn" onclick="showDetail(5)">查看詳細行程＋Google Maps</button></div>
+        <div class="day" style="border-left:16px solid #e74c3c;"><h2>2月4日（三）Day 6｜2026雪祭開幕日全天狂歡</h2><button class="big-btn" style="background:#e74c3c;color:white;" onclick="showDetail(6)">立即查看雪祭詳細動線</button></div>
+        <div class="day"><h2>2月5日（四）Day 7｜掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">查看詳細行程＋Google Maps</button></div>
+    </div>
 
-            <div class="day">
-                <h3>1月31日（六）Day 2｜小樽運河浪漫</h3>
-                <p>JR 35分直達 → 運河散策 → LeTAO</p>
-                <button class="big-btn" onclick="showDetail(2)">查看詳細距離與交通</button>
-            </div>
-
-            <div class="day">
-                <h3>2月1日（日）Day 3｜啤酒博物館＋狸小路</h3>
-                <p>地鐵到啤酒園 → 午餐試飲 → 狸小路血拼</p>
-                <button class="big-btn" onclick="showDetail(3)">查看詳細距離與交通</button>
-            </div>
-
-            <div class="day">
-                <h3>2月2日（一）Day 4｜藻岩山夜景</h3>
-                <p>市電＋免費接駁 → 纜車上山</p>
-                <button class="big-btn" onclick="showDetail(4)">查看詳細距離與交通</button>
-            </div>
-
-            <div class="day">
-                <h3>2月3日（二）Day 5｜定山溪溫泉</h3>
-                <p>直達巴士60分 → 泡湯放空</p>
-                <button class="big-btn" onclick="showDetail(5)">查看詳細距離與交通</button>
-            </div>
-
-            <div class="day" style="border-left:16px solid #e74c3c;">
-                <h3>2月4日（三）Day 6｜2026雪祭開幕日全天狂歡！</h3>
-                <p>大通會場＋薄野冰雕＋Tsudome</p>
-                <button class="big-btn" style="background:#e74c3c;color:white;" onclick="showDetail(6)">立即查看雪祭詳細動線</button>
-            </div>
-
-            <div class="day">
-                <h3>2月5日（四）Day 7｜掃貨＋返程</h3>
-                <p>JR Tower → 百貨 → 新千歲機場</p>
-                <button class="big-btn" onclick="showDetail(7)">查看詳細距離與交通</button>
-            </div>
-        </div>
-
-        <div>
-            <div id="map"></div>
-            <div style="margin-top:1.5rem;padding:2rem;background:#4682B4;color:white;border-radius:20px;text-align:center;">
-                <h3>2026雪祭預算（港幣）</h3>
-                人數 <input type="number" id="p" value="2" min="1" style="padding:0.8rem;width:90px;">
-                <button onclick="calc()" style="background:#FFD700;padding:0.9rem 2rem;border:none;border-radius:12px;margin-left:1rem;font-size:1.1rem;">計算</button>
-                <p id="out" style="font-size:2.4rem;margin:2rem 0;font-weight:bold;color:#FFD700;">HK$12,800（2人）</p>
-            </div>
-        </div>
+    <div style="text-align:center;margin:3rem;">
+        <h2>2026 雪祭7天總預算（HK$ Hong Kong Dollar）</h2>
+        人數 <input type="number" id="p" value="2" min="1" style="padding:0.8rem;width:90px;font-size:1.2rem;">
+        <button onclick="calc()" style="background:#FFD700;padding:0.9rem 2.5rem;border:none;border-radius:12px;margin-left:1rem;font-size:1.2rem;cursor:pointer;">計算</button>
+        <p id="out" style="font-size:3rem;margin:2rem;font-weight:bold;color:#c0392b;">HK$12,800（2人）</p>
     </div>
 </div>
 
-<!-- Tab 2: 詳細日程表 -->
+<!-- 頁籤 2：詳細日程表（含官網＋Google Maps 直達連結） -->
 <div id="details" class="content">
-    <div id="detail-content" style="min-height:800px;">
-        <h2 style="text-align:center;padding:3rem;color:#95a5a6;">← 請點左邊任一天的金色大按鈕查看詳細動線</h2>
+    <div id="detail-content" style="max-width:1000px;margin:0 auto;">
+        <h2 style="text-align:center;padding:4rem;color:#95a5a6;">← 請點左邊「總覽」任一天的金色按鈕</h2>
     </div>
 </div>
 
 <script>
-// 切換頁籤
 function openTab(tab){
     document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
     document.getElementById(tab).classList.add('active');
@@ -114,75 +73,105 @@ function openTab(tab){
     event.target.classList.add('active');
 }
 
-// 顯示詳細內容
 function showDetail(day){
-    const content = {
-        1: `<div class="detail-day"><h2>Day 1｜抵達＋電視塔夜景</h2>
-             <div class="step">新千歲機場 → JR快速Airport 特急（37分鐘 ¥1,150）→ 札幌站</div>
-             <div class="step">札幌站 → 步行6分鐘（500m）→ 大通公園</div>
-             <div class="step">大通公園 → 步行3分鐘 → 札幌電視塔（門票¥1,200）</div>
-             <div class="distance">全天步行距離約 2.5 km · 非常輕鬆</div></div>`,
+    const details = {
+        1: `
+            <div class="detail-day">
+                <h2>Day 1｜1月30日（五）抵達＋電視塔夜景</h2>
+                <div class="step">新千歲機場 CTS → JR快速Airport（37分鐘 HK$70）→ 札幌站</div>
+                <div class="step">札幌站 → 步行6分鐘 → 大通公園 → 步行3分鐘 → 電視塔</div>
+                <div class="links">
+                    <a href="https://www.tv-tower.co.jp/en/" target="_blank">電視塔官方</a>
+                    <a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank">Google Maps 路線（機場→電視塔）</a>
+                </div>
+                <div class="distance">全天步行約 2.5 km · 非常輕鬆</div>
+            </div>`,
 
-        2: `<div class="detail-day"><h2>Day 2｜小樽運河</h2>
-             <div class="step">札幌站 08:30 → JR快速AirPort（35分鐘 ¥750）→ 小樽站</div>
-             <div class="step">小樽站 → 步行10分鐘 → 運河主區</div>
-             <div class="step">運河 → 北一硝子 → 音樂盒博物館 → LeTAO 本店</div>
-             <div class="step">18:00 前回程 JR（35分鐘）</div>
-             <div class="distance">小樽市內步行約 4–5 km · 建議穿防滑鞋</div></div>`,
+        2: `
+            <div class="detail-day">
+                <h2>Day 2｜1月31日（六）小樽運河浪漫一日</h2>
+                <div class="step">札幌站 → JR快速（35分鐘 HK$45）→ 小樽站</div>
+                <div class="step">小樽站步行10分鐘直達運河主區 → 北一硝子 → 音樂盒博物館 → LeTAO 本店</div>
+                <div class="links">
+                    <a href="https://www.otaru.gr.jp/en" target="_blank">小樽官方旅遊網</a>
+                    <a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank">Google Maps 札幌站→小樽運河</a>
+                    <a href="https://www.letao.jp/en/" target="_blank">LeTAO 官網（排隊必買）</a>
+                </div>
+                <div class="distance">小樽市內步行約 4–5 km · 建議穿防滑鞋</div>
+            </div>`,
 
-        3: `<div class="detail-day"><h2>Day 3｜啤酒博物館＋狸小路</h2>
-             <div class="step">札幌站 → 地鐵東豐線（6站 ¥290）→ 榮町站 → 步行10分鐘 → 啤酒博物館</div>
-             <div class="step">博物館內試飲＋成吉思汗午餐</div>
-             <div class="step">博物館 → 地鐵（8站）→ 大通 → 狸小路血拼</div>
-             <div class="distance">全天步行約 6 km</div></div>`,
+        3: `
+            <div class="detail-day">
+                <h2>Day 3｜2月1日（日）啤酒博物館＋狸小路</h2>
+                <div class="step">札幌站 → 地鐵東豐線（HK$18）→ 榮町站 → 步行10分 → 啤酒博物館</div>
+                <div class="step">午餐：館內成吉思汗＋啤酒試飲</div>
+                <div class="step">下午狸小路、藥妝大血拼</div>
+                <div class="links">
+                    <a href="https://www.sapporobeer.jp/english/brewery/s_museum/" target="_blank">札幌啤酒博物館官方</a>
+                    <a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Beer+Museum" target="_blank">Google Maps 路線</a>
+                </div>
+                <div class="distance">全天約 6 km</div>
+            </div>`,
 
-        4: `<div class="detail-day"><h2>Day 4｜藻岩山夜景</h2>
-             <div class="step">札幌市電「ロープウェイ入口」→ 免費接駁巴士（每20分）→ 纜車站</div>
-             <div class="step">纜車＋迷你纜車來回 ¥2,100</div>
-             <div class="step">夜景後可直達定山溪（計程車或包車）</div>
-             <div class="distance">市區步行極少，主要靠交通工具</div></div>`,
+        4: `
+            <div class="detail-day">
+                <h2>Day 4｜2月2日（一）藻岩山夜景</h2>
+                <div class="step">市電「ロープウェイ入口」→ 免費接駁巴士 → 藻岩山纜車站</div>
+                <div class="step">纜車＋迷你纜車來回 HK$130</div>
+                <div class="links">
+                    <a href="https://mt-moiwa.jp/en/" target="_blank">藻岩山官方（含即時纜車資訊）</a>
+                    <a href="https://www.google.com/maps/dir/Sapporo+Station/Mount+Moiwa" target="_blank">Google Maps 路線</a>
+                </div>
+                <div class="distance">市區步行極少，主要靠交通工具</div>
+            </div>`,
 
-        5: `<div class="detail-day"><h2>Day 5｜定山溪溫泉</h2>
-             <div class="step">札幌站巴士中心 09:30 → かっぱライナー（60分 ¥1,800）→ 定山溪</div>
-             <div class="step">溫泉街散步、足湯、紅葉峽</div>
-             <div class="step">可選日歸或住宿（推薦住一晚）</div>
-             <div class="distance">溫泉街步行 2–3 km · 超放鬆</div></div>`,
+        5: `
+            <div class="detail-day">
+                <h2>Day 5｜2月3日（二）定山溪溫泉</h2>
+                <div class="step">札幌站巴士中心 → かっぱライナー號（60分 HK$110）→ 定山溪</div>
+                <div class="step">足湯咖啡廳、紅葉峽散策、可選日歸或住宿</div>
+                <div class="links">
+                    <a href="https://jozankei.jp/en/" target="_blank">定山溪官方網站</a>
+                    <a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank">Google Maps 路線</a>
+                </div>
+                <div class="distance">溫泉街步行 2–3 km · 超放鬆</div>
+            </div>`,
 
-        6: `<div class="detail-day"><h2>Day 6｜2026雪祭開幕日全天狂歡！</h2>
-             <div class="step">10:00 大通會場 1–12丁目（巨型雪像全部亮燈）</div>
-             <div class="step">13:00 地鐵＋步行 → Tsudome 會場玩雪滑梯</div>
-             <div class="step">17:00 地鐵2站 → 薄野冰雕會場</div>
-             <div class="step">18:30 回大通拍投影秀（最美！）</div>
-             <div class="distance">全天步行 8–10 km · 必穿雪靴＋暖包</div></div>`,
+        6: `
+            <div class="detail-day">
+                <div class="highlight">Day 6｜2月4日（三）2026札幌雪祭開幕日全天狂歡！</div>
+                <div class="step">10:00–21:00 大通公園 1–12丁目（巨型雪像全部亮燈）</div>
+                <div class="step">中午可去 Tsudome 會場玩雪滑梯（地鐵榮町站轉免費接駁）</div>
+                <div class="step">傍晚薄野會場看冰雕燈光秀</div>
+                <div class="links">
+                    <a href="https://www.snowfes.com/en/" target="_blank">2026雪祭官方網站（英文）</a>
+                    <a href="https://www.google.com/maps/place/Odori+Park/@43.0594167,141.3469444,15z" target="_blank">Google Maps 大通公園主會場</a>
+                    <a href="https://www.google.com/maps/place/Susukino" target="_blank">Google Maps 薄野冰雕會場</a>
+                </div>
+                <div class="distance">全天步行 8–10 km · 必穿雪靴＋暖包</div>
+            </div>`,
 
-        7: `<div class="detail-day"><h2>Day 7｜掃貨＋返程</h2>
-             <div class="step">早上 JR Tower T38 俯瞰雪祭全景</div>
-             <div class="step">Stellar Place → 大丸 → ESTA 瘋狂購物</div>
-             <div class="step">12:00 前退房 → JR快速（37分）→ 新千歲機場</div>
-             <div class="step">機場 Royce 巧克力＋Outlet 最後一波</div>
-             <div class="distance">市區步行約 4 km + 機場逛街</div></div>`
+        7: `
+            <div class="detail-day">
+                <h2>Day 7｜2月5日（四）掃貨＋返程</h2>
+                <div class="step">早上 JR Tower T38 俯瞰雪祭全景</div>
+                <div class="step">Stellar Place、大丸、ESTA 瘋狂購物</div>
+                <div class="step">中午前 JR快速（37分 HK$70）→ 新千歲機場</div>
+                <div class="links">
+                    <a href="https://www.jr-tower.com/en/t38" target="_blank">JR Tower 展望台</a>
+                    <a href="https://www.shiroikoibitopark.jp/en/" target="_blank">白色戀人工廠（機場路上）</a>
+                    <a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank">Google Maps 札幌站→機場</a>
+                </div>
+                <div class="distance">市區步行約 4 km + 機場逛街</div>
+            </div>`
     };
-    document.getElementById('detail-content').innerHTML = content[day];
-    openTab('details'); // 自動跳到詳細頁籤
+    document.getElementById('detail-content').innerHTML = details[day];
+    openTab('details');
 }
 
-// 地圖點卡片飛過去（依然保留）
-const map = L.map('map').setView([43.062, 141.354], 11);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-const dayCenters = [[43.0686,141.3508],[43.198,140.994],[43.070,141.367],[43.031,141.302],[42.997,141.192],[43.0554,141.353],[43.0628,141.3544]];
-dayCenters.forEach((c,i)=>L.marker(c).addTo(map).bindPopup(`<b>Day ${i+1}</b>`));
-
-// 點整個卡片也會飛地圖（雙重保險）
-document.querySelectorAll('.day').forEach((d,i)=>{
-    d.addEventListener('click',()=>{ if(event.target.tagName!=='BUTTON') {
-        map.flyTo(dayCenters[i], i===5?16:14, {duration:1.5});
-    }});
-});
-
-// 預算
 function calc(){
     const p=parseInt(document.getElementById('p').value)||1;
-    const total=Math.round(6400*p);
+    const total=6400*p;
     document.getElementById('out').innerHTML=`HK$${total.toLocaleString()}（${p}人）`;
 }
 calc();
