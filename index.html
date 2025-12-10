@@ -2,7 +2,7 @@
 <html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
-<title>2026 札幌雪祭｜最完整行程（HK$）</title>
+<title>2026 札幌雪祭｜最專業終極版（HK$）</title>
 <style>
     body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;}
     .header{background:linear-gradient(135deg,#4682B4,#FFD700);color:white;padding:3rem 1rem;text-align:center;}
@@ -14,23 +14,22 @@
     .day{background:white;padding:2.5rem;border-radius:20px;box-shadow:0 12px 35px rgba(0,0,0,0.12);
          margin-bottom:2rem;border-left:10px solid #FFD700;}
     .day h2{font-size:1.9rem;margin:0 0 1rem 0;color:#2c3e50;}
-    .meal{background:#fff8e1;padding:1rem;border-radius:12px;margin:1.2rem 0;padding:1.3rem;border-left:6px solid #FFB300;}
-    .meal a{color:#c0392b;font-weight:bold;}
+    .note{font-size:1.1rem;color:#8B4513;margin:1rem 0;}
     .big-btn{background:#FFD700;color:#333;padding:1.5rem;font-size:1.6rem;width:100%;border:none;
-             border-radius:15px;margin-top:1.5rem;cursor:pointer;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.15);}
+             border-radius:15px;margin-top:1.5rem;cursor:pointer;font-weight:bold;}
     .big-btn:hover{background:#FF8C00;color:white;}
     .detail-day{background:white;padding:3rem;border-radius:25px;box-shadow:0 15px 50px rgba(0,0,0,0.15);margin:2rem auto;}
     .step{margin:1.8rem 0;padding:1.6rem;background:#f0f8ff;border-left:8px solid #4682B4;border-radius:12px;line-height:1.8;}
+    .time{color:#c0392b;font-weight:bold;font-size:1.2rem;}
+    .meal{font-weight:bold;color:#B8860B;}
     .links a{margin:0.6rem 1rem 0.6rem 0;display:inline-block;background:#e3f2fd;padding:0.9rem 1.5rem;border-radius:12px;font-weight:600;}
-    .distance{color:#e74c3c;font-weight:bold;font-size:1.3rem;}
-    .highlight{background:#ffebee;padding:2rem;border-radius:15px;margin:2rem 0;text-align:center;font-size:1.4rem;}
 </style>
 </head>
 <body>
 
 <div class="header">
     <h1>2026 札幌雪祭 7 天完美行程</h1>
-    <p style="font-size:1.5rem;">1月30日 – 2月5日　｜　全部金額以 HK$ Hong Kong Dollar 顯示</p>
+    <p style="font-size:1.5rem;">1月30日 – 2月5日　｜　金額以 HK$ Hong Kong Dollar 顯示</p>
 </div>
 
 <div class="tabs">
@@ -38,87 +37,38 @@
     <div class="tab-btn" onclick="openTab('details')">詳細日程表</div>
 </div>
 
-<!-- 總覽頁（標題乾淨 + 午晚餐推薦） -->
+<!-- 總覽頁（超乾淨，只留下午茶） -->
 <div id="overview" class="content active">
     <div style="max-width:900px;margin:0 auto;">
 
-        <div class="day">
-            <h2>1月30日 (五)　Day 1　抵達＋電視塔夜景</h2>
-            <div class="meal">
-                午餐：機場內 Royce 生巧克力或拉麵<br>
-                晚餐：<a href="https://tabelog.com/en/hokkaido/A0101/A010103/1057998/" target="_blank">湯咖喱 Garaku 總店</a>（HK$110–150）
-            </div>
-            <button class="big-btn" onclick="showDetail(1)">查看完整動線＋Google Maps</button>
-        </div>
+        <div class="day"><h2>1月30日 (五)　Day 1　抵達＋電視塔夜景</h2><button class="big-btn" onclick="showDetail(1)">查看完整時間軸</button></div>
 
         <div class="day">
             <h2>1月31日 (六)　Day 2　小樽運河浪漫一日</h2>
-            <div class="meal">
-                午餐：<a href="https://tabelog.com/en/hokkaido/A0106/A010601/1000001/" target="_blank">政壽司 本店</a>（HK$200–300）<br>
-                晚餐：<a href="https://tabelog.com/en/hokkaido/A0101/A010101/1055555/" target="_blank">札幌拉麵共和國</a>（HK$80）
-            </div>
-            <button class="big-btn" onclick="showDetail(2)">查看完整動線＋Google Maps</button>
+            <p class="note">下午茶：LeTAO 本店雙層起司蛋糕（必排隊！）</p>
+            <button class="big-btn" onclick="showDetail(2)">查看完整時間軸</button>
         </div>
 
-        <div class="day">
-            <h2>2月1日 (日)　Day 3　啤酒博物館＋狸小路</h2>
-            <div class="meal">
-                午餐：啤酒博物館內 <b>成吉思汗烤羊吃到飽</b>（HK$200）<br>
-                晚餐：<a href="https://tabelog.com/en/hokkaido/A0101/A010202/1000002/" target="_blank">Daruma 5.4 本店</a>（HK$250）
-            </div>
-            <button class="big-btn" onclick="showDetail(3)">查看完整動線＋Google Maps</button>
-        </div>
-
-        <div class="day">
-            <h2>2月2日 (一)　Day 4　藻岩山夜景</h2>
-            <div class="meal">
-                午餐：大通附近 <a href="https://tabelog.com/en/hokkaido/A0101/A010102/1000089/" target="_blank">海鮮丼 どんぶり茶屋</a><br>
-                晚餐：<a href="https://tabelog.com/en/hokkaido/A0101/A010101/1001355/" target="_blank">かに本家 札幌站前店 螃蟹吃到飽</a>（HK$500–650）
-            </div>
-            <button class="big-btn" onclick="showDetail(4)">查看完整動線＋Google Maps</button>
-        </div>
-
-        <div class="day">
-            <h2>2月3日 (二)　Day 5　定山溪溫泉</h2>
-            <div class="meal">
-                午餐：定山溪街內 <b>鹿肉蕎麥麵</b> 或 湯咖喱<br>
-                晚餐：溫泉旅館懷石料理（若住宿已含）
-            </div>
-            <button class="big-btn" onclick="showDetail(5)">查看完整動線＋Google Maps</button>
-        </div>
-
-        <div class="day" style="border-left:16px solid #e74c3c;">
-            <h2>2月4日 (三)　Day 6　2026雪祭開幕日全天狂歡！</h2>
-            <div class="meal">
-                午餐：大通會場內 海鮮丼或成吉思汗攤檔<br>
-                晚餐：<a href="https://tabelog.com/en/hokkaido/A0101/A010203/1000089/" target="_blank">蟹本家 薄野本店</a> 或 迴轉壽司
-            </div>
-            <button class="big-btn" style="background:#e74c3c;color:white;" onclick="showDetail(6)">立即查看雪祭詳細動線</button>
-        </div>
-
-        <div class="day">
-            <h2>2月5日 (四)　Day 7　掃貨＋返程</h2>
-            <div class="meal">
-                早餐：飯店<br>
-                午餐：新千歲機場 <a href="https://www.new-chitose-airport.jp/en/food/ramen-dojo/" target="_blank">拉麵道場</a>
-            </div>
-            <button class="big-btn" onclick="showDetail(7)">查看完整動線＋Google Maps</button>
-        </div>
+        <div class="day"><h2>2月1日 (日)　Day 3　啤酒博物館＋狸小路</h2><button class="big-btn" onclick="showDetail(3)">查看完整時間軸</button></div>
+        <div class="day"><h2>2月2日 (一)　Day 4　藻岩山夜景</h2><button class="big-btn" onclick="showDetail(4)">查看完整時間軸</button></div>
+        <div class="day"><h2>2月3日 (二)　Day 5　定山溪溫泉</h2><button class="big-btn" onclick="showDetail(5)">查看完整時間軸</button></div>
+        <div class="day" style="border-left:16px solid #e74c3c;"><h2>2月4日 (三)　Day 6　2026雪祭開幕日</h2><button class="big-btn" style="background:#e74c3c;color:white;" onclick="showDetail(6)">立即查看雪祭時間軸</button></div>
+        <div class="day"><h2>2月5日 (四)　Day 7　掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">查看完整時間軸</button></div>
 
     </div>
 
     <div style="text-align:center;margin:4rem;">
-        <h2>2026 雪祭7天總預算（HK$ Hong Kong Dollar）</h2>
+        <h2>2026 雪祭7天總預算（HK$）</h2>
         人數 <input type="number" id="p" value="2" min="1" style="padding:0.8rem;width:100px;">
         <button onclick="calc()" style="background:#FFD700;padding:1rem 2.5rem;border:none;border-radius:12px;margin-left:1rem;font-size:1.3rem;cursor:pointer;">計算</button>
         <p id="out" style="font-size:3.5rem;margin:2rem;font-weight:bold;color:#c0392b;">HK$13,800（2人）</p>
     </div>
 </div>
 
-<!-- 詳細日程表（含午晚餐 + Tabelog + Google Maps） -->
+<!-- 詳細日程表（嚴格時間順序 + 午餐/下午茶/晚餐時段） -->
 <div id="details" class="content">
     <div id="detail-content" style="max-width:1000px;margin:0 auto;">
-        <h2 style="text-align:center;padding:5rem;color:#95a5a6;">點左邊金色按鈕查看詳細動線</h2>
+        <h2 style="text-align:center;padding:5rem;color:#95a5a6;">點左邊金色按鈕查看詳細時間軸</h2>
     </div>
 </div>
 
@@ -132,74 +82,52 @@ function openTab(tab){
 
 function showDetail(day){
     const details = {
-        1: `<div class="detail-day"><h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2>
-             <div class="step">下午抵達新千歲機場 → JR快速Airport 37分 HK$70 → 札幌站</div>
-             <div class="step">Check-in 後步行至大通公園 → 札幌電視塔看夜景</div>
-             <div class="step"><b>午餐</b>：機場內 Royce 生巧克力或拉麵</div>
-             <div class="step"><b>晚餐</b>：<a href="https://tabelog.com/en/hokkaido/A0101/A010103/1057998/" target="_blank">湯咖喱 Garaku 總店</a>（HK$110–150）</div>
-             <div class="links">
-                 <a href="https://www.tv-tower.co.jp/en/" target="_blank">電視塔官網</a>
-                 <a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank">Google Maps 全程路線</a>
-             </div>
-             <div class="distance">全天步行約 2.5 km</div></div>`,
+        1: `<div class="detail-day"><h2>1月30日 (五)　Day 1</h2>
+             <div class="step"><span class="time">14:00 – 15:30</span>　新千歲機場 → JR快速Airport → 札幌站</div>
+             <div class="step"><span class="time">16:00 – 18:00</span>　Check-in + 步行至大通公園</div>
+             <div class="step"><span class="time">18:30 – 20:00</span>　<span class="meal">晚餐：湯咖喱 Garaku 總店</span><br><a href="https://tabelog.com/en/hokkaido/A0101/A010103/1057998/" target="_blank">Tabelog 連結</a> ｜ HK$110–150</div>
+             <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔夜景</div>
+             <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank">Google Maps 全程路線</a></div></div>`,
 
-        2: `<div class="detail-day"><h2>1月31日 (六) Day 2　小樽運河浪漫一日</h2>
-             <div class="step">08:30 札幌站搭 JR → 09:05 到小樽</div>
-             <div class="step">09:15–17:00 運河、北一硝子、音樂盒、LeTAO</div>
-             <div class="step"><b>午餐</b>：<a href="https://tabelog.com/en/hokkaido/A0106/A010601/1000001/" target="_blank">政壽司 本店</a>（HK$200–300）</div>
-             <div class="step"><b>晚餐</b>：札幌站 <a href="https://tabelog.com/en/hokkaido/A0101/A010101/1055555/" target="_blank">拉麵共和國</a></div>
-             <div class="links">
-                 <a href="https://www.otaru.gr.jp/en" target="_blank">小樽官方</a>
-                 <a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank">Google Maps 路線</a>
-             </div>
-             <div class="distance">小樽步行約 4–5 km</div></div>`,
+        2: `<div class="detail-day"><h2>1月31日 (六)　Day 2　小樽</h2>
+             <div class="step"><span class="time">08:30 – 09:05</span>　札幌站 → JR快速 → 小樽站</div>
+             <div class="step"><span class="time">09:15 – 12:30</span>　運河散策 + 北一硝子</div>
+             <div class="step"><span class="time">12:45 – 14:00</span>　<span class="meal">午餐：政壽司 本店</span><br><a href="https://tabelog.com/en/hokkaido/A0106/A010601/1000001/" target="_blank">Tabelog</a> ｜ HK$200–300</div>
+             <div class="step"><span class="time">14:30 – 16:00</span>　<span class="meal">下午茶：LeTAO 本店雙層起司蛋糕（必吃！）</span><br><a href="https://www.letao.jp/en/" target="_blank">LeTAO 官網</a></div>
+             <div class="step"><span class="time">16:30 – 18:30</span>　音樂盒博物館 + 自由購物</div>
+             <div class="step"><span class="time">19:00 – 20:30</span>　<span class="meal">晚餐：札幌拉麵共和國</span></div>
+             <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank">Google Maps 路線</a></div></div>`,
 
-        3: `<div class="detail-day"><h2>2月1日 (日) Day 3　啤酒博物館＋狸小路</h2>
-             <div class="step">上午前往札幌啤酒博物館</div>
-             <div class="step"><b>午餐</b>：館內成吉思汗吃到飽（HK$200）</div>
-             <div class="step">下午狸小路、藥妝血拼</div>
-             <div class="step"><b>晚餐</b>：<a href="https://tabelog.com/en/hokkaido/A0101/A010202/1000002/" target="_blank">Daruma 5.4 本店</a>（HK$250）</div>
-             <div class="links">
-                 <a href="https://www.sapporobeer.jp/english/brewery/s_museum/" target="_blank">啤酒博物館官網</a>
-                 <a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Beer+Museum" target="_blank">Google Maps</a>
-             </div></div>`,
+        3: `<div class="detail-day"><h2>2月1日 (日)　Day 3　啤酒博物館＋狸小路</h2>
+             <div class="step"><span class="time">10:00 – 12:30</span>　札幌啤酒博物館導覽</div>
+             <div class="step"><span class="time">12:45 – 14:30</span>　<span class="meal">午餐：館內成吉思汗吃到飽</span> HK$200</div>
+             <div class="step"><span class="time">15:00 – 18:00</span>　狸小路 + 藥妝血拼</div>
+             <div class="step"><span class="time">18:30 – 20:30</span>　<span class="meal">晚餐：Daruma 5.4 本店</span><br><a href="https://tabelog.com/en/hokkaido/A0101/A010202/1000002/" target="_blank">Tabelog</a> HK$250</div>
+             <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Beer+Museum" target="_blank">Google Maps</a></div></div>`,
 
-        4: `<div class="detail-day"><h2>2月2日 (一) Day 4　藻岩山夜景</h2>
-             <div class="step">下午前往藻岩山纜車</div>
-             <div class="step"><b>午餐</b>：大通附近海鮮丼</div>
-             <div class="step"><b>晚餐</b>：<a href="https://tabelog.com/en/hokkaido/A0101/A010101/1001355/" target="_blank">かに本家 螃蟹吃到飽</a>（HK$500–650）</div>
-             <div class="links">
-                 <a href="https://mt-moiwa.jp/en/" target="_blank">藻岩山官網</a>
-                 <a href="https://www.google.com/maps/dir/Sapporo+Station/Mount+Moiwa" target="_blank">Google Maps</a>
-             </div></div>`,
+        4: `<div class="detail-day"><h2>2月2日 (一)　Day 4　藻岩山夜景</h2>
+             <div class="step"><span class="time">13:00 – 15:30</span>　市電＋接駁巴士 → 藻岩山纜車</div>
+             <div class="step"><span class="time">12:00 – 13:30</span>　<span class="meal">午餐：大通附近海鮮丼</span></div>
+             <div class="step"><span class="time">18:00 – 20:30</span>　<span class="meal">晚餐：かに本家 螃蟹吃到飽</span><br><a href="https://tabelog.com/en/hokkaido/A0101/A010101/1001355/" target="_blank">Tabelog</a> HK$500–650</div>
+             <div class="links"><a href="https://mt-moiwa.jp/en/" target="_blank">藻岩山官網</a> ｜ <a href="https://www.google.com/maps/dir/Sapporo+Station/Mount+Moiwa" target="_blank">Google Maps</a></div></div>`,
 
-        5: `<div class="detail-day"><h2>2月3日 (二) Day 5　定山溪溫泉</h2>
-             <div class="step">上午搭巴士前往定山溪</div>
-             <div class="step"><b>午餐</b>：街內鹿肉蕎麥麵</div>
-             <div class="step"><b>晚餐</b>：溫泉旅館懷石料理</div>
-             <div class="links">
-                 <a href="https://jozankei.jp/en/" target="_blank">定山溪官網</a>
-                 <a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank">Google Maps</a>
-             </div></div>`,
+        5: `<div class="detail-day"><h2>2月3日 (二)　Day 5　定山溪溫泉</h2>
+             <div class="step"><span class="time">09:30 – 10:30</span>　札幌站搭かっぱライナー → 定山溪</div>
+             <div class="step"><span class="time">12:30 – 14:00</span>　<span class="meal">午餐：街內鹿肉蕎麥麵或湯咖喱</span></div>
+             <div class="step"><span class="time">18:30 – 20:30</span>　<span class="meal">晚餐：溫泉旅館懷石料理（住宿已含）</span></div>
+             <div class="links"><a href="https://jozankei.jp/en/" target="_blank">定山溪官網</a> ｜ <a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank">Google Maps</a></div></div>`,
 
-        6: `<div class="detail-day"><h2>2月4日 (三) Day 6　2026雪祭開幕日</h2>
-             <div class="highlight">全天狂歡！巨型雪像全部亮燈</div>
-             <div class="step"><b>午餐</b>：大通會場內 海鮮丼或成吉思汗攤檔</div>
-             <div class="step"><b>晚餐</b>：<a href="https://tabelog.com/en/hokkaido/A0101/A010203/1000089/" target="_blank">蟹本家 薄野本店</a></div>
-             <div class="links">
-                 <a href="https://www.snowfes.com/en/" target="_blank">雪祭官網</a>
-                 <a href="https://www.google.com/maps/place/Odori+Park" target="_blank">Google Maps 大通會場</a>
-             </div>
-             <div class="distance">全天步行 8–10 km · 必穿雪靴</div></div>`,
+        6: `<div class="detail-day"><h2>2月4日 (三)　Day 6　雪祭開幕日</h2>
+             <div class="step"><span class="time">10:00 – 16:00</span>　大通會場 + Tsudome 雪滑梯</div>
+             <div class="step"><span class="time">12:30 – 14:00</span>　<span class="meal">午餐：會場內海鮮丼或成吉思汗攤檔</span></div>
+             <div class="step"><span class="time">17:30 – 20:30</span>　薄野冰雕 → 回大通拍投影秀</div>
+             <div class="step"><span class="time">19:00 – 21:00</span>　<span class="meal">晚餐：蟹本家 薄野本店</span><br><a href="https://tabelog.com/en/hokkaido/A0101/A010203/1000089/" target="_blank">Tabelog</a></div>
+             <div class="links"><a href="https://www.snowfes.com/en/" target="_blank">雪祭官網</a> ｜ <a href="https://www.google.com/maps/place/Odori+Park" target="_blank">Google Maps 大通會場</a></div></div>`,
 
-        7: `<div class="detail-day"><h2>2月5日 (四) Day 7　掃貨＋返程</h2>
-             <div class="step">上午 JR Tower 展望台俯瞰雪祭</div>
-             <div class="step">瘋狂購物後搭機場快線</div>
-             <div class="step"><b>午餐</b>：新千歲機場拉麵道場</div>
-             <div class="links">
-                 <a href="https://www.new-chitose-airport.jp/en/food/ramen-dojo/" target="_blank">拉麵道場</a>
-                 <a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank">Google Maps</a>
-             </div></div>`
+        7: `<div class="detail-day"><h2>2月5日 (四)　Day 7　掃貨＋返程</h2>
+             <div class="step"><span class="time">09:00 – 11:30</span>　JR Tower T38 + 百貨掃貨</div>
+             <div class="step"><span class="time">12:00 – 13:30</span>　<span class="meal">午餐：新千歲機場拉麵道場</span><br><a href="https://www.new-chitose-airport.jp/en/food/ramen-dojo/" target="_blank">官網</a></div>
+             <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank">Google Maps 路線</a></div></div>`
     };
     document.getElementById('detail-content').innerHTML = details[day];
     openTab('details');
