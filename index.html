@@ -5,54 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026 札幌雪祭｜最終版（盤溪滑雪＋狸小路夜景＋藻岩山夜景）</title>
 <style>
-    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;}
-    .header{background:linear-gradient(135deg,#4682B4,#FFD700);color:white;padding:3rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
-    .tabs{max-width:1200px;margin:2rem auto;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid #FFD700;}
-    .tab-btn{background:#fff;padding:1.2rem 2rem;font-size:1.5rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.5rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
-    .tab-btn.active{background:#FFD700;color:#333;font-weight:bold;}
-    .content{max-width:1100px;margin:2rem auto;padding:0 2rem;display:none;}
+    :root{--gold:#FFD700;--blue:#4682B4;--red:#e74c3c;}
+    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;font-size:17px;}
+    .header{background:linear-gradient(135deg,var(--blue),var(--gold));color:white;padding:2.5rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+    .header h1{font-size:2rem;margin:0;}
+    .header p{font-size:1.3rem;margin:0.5rem 0 0;}
+    .tabs{max-width:1200px;margin:2rem auto 1.5rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--gold);}
+    .tab-btn{background:#fff;padding:1rem 1.8rem;font-size:1.tab-btn.active{background:var(--gold);color:#333;}
+    .content{max-width:1100px;margin:0 auto 3rem;padding:0 1.5rem;display:none;}
     .content.active{display:block;}
-    .day{background:white;padding:2.5rem;border-radius:20px;box-shadow:0 12px 35px rgba(0,0,0,0.12);
-         margin-bottom:2rem;border-left:10px solid #FFD700;border:1px solid #FFD700;}
-    .day h2{font-size:1.9rem;margin:0 0 1rem 0;color:#2c3e50;}
-    .big-btn{background:#FFD700;color:#333;padding:1.5rem;font-size:1.6rem;width:100%;border:none;
-             border-radius:15px;margin-top:1.5rem;cursor:pointer;font-weight:bold;}
+    .day{background:white;padding:2rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:1.8rem;border-left:10px solid var(--gold);}
+    .day h2{font-size:1.75rem;margin:0 0 1rem;color:#2c3e50;}
+    .big-btn{background:var(--gold);color:#333;padding:1.3rem;font-size:1.5rem;width:100%;border:none;border-radius:14px;margin-top:1.2rem;cursor:pointer;font-weight:bold;}
     .big-btn:hover{background:#FF8C00;color:white;}
-    .detail-day{background:white;padding:3rem;border-radius:25px;box-shadow:0 15px 50px rgba(0,0,0,0.15);margin:2rem auto;border:1px solid #4682B4;}
-    .hero-img{width:100%;max-height:450px;object-fit:cover;border-radius:20px;margin:1.5rem 0;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
-    .weather-box{background:#e3f2fd;padding:1.2rem;border-radius:10px;margin:1rem 0;border-left:5px solid #4682B4;}
-    .step{margin:1.8rem 0;padding:1.6rem;background:#f0f8ff;border-left:8px solid #4682B4;border-radius:12px;line-height:1.8;}
-    .time{color:#c0392b;font-weight:bold;font-size:1.2rem;}
+    .detail-day{background:white;padding:2.2rem;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid var(--blue);}
+    .hero-img{width:100%;max-height:420px;object-fit:cover;border-radius:18px;margin:1.3rem 0;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+    .weather-box{background:#e3f2fd;padding:1.1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--blue);font-size:0.95rem;}
+    .step{margin:1.5rem 0;padding:1.4rem;background:#f0f8ff;border-left:7px solid var(--blue);border-radius:10px;}
+    .time{color:#c0392b;font-weight:bold;}
     .meal{font-weight:bold;color:#B8860B;}
-    .links a{margin:0.5rem;display:inline-block;background:#e3f2fd;padding:0.9rem 1.5rem;border-radius:12px;font-weight:600;}
-    .location-link{color:#0066cc;text-decoration:underline;font-weight:bold;}
-    .ticket-link{display:inline-block;background:#e74c3c;color:white;padding:0.8rem 1.4rem;border-radius:10px;font-weight:bold;margin:0.5rem 0;}
-    .packing-list{max-width:800px;margin:0 auto;}
-    .packing-list ul{list-style:none;padding:0;}
-    .packing-list li{margin:1rem 0;font-size:1.3rem;}
-    .packing-list input[type="checkbox"]{transform:scale(1.8);margin-right:15px;vertical-align:middle;}
-    .save-btn{background:#4682B4;color:white;padding:0.8rem 1.5rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:0.5rem;}
-    .load-btn{background:#FFD700;color:#333;padding:0.8rem 1.5rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:0.5rem;}
-    .clear-btn{background:#e74c3c;color:white;padding:0.8rem 1.5rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:0.5rem;}
+    .ticket-link{display:block;background:var(--red);color:white;padding:1rem;text-align:center;border-radius:12px;font-weight:bold;margin:1rem 0;font-size:1.05rem;}
+    .ticket-link:hover{background:#c0392b;}
+    .links a{display:inline-block;background:#e3f2fd;padding:0.8rem 1.4rem;border-radius:10px;margin:0.4rem;font-weight:600;}
+    .packing-list{max-width:800px;margin:2rem auto;}
+    .packing-list h2{font-size:1.7rem;text-align:center;margin-bottom:1rem;}
+    .packing-list li{margin:1.2rem 0;font-size:1.35rem;}
+    .packing-list input[type="checkbox"]{transform:scale(1.9);margin-right:16px;vertical-align:middle;}
+    .btn-group{text-align:center;margin:1.5rem 0;}
+    .save-btn,.load-btn,.clear-btn{padding:0.9rem 1.8rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:0.5rem;font-weight:bold;}
+    .save-btn{background:var(--blue);color:white;}
+    .load-btn{background:var(--gold);color:#333;}
+    .clear-btn{background:var(--red);color:white;}
+    .back-top{display:block;width:90%;max-width:420px;margin:3rem auto 2rem;padding:1.2rem;background:var(--blue);color:white;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+
     @media (max-width:768px){
-        .header{padding:1.5rem 0.5rem;}
-        .header h1{font-size:1.8rem;}
+        body{font-size:16px;}
+        .header{padding:1.8rem 1rem;}
+        .header h1{font-size:1.75rem;}
         .tabs{flex-direction:column;align-items:center;border:none;}
-        .tab-btn{width:90%;margin:0.3rem 0;border-radius:15px;}
+        .tab-btn{width:88%;margin:0.35rem 0;border-radius:14px;padding:1rem;font-size:1.35rem;}
         .content{padding:0 1rem;}
-        .day{padding:1.5rem;border-left:5px solid #FFD700;}
-        .big-btn{padding:1rem;font-size:1.3rem;}
-        .detail-day{padding:1.5rem;}
-        .hero-img{max-height:250px;}
-        .save-btn,.load-btn,.clear-btn{display:block;width:90%;margin:0.6rem auto;}
-        .ticket-link{display:block;width:90%;margin:0.8rem auto;text-align:center;}
+        .day{padding:1.6rem;border-left:6px solid var(--gold);}
+        .day h2{font-size:1.55rem;}
+        .big-btn{padding:1.9rem;font-size:1.4rem;}
+        .detail-day{padding:1.6rem;}
+        .hero-img{max-height:260px;}
+        .packing-list input[type="checkbox"]{transform:scale(1.7);}
+        .save-btn,.load-btn,.clear-btn{display:block;width:92%;margin:0.7rem auto;}
+        .ticket-link{font-size:1rem;padding:1.1rem;}
+        .back-top{width:92%;font-size:1.2rem;}
     }
 </style>
 </head>
 <body>
+
 <div class="header">
     <h1>2026 札幌雪祭 7 天完美行程（最終版）</h1>
-    <p style="font-size:1.5rem;">1月30日 – 2月5日　｜　盤溪滑雪場 + 狸小路夜景 + 藻岩山夜景</p>
+    <p>1月30日 – 2月5日　｜　盤溪滑雪場 + 狸小路夜景 + 藻岩山夜景</p>
 </div>
 
 <div class="tabs">
@@ -69,17 +78,14 @@
         <div class="day"><h2>2月1日 (日) Day 3　盤溪滑雪場＋藻岩山夜景</h2><button class="big-btn" onclick="showDetail(3)">查看詳細時間軸</button></div>
         <div class="day"><h2>2月2日 (一) Day 4　定山溪溫泉放空</h2><button class="big-btn" onclick="showDetail(4)">查看詳細時間軸</button></div>
         <div class="day"><h2>2月3日 (二) Day 5　小樽運河浪漫一日</h2>
-            <p style="color:#8B4513;margin:1rem 0;">下午茶：LeTAO 本店雙層起司蛋糕　｜　晚餐：小樽世壺屋</p>
-            <button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button>
-        </div>
-        <div class="day" style="border-left:16px solid #e74c3c;"><h2>2月4日 (三) Day 6　2026雪祭開幕日全天狂歡！</h2><button class="big-btn" style="background:#e74c3c;color:white;" onclick="showDetail(6)">立即查看雪祭時間軸</button></div>
+            <p style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">下午茶：LeTAO本店　｜　晚餐：世壺屋</p>
+            <button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button></div>
+        <div class="day" style="border-left:16px solid var(--red);"><h2>2月4日 (三) Day 6　雪祭開幕日狂歡！</h2><button class="big-btn" style="background:var(--red);color:white;" onclick="showDetail(6)">立即查看</button></div>
         <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button></div>
     </div>
-    <div style="text-align:center;margin:4rem;">
-        <h2>2026 雪祭7天總預算（HK$）</h2>
-        人數 <input type="number" id="p" value="2" min="1" style="padding:0.8rem;width:100px;">
-        <button onclick="calc()" style="background:#FFD700;padding:1rem 2.5rem;border:none;border-radius:12px;margin-left:1rem;font-size:1.3rem;cursor:pointer;">計算</button>
-        <p id="out" style="font-size:3.5rem;margin:2rem;font-weight:bold;color:#c0392b;">HK$14,200（2人）</p>
+
+    <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-top">
+        Back to Top
     </div>
 </div>
 
@@ -90,25 +96,25 @@
 
 <!-- 裝備清單 -->
 <div id="packing" class="content packing-list">
-    <h2 style="text-align:center;color:#2c3e50;">北海道1月底-2月初 裝備清單（極寒+滑雪）</h2>
-    <div style="text-align:center;">
+    <h2>北海道1月底-2月初 裝備清單（極寒+滑雪）</h2>
+    <div class="btn-group">
         <button id="savePacking" class="save-btn">儲存目前勾選狀態</button>
-        <button id="loadPackingBtn" class="load-btn">載入上次儲存的狀態</button>
+        <button id="loadPackingBtn" class="load-btn">載入上次儲存狀態</button>
         <button id="clearPacking" class="clear-btn">取消全部勾選（保留備份）</button>
-        <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;">儲存後即使關閉瀏覽器，下次打開仍會自動恢復</p>
+        <p style="font-size:0.95rem;color:#666;margin-top:0.8rem;">儲存後關閉瀏覽器仍會保留，下次自動載入</p>
     </div>
     <ul>
         <li><input type="checkbox" class="pack-item"> 極厚羽絨服（-20°C等級）</li>
         <li><input type="checkbox" class="pack-item"> 保暖內層（HeatTech極暖）</li>
         <li><input type="checkbox" class="pack-item"> 抓絨中層</li>
         <li><input type="checkbox" class="pack-item"> 防水滑雪褲／雪褲</li>
-        <li><input type="checkbox" class="pack-item"> 防水雪靴（Sorel / The North Face）</li>
+        <li><input type="checkbox" class="pack-item"> 防水雪靴（Sorel / TNF）</li>
         <li><input type="checkbox" class="pack-item"> 滑雪手套（防水＋內刷毛）</li>
         <li><input type="checkbox" class="pack-item"> 毛帽／護耳帽</li>
         <li><input type="checkbox" class="pack-item"> 圍巾或脖圍（Buff）</li>
-        <li><input type="checkbox" class="pack-item"> 雪鏡／護目鏡（滑雪用）</li>
+        <li><input type="checkbox" class="pack-item"> 雪鏡／護目鏡</li>
         <li><input type="checkbox" class="pack-item"> 暖暖包（大量！）</li>
-        <li><input type="checkbox" class="pack-item"> 保濕面霜／護手霜（防凍傷）</li>
+        <li><input type="checkbox" class="pack-item"> 保濕面霜／護手霜</li>
         <li><input type="checkbox" class="pack-item"> 行動電源（低溫易掉電）</li>
         <li><input type="checkbox" class="pack-item"> 泳裝（溫泉用）</li>
         <li><input type="checkbox" class="pack-item"> 替換厚襪（美利奴羊毛最佳）</li>
@@ -122,105 +128,91 @@ function openTab(tab){
     document.getElementById(tab).classList.add('active');
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`).classList.add('active');
+    if(tab==='overview') window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function showDetail(day){
     const details = {
     1: `<div class="detail-day">
-        <div class="weather-box"><strong>1月30日天氣預測：</strong> 高溫 -4°C / 低溫 -11°C，輕雪</div>
-        <img src="https://images.unsplash.com/photo-1542640759-56b6a1b8e14f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="札幌電視塔夜景">
-        <h2>Day 1　抵達札幌＋電視塔夜景</h2>
+        <div class="weather-box"><strong>1月30日</strong> 高溫 -4°C / 低溫 -11°C，輕雪</div>
+        <img src="https://images.unsplash.com/photo-1542640759-56b6a1b8e14f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="電視塔">
+        <h2>Day 1　抵達＋電視塔夜景</h2>
         <div class="step"><span class="time">14:00 – 15:30</span>　新千歲機場 → JR快速Airport（36分鐘）</div>
         <div class="step"><span class="time">19:00 – 20:30</span>　<span class="meal">晚餐：湯咖喱 Garaku</span></div>
         <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台</div>
-        <div style="text-align:center;margin:1.5rem 0;">
-            <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔官方網站＋線上購票（推薦提前買）</a>
-        </div>
-        <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 完整路線</a></div></div>`,
+        <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔線上購票（建議提前）</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div></div>`,
 
     2: `<div class="detail-day">
-        <div class="weather-box"><strong>1月31日</strong> 適合滑雪的好天氣</div>
-        <img src="https://images.unsplash.com/photo-1605546146549-4c3c4d6d826a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="盤溪滑雪場">
-        <h2>Day 2　札幌盤溪滑雪場（市區最近雪場）</h2>
-        <div class="step"><span class="time">08:30 – 09:15</span>　札幌站搭免費接駁巴士</div>
-        <div class="step"><span class="time">10:00 – 16:00</span>　滑雪＋夜滑可到20:00</div>
-        <div style="text-align:center;margin:1.5rem 0;">
-            <a href="https://www.bankei.co.jp/en/" target="_blank" class="ticket-link">盤溪滑雪場官網（英文）＋即時雪況</a><br>
-            <a href="https://www.sapporo-dc.co.jp/ski/bankei/" target="_blank" class="ticket-link">線上購票＋租雪具（日文，可用Google翻譯）</a>
-        </div>
-        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">盤溪滑雪場路線</a></div></div>`,
+        <div class="weather-box"><strong>1月31日</strong> 完美滑雪天</div>
+        <img src="https://images.unsplash.com/photo-1605546146549-4c3c4d6d826a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <h2>Day 2　札幌盤溪滑雪場</h2>
+        <div class="step"><span class="time">08:30 – 09:15</span>　札幌站免費接駁巴士</div>
+        <div class="step"><span class="time">10:00 – 16:00+</span>　租雪具＋滑雪（夜滑至20:00）</div>
+        <div class="step"><span class="time">17:30 – 22:30</span>　狸小路逛街＋居酒屋</div>
+        <a href="https://www.bankei.co.jp/en/" target="_blank" class="ticket-link">盤溪滑雪場官網＋雪況</a>
+        <a href="https://www.sapporo-dc.co.jp/ski/bankei/" target="_blank" class="ticket-link">線上購票＋租雪具</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">路線</a></div></div>`,
 
     3: `<div class="detail-day">
-        <div class="weather-box"><strong>2月1日</strong> 完美夜景日！</div>
-        <img src="https://images.unsplash.com/photo-1573564971333-2ec6d9c7d9c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="藻岩山夜景">
-        <h2>Day 3　盤溪滑雪＋藻岩山百萬夜景</h2>
-        <div class="step"><span class="time">08:30 – 16:00</span>　盤溪滑雪場第2天</div>
+        <div class="weather-box"><strong>2月1日</strong> 晴間多雲，超美夜景日</div>
+        <img src="https://images.unsplash.com/photo-1573564971333-2ec6d9c7d9c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <h2>Day 3　盤溪滑雪第2天＋藻岩山百萬夜景</h2>
+        <div class="step"><span class="time">08:30 – 16:00</span>　盤溪滑雪場</div>
         <div class="step"><span class="time">19:00 – 21:30</span>　藻岩山纜車＋Mini纜車</div>
-        <div style="text-align:center;margin:1.5rem 0;">
-            <a href="https://mt-moiwa.jp/en/" target="_blank" class="ticket-link">藻岩山纜車官方（英文）＋線上優惠套票</a><br>
-            <a href="https://www.klook.com/zh-HK/activity/10036-mount-moiwa-ropeway-ticket-sapporo/" target="_blank" class="ticket-link">Klook 藻岩山纜車票（常有折扣）</a>
-        </div>
-        <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山纜車路線</a></div></div>`,
+        <a href="https://mt-moiwa.jp/en/" target="_blank" class="ticket-link">藻岩山纜車官方（英文）＋線上套票</a>
+        <a href="https://www.klook.com/zh-HK/activity/10036-mount-moiwa-ropeway-ticket-sapporo/" target="_blank" class="ticket-link">Klook 藻岩山纜車票（常有折扣）</a>
+        <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div></div>`,
 
     4: `<div class="detail-day">
         <div class="weather-box"><strong>2月2日</strong> 溫泉放空日</div>
-        <img src="https://images.unsplash.com/photo-1604431514118-5d32c97cc4f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="定山溪溫泉">
-        <h2>Day 4　定山溪溫泉一日放空</h2>
+        <img src="https://images.unsplash.com/photo-1604431514118-5d32c97cc4f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <h2>Day 4　定山溪溫泉</h2>
         <div class="step"><span class="time">09:30 – 10:30</span>　札幌站搭高速巴士（60分鐘）</div>
         <div class="step"><span class="time">11:00 – 18:00</span>　泡湯＋足湯街＋散步</div>
-        <div style="text-align:center;margin:1.5rem 0;">
-            <a href="https://www.jozankei.jp/en/" target="_blank" class="ticket-link">定山溪官方旅遊網站（英文）</a><br>
-            <a href="https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/" target="_blank" class="ticket-link">Klook 定山溪溫泉巴士＋入浴套票</a>
-        </div>
-        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">定山溪巴士路線</a></div></div>`,
+        <div class="step"><span class="time">18:30 – </span>　溫泉旅館懷石料理</div>
+        <a href="https://www.jozankei.jp/en/" target="_blank" class="ticket-link">定山溪官方旅遊網（英文）</a>
+        <a href="https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/" target="_blank" class="ticket-link">Klook 巴士＋溫泉套票</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div></div>`,
 
     5: `<div class="detail-day">
         <div class="weather-box"><strong>2月3日</strong> 小樽浪漫日</div>
-        <img src="https://images.unsplash.com/photo-1542914076-8d07ae7263e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="小樽運河">
-        <h2>Day 5　小樽運河＋LeTAO＋世壺屋晚餐</h2>
-        <div class="step"><span class="time">08:30 – 09:05</span>　JR快速AirPort → 小樽（32分鐘）</div>
-        <div class="step"><span class="time">14:30 – 16:00</span>　LeTAO本店雙層起司蛋糕</div>
-        <div class="step"><span class="time">19:00 – 21:00</span>　小樽世壺屋（需預約！）</div>
-        <div style="text-align:center;margin:1.5rem 0;">
-            <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋 Tabelog 預約頁（強烈建議提前1個月訂位）</a><br>
-            <a href="https://www.klook.com/zh-HK/activity/10998-otaru-day-tour-from-sapporo/" target="_blank" class="ticket-link">Klook 小樽一日遊（含接送）</a>
-        </div></div>`,
+        <img src="https://images.unsplash.com/photo-1542914076-8d07ae7263e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <h2>Day 5　小樽運河全日</h2>
+        <div class="step"><span class="time">08:30 – 09:05</span>　JR快速 → 小樽（32分鐘）</div>
+        <div class="step"><span class="time">09:15 – 運河、北一硝子館、音樂盒博物館</div>
+        <div class="step"><span class="time">14:30 – 16:00</span>　<span class="meal">LeTAO本店雙層起司蛋糕</span></div>
+        <div class="step"><span class="time">19:00 – 21:00</span>　<span class="meal">小樽世壺屋（需預約！）</span></div>
+        <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
+        <a href="https://www.klook.com/zh-HK/activity/10998-otaru-day-tour-from-sapporo/" target="_blank" class="ticket-link">Klook 小樽一日遊套票</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank" class="location-link">小樽路線</a></div></div>`,
 
     6: `<div class="detail-day">
-        <div class="weather-box"><strong>2月4日</strong> 2026雪祭開幕日！</div>
-        <img src="https://images.unsplash.com/photo-1542897599-9a25b69a7d08?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="札幌雪祭">
-        <h2>Day 6　2026札幌雪祭全天狂歡（官方2/4–2/11）</h2>
+        <div class="weather-box"><strong>2月4日</strong> 雪祭開幕！</div>
+        <img src="https://images.unsplash.com/photo-1542897599-9a25b69a7d08?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <h2>Day 6　2026札幌雪祭開幕日狂歡</h2>
         <div class="step"><span class="time">10:00 – 22:00</span>　大通公園＋薄野會場＋Tsudome</div>
-        <div style="text-align:center;margin:1.5rem 0;">
-            <a href="https://www.snowfes.com/en/" target="_blank" class="ticket-link">2026札幌雪祭官方網站（英文）</a><br>
-            <a href="https://www.klook.com/zh-HK/activity/12748-okurayama-viewing-point-sapporo/" target="_blank" class="ticket-link">大倉山跳台雪雕夜間點燈（特別推薦！）</a>
-        </div>
-        <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園雪祭地圖</a></div></div>`,
+        <div class="step"><span class="time">19:00 – </span>　<span class="meal">蟹本家 或 蟹吃到飽</span></div>
+        <a href="https://www.snowfes.com/en/" target="_blank" class="ticket-link">2026雪祭官方網站（英文）</a>
+        <a href="https://www.klook.com/zh-HK/activity/12748-okurayama-viewing-point-sapporo/" target="_blank" class="ticket-link">大倉山夜間點燈雪雕（超推！）</a>
+        <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園地圖</a></div></div>`,
 
     7: `<div class="detail-day">
-        <div class="weather-box"><strong>2月5日</strong> 最後購物日</div>
-        <img src="https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="新千歲機場">
-        <h2>Day 7　藥妝掃貨＋返程</h2>
+        <div class="weather-box"><strong>2月5日</strong> 最後掃貨日</div>
+        <img src="https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <h2>Day 7　藥妝購物＋返程</h2>
         <div class="step"><span class="time">09:00 – 12:00</span>　JR Tower、Stellar Place、大丸百貨</div>
-        <div class="step"><span class="time">12:30 – 14:00</span>　新千歲機場拉麵道場</div>
-        <div style="text-align:center;margin:1.5rem 0;">
-            <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方網站（英文／中文）</a><br>
-            <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
-        </div></div>`
+        <div class="step"><span class="time">12:30 – </span>　新千歲機場拉麵道場</div>
+        <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方（中／英文）</a>
+        <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div></div>`
     };
 
     document.getElementById('detail-content').innerHTML = details[day];
     openTab('details');
 }
 
-function calc(){
-    const p = parseInt(document.getElementById('p').value) || 1;
-    const total = 7100 * p;
-    document.getElementById('out').innerHTML = `HK$${total.toLocaleString()}（${p}人）`;
-}
-calc();
-
-// 裝備清單功能（已修正，不會誤刪備份）
+// 裝備清單功能
 const checkboxes = document.querySelectorAll('.pack-item');
 const saveBtn = document.getElementById('savePacking');
 const loadBtn = document.getElementById('loadPackingBtn');
@@ -230,29 +222,25 @@ function savePacking() {
     const states = {};
     checkboxes.forEach((cb, i) => states[i] = cb.checked);
     localStorage.setItem('sapporo2026_packing', JSON.stringify(states));
-    alert('已成功儲存目前的勾選狀態！');
+    alert('已儲存！');
 }
 
 function loadPacking() {
     const saved = localStorage.getItem('sapporo2026_packing');
     if (!saved) return;
     const states = JSON.parse(saved);
-    checkboxes.forEach((cb, i) => {
-        cb.checked = states[i] ?? false;
-    });
+    checkboxes.forEach((cb, i) => cb.checked = states[i] ?? false);
 }
 
 function clearScreenOnly() {
     checkboxes.forEach(cb => cb.checked = false);
-    alert('已取消全部勾選（備份仍然保留，可隨時載入）');
+    alert('已取消勾選（備份仍在）');
 }
 
 saveBtn.addEventListener('click', savePacking);
 loadBtn.addEventListener('click', loadPacking);
 clearBtn.addEventListener('click', clearScreenOnly);
-
-// 頁面開啟時自動載入
-loadPacking();
+loadPacking(); // 自動載入
 </script>
 </body>
 </html>
