@@ -30,8 +30,12 @@
     .packing-list ul{list-style:none;padding:0;}
     .packing-list li{margin:1rem 0;font-size:1.3rem;}
     .packing-list input[type="checkbox"]{transform:scale(1.8);margin-right:15px;vertical-align:middle;}
-    .save-btn{background:#4682B4;color:white;padding:0.8rem 1.5rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:1rem 0;display:inline-block;}
+    .save-btn{background:#4682B4;color:white;padding:0.8rem 1.5rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:0.5rem;}
     .save-btn:hover{background:#336699;}
+    .load-btn{background:#FFD700;color:#333;padding:0.8rem 1.5rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:0.5rem;}
+    .load-btn:hover{background:#FF8C00;color:white;}
+    .clear-btn{background:#e74c3c;color:white;padding:0.8rem 1.5rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:0.5rem;}
+    .clear-btn:hover{background:#c0392b;}
 
     /* Mobile-specific adjustments */
     @media (max-width: 768px) {
@@ -53,6 +57,7 @@
         .packing-list li { font-size: 1.1rem; }
         .packing-list input[type="checkbox"] { transform: scale(1.5); margin-right: 10px; }
         #out { font-size: 2rem; }
+        .save-btn, .load-btn, .clear-btn { display: block; width: 90%; margin: 0.5rem auto; }
     }
 </style>
 </head>
@@ -96,7 +101,9 @@
     <h2 style="text-align:center;color:#2c3e50;">北海道1月底-2月初 裝備清單（極寒+滑雪）</h2>
     <div style="text-align:center;">
         <button id="savePacking" class="save-btn">儲存已勾選項目</button>
-        <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;">（儲存後重新開啟頁面仍會保留）</p>
+        <button id="loadPackingBtn" class="load-btn">載入已儲存項目</button>
+        <button id="clearPacking" class="clear-btn">清除所有勾選</button>
+        <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;">（儲存後重新開啟頁面仍會保留，頁面載入時會自動載入）</p>
     </div>
     <ul id="packingUl">
         <li><input type="checkbox" class="pack-item"> 極厚羽絨服（-20°C等級）</li>
@@ -203,9 +210,11 @@ function calc(){
 }
 calc();
 
-// Packing list save/load
+// Packing list save/load/clear
 const checkboxes = document.querySelectorAll('.pack-item');
 const saveBtn = document.getElementById('savePacking');
+const loadBtn = document.getElementById('loadPackingBtn');
+const clearBtn = document.getElementById('clearPacking');
 
 function savePacking() {
     const states = {};
@@ -225,12 +234,25 @@ function loadPacking() {
                 cb.checked = states[index];
             }
         });
+        alert('已載入儲存的勾選狀態！');
+    } else {
+        alert('沒有儲存的資料可載入。');
+    }
+}
+
+function clearPacking() {
+    if (confirm('確定要清除所有勾選並刪除儲存資料嗎？')) {
+        checkboxes.forEach(cb => cb.checked = false);
+        localStorage.removeItem('packingStates');
+        alert('已清除所有勾選！');
     }
 }
 
 saveBtn.addEventListener('click', savePacking);
+loadBtn.addEventListener('click', loadPacking);
+clearBtn.addEventListener('click', clearPacking);
 
-// Load on page load
+// Auto load on page load
 loadPacking();
 </script>
 </body>
