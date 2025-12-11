@@ -30,6 +30,8 @@
     .packing-list ul{list-style:none;padding:0;}
     .packing-list li{margin:1rem 0;font-size:1.3rem;}
     .packing-list input[type="checkbox"]{transform:scale(1.8);margin-right:15px;vertical-align:middle;}
+    .save-btn{background:#4682B4;color:white;padding:0.8rem 1.5rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:1rem 0;display:inline-block;}
+    .save-btn:hover{background:#336699;}
 
     /* Mobile-specific adjustments */
     @media (max-width: 768px) {
@@ -92,22 +94,26 @@
 <!-- 裝備清單 -->
 <div id="packing" class="content packing-list">
     <h2 style="text-align:center;color:#2c3e50;">北海道1月底-2月初 裝備清單（極寒+滑雪）</h2>
-    <ul>
-        <li><input type="checkbox"> 極厚羽絨服（-20°C等級）</li>
-        <li><input type="checkbox"> 保暖內層（HeatTech極暖）</li>
-        <li><input type="checkbox"> 抓絨中層</li>
-        <li><input type="checkbox"> 防水滑雪褲／雪褲</li>
-        <li><input type="checkbox"> 防水雪靴（Sorel / The North Face）</li>
-        <li><input type="checkbox"> 滑雪手套（防水＋內刷毛）</li>
-        <li><input type="checkbox"> 毛帽／護耳帽</li>
-        <li><input type="checkbox"> 圍巾或脖圍（Buff）</li>
-        <li><input type="checkbox"> 雪鏡／護目鏡（滑雪用）</li>
-        <li><input type="checkbox"> 暖暖包（大量！）</li>
-        <li><input type="checkbox"> 保濕面霜／護手霜（防凍傷）</li>
-        <li><input type="checkbox"> 行動電源（低溫易掉電）</li>
-        <li><input type="checkbox"> 泳裝（溫泉用）</li>
-        <li><input type="checkbox"> 替換厚襪（美利奴羊毛最佳）</li>
-        <li><input type="checkbox"> 護唇膏 + 鼻噴劑</li>
+    <div style="text-align:center;">
+        <button id="savePacking" class="save-btn">儲存已勾選項目</button>
+        <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;">（儲存後重新開啟頁面仍會保留）</p>
+    </div>
+    <ul id="packingUl">
+        <li><input type="checkbox" class="pack-item"> 極厚羽絨服（-20°C等級）</li>
+        <li><input type="checkbox" class="pack-item"> 保暖內層（HeatTech極暖）</li>
+        <li><input type="checkbox" class="pack-item"> 抓絨中層</li>
+        <li><input type="checkbox" class="pack-item"> 防水滑雪褲／雪褲</li>
+        <li><input type="checkbox" class="pack-item"> 防水雪靴（Sorel / The North Face）</li>
+        <li><input type="checkbox" class="pack-item"> 滑雪手套（防水＋內刷毛）</li>
+        <li><input type="checkbox" class="pack-item"> 毛帽／護耳帽</li>
+        <li><input type="checkbox" class="pack-item"> 圍巾或脖圍（Buff）</li>
+        <li><input type="checkbox" class="pack-item"> 雪鏡／護目鏡（滑雪用）</li>
+        <li><input type="checkbox" class="pack-item"> 暖暖包（大量！）</li>
+        <li><input type="checkbox" class="pack-item"> 保濕面霜／護手霜（防凍傷）</li>
+        <li><input type="checkbox" class="pack-item"> 行動電源（低溫易掉電）</li>
+        <li><input type="checkbox" class="pack-item"> 泳裝（溫泉用）</li>
+        <li><input type="checkbox" class="pack-item"> 替換厚襪（美利奴羊毛最佳）</li>
+        <li><input type="checkbox" class="pack-item"> 護唇膏 + 鼻噴劑</li>
     </ul>
 </div>
 <script>
@@ -196,6 +202,36 @@ function calc(){
     document.getElementById('out').innerHTML = `HK$${total.toLocaleString()}（${p}人）`;
 }
 calc();
+
+// Packing list save/load
+const checkboxes = document.querySelectorAll('.pack-item');
+const saveBtn = document.getElementById('savePacking');
+
+function savePacking() {
+    const states = {};
+    checkboxes.forEach((cb, index) => {
+        states[index] = cb.checked;
+    });
+    localStorage.setItem('packingStates', JSON.stringify(states));
+    alert('已儲存裝備清單勾選狀態！');
+}
+
+function loadPacking() {
+    const saved = localStorage.getItem('packingStates');
+    if (saved) {
+        const states = JSON.parse(saved);
+        checkboxes.forEach((cb, index) => {
+            if (states[index] !== undefined) {
+                cb.checked = states[index];
+            }
+        });
+    }
+}
+
+saveBtn.addEventListener('click', savePacking);
+
+// Load on page load
+loadPacking();
 </script>
 </body>
 </html>
