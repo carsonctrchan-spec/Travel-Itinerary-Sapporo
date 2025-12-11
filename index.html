@@ -2,41 +2,53 @@
 <html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>2026 札幌雪祭｜可互動編輯版（永久儲存）</title>
 <style>
     body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;}
-    .header{background:linear-gradient(135deg,#4682B4,#FFD700);color:white;padding:3rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
-    .tabs{max-width:1200px;margin:2rem auto;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid #FFD700;}
-    .tab-btn{background:#fff;padding:1.2rem 2.5rem;font-size:1.5rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.5rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+    .header{background:linear-gradient(135deg,#4682B4,#FFD700);color:white;padding:2rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+    .tabs{max-width:100%;margin:1rem auto;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:3px solid #FFD700;}
+    .tab-btn{background:#fff;padding:0.8rem 1.5rem;font-size:1.2rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.3rem;box-shadow:0 3px 8px rgba(0,0,0,0.1);}
     .tab-btn.active{background:#FFD700;color:#333;font-weight:bold;}
-    .content{max-width:1100px;margin:2rem auto;padding:0 2rem;display:none;}
+    .content{max-width:100%;margin:1rem auto;padding:0 1rem;display:none;}
     .content.active{display:block;}
-    .day{background:white;padding:2.5rem;border-radius:20px;box-shadow:0 12px 35px rgba(0,0,0,0.12);
-         margin-bottom:2rem;border-left:10px solid #FFD700;border:1px solid #ddd;}
-    .day h2{font-size:1.9rem;margin:0 0 1rem 0;color:#2c3e50;}
-    .big-btn{background:#FFD700;color:#333;padding:1.5rem;font-size:1.6rem;width:100%;border:none;
-             border-radius:15px;margin-top:1.5rem;cursor:pointer;font-weight:bold;}
+    .day{background:white;padding:1.5rem;border-radius:15px;box-shadow:0 8px 25px rgba(0,0,0,0.12);
+         margin-bottom:1.5rem;border-left:8px solid #FFD700;border:1px solid #ddd;}
+    .day h2{font-size:1.6rem;margin:0 0 0.8rem 0;color:#2c3e50;}
+    .big-btn{background:#FFD700;color:#333;padding:1rem;font-size:1.4rem;width:100%;border:none;
+             border-radius:12px;margin-top:1rem;cursor:pointer;font-weight:bold;}
     .big-btn:hover{background:#FF8C00;color:white;}
-    .detail-day{background:white;padding:3rem;border-radius:25px;box-shadow:0 15px 50px rgba(0,0,0,0.15);margin:2rem auto;border:1px solid #4682B4;}
-    .hero-img{width:100%;max-height:420px;object-fit:cover;border-radius:20px;margin:1.5rem 0;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
-    .weather-box{background:#e3f2fd;padding:1.2rem;border-radius:10px;margin:1rem 0;border-left:5px solid #4682B4;font-weight:bold;}
-    .step{margin:1.2rem 0;padding:1.4rem;background:#f0f8ff;border-left:8px solid #4682B4;border-radius:12px;line-height:1.8;position:relative;}
-    .step-controls{position:absolute;top:8px;right:8px;}
-    .step-controls button{margin:0 4px;background:#e74c3c;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;}
+    .detail-day{background:white;padding:2rem;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid #4682B4;}
+    .hero-img{width:100%;max-height:300px;object-fit:contain;border-radius:15px;margin:1rem 0;box-shadow:0 8px 25px rgba(0,0,0,0.2);}
+    .weather-box{background:#e3f2fd;padding:1rem;border-radius:8px;margin:1rem 0;border-left:4px solid #4682B4;font-weight:bold;font-size:1.1rem;}
+    .step{margin:1.2rem 0;padding:1.2rem;background:#f0f8ff;border-left:6px solid #4682B4;border-radius:10px;line-height:1.6;position:relative;font-size:1.1rem;}
+    .step-controls{position:absolute;top:0.5rem;right:0.5rem;}
+    .step-controls button{margin:0 0.3rem;background:#e74c3c;color:white;border:none;padding:0.3rem 0.6rem;border-radius:4px;cursor:pointer;font-size:0.8rem;}
     .step-controls button:hover{background:#c0392b;}
     .add-step{margin:1rem 0;text-align:center;}
-    .add-step input{width:70%;padding:0.8rem;border:1px solid #ddd;border-radius:8px;}
-    .add-step button{background:#27ae60;color:white;padding:0.8rem 1.2rem;border:none;border-radius:8px;cursor:pointer;}
-    .save-section{text-align:center;margin:3rem 0;padding:2rem;background:#f8f9fa;border-radius:15px;}
-    .save-btn,.export-btn{background:#28a745;color:white;padding:1rem 2rem;border:none;border-radius:10px;font-size:1.3rem;cursor:pointer;margin:0.5rem;}
+    .add-step input{width:70%;padding:0.6rem;border:1px solid #ddd;border-radius:6px;}
+    .add-step button{background:#27ae60;color:white;padding:0.6rem 1rem;border:none;border-radius:6px;cursor:pointer;}
+    .save-section{text-align:center;margin:2rem 0;padding:1.5rem;background:#f8f9fa;border-radius:12px;}
+    .save-btn,.export-btn{background:#28a745;color:white;padding:0.8rem 1.5rem;border:none;border-radius:8px;font-size:1.1rem;cursor:pointer;margin:0.3rem;}
     .export-btn{background:#17a2b8;}
     #importFile{display:none;}
-    .time{color:#c0392b;font-weight:bold;font-size:1.2rem;}
+    .time{color:#c0392b;font-weight:bold;font-size:1.1rem;}
     .meal{font-weight:bold;color:#B8860B;}
-    .links a{margin:0.5rem;display:inline-block;background:#e3f2fd;padding:0.9rem 1.5rem;border-radius:12px;font-weight:600;}
+    .links a{margin:0.3rem;display:block;background:#e3f2fd;padding:0.7rem 1.2rem;border-radius:8px;font-weight:600;font-size:1.1rem;}
     .location-link{color:#0066cc;text-decoration:underline;font-weight:bold;}
-    @media (max-width:768px){.tabs{flex-direction:column;}.tab-btn{margin:0.5rem auto;}}
+    @media (max-width:600px){
+        .header{padding:1.5rem 0.5rem;}
+        .tabs{max-width:100%;margin:1rem 0.5rem;}
+        .tab-btn{padding:0.8rem 1.2rem;font-size:1.2rem;margin:0.2rem;}
+        .day{padding:1.5rem;}
+        .big-btn{padding:1rem;font-size:1.4rem;}
+        .detail-day{padding:2rem;}
+        .hero-img{max-height:250px;}
+        .step{padding:1rem;font-size:1rem;}
+        .add-step input{width:60%;}
+        .save-section{padding:1rem;}
+        .save-btn,.export-btn{padding:0.8rem 1rem;font-size:1rem;}
+    }
 </style>
 </head>
 <body>
@@ -177,20 +189,13 @@ let itinerary = JSON.parse(localStorage.getItem('sapporo2026') || `{
             "14:00 – 航班前　機場 Royce + Outlet"
         ]
     }
-}`);
-
-function openTab(tab){
-    document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
-    document.getElementById(tab).classList.add('active');
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    event.target.classList.add('active');
-}
+}`); 
 
 function showDetail(day){
     const data = itinerary[day];
     let html = `<div class="detail-day">
-        <div class="weather-box"><strong>${data.title.split('　')[0]} 天氣：</strong>${data.weather}</div>
-        <img src="${data.img}" class="hero-img" alt="${data.title}">
+        <div class="weather-box"><strong>\( {data.title.split('　')[0]} 天氣：</strong> \){data.weather}</div>
+        <img src="\( {data.img}" class="hero-img" alt=" \){data.title}">
         <h2>${data.title}</h2>
         <div class="add-step">
             <input type="text" id="newStep${day}" placeholder="輸入新行程（可加HTML連結）">
@@ -198,13 +203,13 @@ function showDetail(day){
         </div>`;
 
     data.steps.forEach((step, i) => {
-        html += `<div class="step" id="step-${day}-${i}">
+        html += `<div class="step" id="step-\( {day}- \){i}">
             <div class="step-controls">
-                <button onclick="moveUp(${day},${i})">↑</button>
-                <button onclick="moveDown(${day},${i})">↓</button>
-                <button onclick="deleteStep(${day},${i})">×</button>
+                <button onclick="moveUp(\( {day}, \){i})">↑</button>
+                <button onclick="moveDown(\( {day}, \){i})">↓</button>
+                <button onclick="deleteStep(\( {day}, \){i})">×</button>
             </div>
-            <div contenteditable="true" onblur="updateStep(${day},${i}, this.innerHTML)">${step}</div>
+            <div contenteditable="true" onblur="updateStep(\( {day}, \){i}, this.innerHTML)">${step}</div>
         </div>`;
     });
 
@@ -219,20 +224,17 @@ function addStep(day){
         itinerary[day].steps.push(text);
         document.getElementById(`newStep${day}`).value = '';
         showDetail(day);
-        saveAll();
     }
 }
 
 function updateStep(day, index, newText){
     itinerary[day].steps[index] = newText;
-    saveAll();
 }
 
 function moveUp(day, index){
     if(index > 0){
         [itinerary[day].steps[index-1], itinerary[day].steps[index]] = [itinerary[day].steps[index], itinerary[day].steps[index-1]];
         showDetail(day);
-        saveAll();
     }
 }
 
@@ -240,7 +242,6 @@ function moveDown(day, index){
     if(index < itinerary[day].steps.length-1){
         [itinerary[day].steps[index], itinerary[day].steps[index+1]] = [itinerary[day].steps[index+1], itinerary[day].steps[index]];
         showDetail(day);
-        saveAll();
     }
 }
 
@@ -248,7 +249,6 @@ function deleteStep(day, index){
     if(confirm('確定刪除這一行？')){
         itinerary[day].steps.splice(index, 1);
         showDetail(day);
-        saveAll();
     }
 }
 
@@ -288,9 +288,6 @@ function calc(){
     document.getElementById('out').innerHTML = `HK$${total.toLocaleString()}（${p}人）`;
 }
 calc();
-
-// 首次載入顯示 Day 1
-showDetail(1);
 </script>
 </body>
 </html>
