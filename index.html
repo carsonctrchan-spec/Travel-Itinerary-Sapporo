@@ -20,41 +20,75 @@
     .big-btn:hover{background:#FF8C00;color:white;}
     .detail-day{background:white;padding:3rem;border-radius:25px;box-shadow:0 15px 50px rgba(0,0,0,0.15);margin:2rem auto;border:1px solid #4682B4;}
     .hero-img{width:100%;max-height:420px;object-fit:cover;border-radius:20px;margin:1.5rem 0;box-shadow:0 10px 30px rgba(0,0,0,0.2);}
-    .weather-box{background:#e3f2fd;padding:1.2rem;border-radius:10px;margin:1rem 0;border-left:5px solid #4682B4;}
+    .weather-box{background:#e3f2fd;padding:1.2rem;border-radius:10px;margin:1rem 0;border-left:5px solid #4682B4;font-weight:bold;}
     .step{margin:1.2rem 0;padding:1.4rem;background:#f0f8ff;border-left:8px solid #4682B4;border-radius:12px;line-height:1.8;position:relative;}
     .step-controls{position:absolute;top:8px;right:8px;}
     .step-controls button{margin:0 4px;background:#e74c3c;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;}
-    .add-step{margin:1rem 0;}
+    .step-controls button:hover{background:#c0392b;}
+    .add-step{margin:1rem 0;text-align:center;}
     .add-step input{width:70%;padding:0.8rem;border:1px solid #ddd;border-radius:8px;}
     .add-step button{background:#27ae60;color:white;padding:0.8rem 1.2rem;border:none;border-radius:8px;cursor:pointer;}
     .save-section{text-align:center;margin:3rem 0;padding:2rem;background:#f8f9fa;border-radius:15px;}
-    .save-btn{background:#28a745;color:white;padding:1rem 2rem;border:none;border-radius:10px;font-size:1.3rem;cursor:pointer;margin:0.5rem;}
-    .export-btn{background:#17a2b8;color:white;padding:1rem 2rem;border:none;border-radius:10px;font-size:1.3rem;cursor:pointer;margin:0.5rem;}
+    .save-btn,.export-btn{background:#28a745;color:white;padding:1rem 2rem;border:none;border-radius:10px;font-size:1.3rem;cursor:pointer;margin:0.5rem;}
+    .export-btn{background:#17a2b8;}
     #importFile{display:none;}
+    .time{color:#c0392b;font-weight:bold;font-size:1.2rem;}
+    .meal{font-weight:bold;color:#B8860B;}
+    .links a{margin:0.5rem;display:inline-block;background:#e3f2fd;padding:0.9rem 1.5rem;border-radius:12px;font-weight:600;}
+    .location-link{color:#0066cc;text-decoration:underline;font-weight:bold;}
+    @media (max-width:768px){.tabs{flex-direction:column;}.tab-btn{margin:0.5rem auto;}}
 </style>
 </head>
 <body>
 
 <div class="header">
     <h1>2026 札幌雪祭｜可互動編輯版（永久儲存）</h1>
-    p style="font-size:1.5rem;">1月30日 – 2月5日｜點「編輯」即可即時修改行程，自動永久保存！</p>
+    <p style="font-size:1.5rem;">1月30日 – 2月5日｜點「進入編輯模式」即可即時修改行程，自動永久保存！</p>
 </div>
 
 <div class="tabs">
-    div class="tab-btn active" onclick="openTab('overview')">總覽</div>
-    div class="tab-btn" onclick="openTab('details')">詳細日程表（可編輯）</div>
+    <div class="tab-btn active" onclick="openTab('overview')">總覽</div>
+    <div class="tab-btn" onclick="openTab('details')">詳細日程表（可編輯）</div>
 </div>
 
 <!-- 總覽 -->
 <div id="overview" class="content active">
-    div style="max-width:900px;margin:0 auto;">
-        <div class="day"><h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2><button class="big-btn" onclick="showDetail(1)">進入編輯模式</button></div>
-        <div class="day"><h2>1月31日 (六) Day 2　盤溪滑雪場＋狸小路夜景</h2><button class="big-btn" onclick="showDetail(2)">進入編輯模式</button></div>
-        <div class="day"><h2>2月1日 (日) Day 3　盤溪滑雪場＋藻岩山夜景</h2><button class="big-btn" onclick="showDetail(3)">進入編輯模式</button></div>
-        <div class="day"><h2>2月2日 (一) Day 4　定山溪溫泉</h2><button class="big-btn" onclick="showDetail(4)">進入編輯模式</button></div>
-        <div class="day"><h2>2月3日 (二) Day 5　小樽運河浪漫一日</h2><button class="big-btn" onclick="showDetail(5)">進入編輯模式</button></div>
-        <div class="day" style="border-left:16px solid #e74c3c;"><h2>2月4日 (三) Day 6　雪祭開幕日</h2><button class="big-btn" style="background:#e74c3c;color:white;" onclick="showDetail(6)">進入編輯模式</button></div>
-        <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">進入編輯模式</button></div>
+    <div style="max-width:900px;margin:0 auto;">
+        <div class="day">
+            <h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2>
+            <button class="big-btn" onclick="showDetail(1)">進入編輯模式</button>
+        </div>
+        <div class="day">
+            <h2>1月31日 (六) Day 2　盤溪滑雪場＋狸小路夜景</h2>
+            <button class="big-btn" onclick="showDetail(2)">進入編輯模式</button>
+        </div>
+        <div class="day">
+            <h2>2月1日 (日) Day 3　盤溪滑雪場＋藻岩山夜景</h2>
+            <button class="big-btn" onclick="showDetail(3)">進入編輯模式</button>
+        </div>
+        <div class="day">
+            <h2>2月2日 (一) Day 4　定山溪溫泉</h2>
+            <button class="big-btn" onclick="showDetail(4)">進入編輯模式</button>
+        </div>
+        <div class="day">
+            <h2>2月3日 (二) Day 5　小樽運河浪漫一日</h2>
+            <button class="big-btn" onclick="showDetail(5)">進入編輯模式</button>
+        </div>
+        <div class="day" style="border-left:16px solid #e74c3c;">
+            <h2>2月4日 (三) Day 6　2026雪祭開幕日全天狂歡！</h2>
+            <button class="big-btn" style="background:#e74c3c;color:white;" onclick="showDetail(6)">進入編輯模式</button>
+        </div>
+        <div class="day">
+            <h2>2月5日 (四) Day 7　掃貨＋返程</h2>
+            <button class="big-btn" onclick="showDetail(7)">進入編輯模式</button>
+        </div>
+    </div>
+
+    <div style="text-align:center;margin:4rem;">
+        <h2>2026 雪祭7天總預算（HK$）</h2>
+        人數 <input type="number" id="p" value="2" min="1" style="padding:0.8rem;width:100px;">
+        <button onclick="calc()" style="background:#FFD700;padding:1rem 2.5rem;border:none;border-radius:12px;margin-left:1rem;font-size:1.3rem;cursor:pointer;">計算</button>
+        <p id="out" style="font-size:3.5rem;margin:2rem;font-weight:bold;color:#c0392b;">HK$14,200（2人）</p>
     </div>
 </div>
 
@@ -65,9 +99,9 @@
     <div class="save-section">
         <button class="save-btn" onclick="saveAll()">保存所有變更（永久儲存）</button>
         <button class="export-btn" onclick="exportData()">匯出為JSON（分享用）</button>
-        <input type="file" id="importFile" onchange="importData(event)">
+        <input type="file" id="importFile" onchange="importData(event)" accept=".json">
         <button class="save-btn" onclick="document.getElementById('importFile').click()">匯入JSON</button>
-        <p style="margin-top:1rem;color:#666;">變更會自動儲存在你的瀏覽器，下次打開還在！</p>
+        <p style="margin-top:1rem;color:#666;font-size:0.9rem;">變更會自動儲存在你的瀏覽器，下次打開還在！</p>
     </div>
 </div>
 
@@ -90,8 +124,9 @@ let itinerary = JSON.parse(localStorage.getItem('sapporo2026') || `{
         "img": "https://images.unsplash.com/photo-1605546146549-4c3c4d6d826a?w=1400&q=85",
         "weather": "高溫 -1°C / 低溫 -10°C，輕雪",
         "steps": [
-            "08:30 – 16:00　<a href='https://www.bankei.co.jp/english/' target='_blank'>盤溪滑雪場</a>",
-            "17:30 – 22:30　<a href='https://tanukikoji.or.jp/' target='_blank'>狸小路逛街＋居酒屋</a>"
+            "08:30 – 09:15　札幌站搭巴士 → <a href='https://www.bankei.co.jp/english/' target='_blank'>盤溪滑雪場</a>",
+            "10:00 – 16:00　租雪板＋滑雪（夜滑到20:00）",
+            "17:30 – 22:30　<a href='https://tanukikoji.or.jp/' target='_blank'>狸小路夜間逛街＋居酒屋</a>"
         ]
     },
     "3": {
@@ -99,14 +134,49 @@ let itinerary = JSON.parse(localStorage.getItem('sapporo2026') || `{
         "img": "https://images.unsplash.com/photo-1573564971333-2ec6d9c7d9c5?w=1400&q=85",
         "weather": "高溫 -2°C / 低溫 -8°C，晴",
         "steps": [
-            "09:00 – 16:00　盤溪滑雪場",
-            "19:00 – 21:30　<a href='https://mt-moiwa.jp/en/' target='_blank'>藻岩山夜景</a>"
+            "09:00 – 16:00　盤溪滑雪場自由滑",
+            "19:00 – 21:30　<a href='https://mt-moiwa.jp/en/' target='_blank'>藻岩山纜車夜景</a>"
         ]
     },
-    "4": { "title": "2月2日 (一) Day 4　定山溪溫泉", "img": "https://images.unsplash.com/photo-1604431514118-5d32c97cc4f8?w=1400&q=85", "weather": "高溫 -3°C / 低溫 -9°C", "steps": ["09:30 – 18:00　泡湯＋散策"] },
-    "5": { "title": "2月3日 (二) Day 5　小樽運河", "img": "https://images.unsplash.com/photo-1542914076-8d07ae7263e9?w=1400&q=85", "weather": "高溫 -2°C / 低溫 -8°C", "steps": ["09:15 – 18:30　運河＋LeTAO下午茶"] },
-    "6": { "title": "2月4日 (三) Day 6　雪祭開幕日", "img": "https://images.unsplash.com/photo-1542897599-9a25b69a7d08?w=1400&q=85", "weather": "高溫 -3°C / 低溫 -9°C", "steps": ["10:00 – 22:00　大通＋薄野＋Tsudome"] },
-    "7": { "title": "2月5日 (四) Day 7　掃貨＋返程", "img": "https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?w=1400&q=85", "weather": "高溫 -4°C / 低溫 -10°C", "steps": ["09:00 – 14:00　購物＋機場"] }
+    "4": {
+        "title": "2月2日 (一) Day 4　定山溪溫泉",
+        "img": "https://images.unsplash.com/photo-1604431514118-5d32c97cc4f8?w=1400&q=85",
+        "weather": "高溫 -3°C / 低溫 -9°C，多雲轉晴",
+        "steps": [
+            "09:30 – 10:30　搭巴士 → 定山溪",
+            "11:00 – 18:00　泡湯＋足湯＋散策",
+            "18:30 – 20:30　晚餐：溫泉旅館懷石料理"
+        ]
+    },
+    "5": {
+        "title": "2月3日 (二) Day 5　小樽運河浪漫一日",
+        "img": "https://images.unsplash.com/photo-1542914076-8d07ae7263e9?w=1400&q=85",
+        "weather": "高溫 -2°C / 低溫 -8°C，輕雪",
+        "steps": [
+            "08:30 – 09:05　JR快速 → 小樽站",
+            "09:15 – 12:30　<a href='https://www.otaru.gr.jp/en' target='_blank'>運河散策</a> + 北一硝子",
+            "14:30 – 16:00　下午茶：LeTAO 本店雙層起司蛋糕（<a href='https://www.letao.jp/en/' target='_blank'>官網</a>）"
+        ]
+    },
+    "6": {
+        "title": "2月4日 (三) Day 6　2026雪祭開幕日全天狂歡！",
+        "img": "https://images.unsplash.com/photo-1542897599-9a25b69a7d08?w=1400&q=85",
+        "weather": "高溫 -3°C / 低溫 -9°C，雪花紛飛",
+        "steps": [
+            "10:00 – 22:00　<a href='https://www.snowfes.com/en/' target='_blank'>大通公園＋薄野＋Tsudome</a>",
+            "19:00 – 20:30　晚餐：蟹本家或蟹吃到飽"
+        ]
+    },
+    "7": {
+        "title": "2月5日 (四) Day 7　掃貨＋返程",
+        "img": "https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?w=1400&q=85",
+        "weather": "高溫 -4°C / 低溫 -10°C，多雲",
+        "steps": [
+            "09:00 – 12:00　JR Tower + 百貨購物",
+            "12:30 – 14:00　午餐：機場拉麵道場",
+            "14:00 – 航班前　機場 Royce + Outlet"
+        ]
+    }
 }`);
 
 function openTab(tab){
@@ -122,7 +192,10 @@ function showDetail(day){
         <div class="weather-box"><strong>${data.title.split('　')[0]} 天氣：</strong>${data.weather}</div>
         <img src="${data.img}" class="hero-img" alt="${data.title}">
         <h2>${data.title}</h2>
-        <button onclick="addStep(${day})" style="background:#27ae60;color:white;padding:0.8rem;margin:1rem 0;border:none;border-radius:8px;cursor:pointer;">+ 新增一行</button>`;
+        <div class="add-step">
+            <input type="text" id="newStep${day}" placeholder="輸入新行程（可加HTML連結）">
+            <button onclick="addStep(${day})">+ 新增一行</button>
+        </div>`;
 
     data.steps.forEach((step, i) => {
         html += `<div class="step" id="step-${day}-${i}">
@@ -131,7 +204,7 @@ function showDetail(day){
                 <button onclick="moveDown(${day},${i})">↓</button>
                 <button onclick="deleteStep(${day},${i})">×</button>
             </div>
-            <span contenteditable="true" onblur="updateStep(${day},${i}, this.innerHTML)">${step}</span>
+            <div contenteditable="true" onblur="updateStep(${day},${i}, this.innerHTML)">${step}</div>
         </div>`;
     });
 
@@ -141,9 +214,10 @@ function showDetail(day){
 }
 
 function addStep(day){
-    const text = prompt("輸入新行程（可加HTML，例如連結）：");
+    const text = document.getElementById(`newStep${day}`).value.trim();
     if(text){
         itinerary[day].steps.push(text);
+        document.getElementById(`newStep${day}`).value = '';
         showDetail(day);
         saveAll();
     }
@@ -171,14 +245,16 @@ function moveDown(day, index){
 }
 
 function deleteStep(day, index){
-    itinerary[day].steps.splice(index, 1);
-    showDetail(day);
-    saveAll();
+    if(confirm('確定刪除這一行？')){
+        itinerary[day].steps.splice(index, 1);
+        showDetail(day);
+        saveAll();
+    }
 }
 
 function saveAll(){
     localStorage.setItem('sapporo2026', JSON.stringify(itinerary));
-    alert('已自動永久保存！');
+    alert('已永久保存！關閉重開還在～');
 }
 
 function exportData(){
@@ -186,7 +262,7 @@ function exportData(){
     const url = URL.createObjectURL(data);
     const a = document.createElement('a');
     a.href = url;
-    a.download = '我的札幌行程.json';
+    a.download = '我的札幌2026行程.json';
     a.click();
 }
 
@@ -199,10 +275,19 @@ function importData(e){
             itinerary = JSON.parse(e.target.result);
             alert('匯入成功！');
             location.reload();
-        }catch{ alert('檔案格式錯誤'); }
+        }catch(err){
+            alert('匯入失敗：檔案格式錯誤');
+        }
     };
     reader.readAsText(file);
 }
+
+function calc(){
+    const p = parseInt(document.getElementById('p').value) || 1;
+    const total = 7100 * p;
+    document.getElementById('out').innerHTML = `HK$${total.toLocaleString()}（${p}人）`;
+}
+calc();
 
 // 首次載入顯示 Day 1
 showDetail(1);
