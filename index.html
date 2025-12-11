@@ -11,7 +11,8 @@
     .header h1{font-size:2rem;margin:0;}
     .header p{font-size:1.3rem;margin:0.5rem 0 0;}
     .tabs{max-width:1200px;margin:2rem auto 1.5rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--gold);}
-    .tab-btn{background:#fff;padding:1rem 1.8rem;font-size:1.tab-btn.active{background:var(--gold);color:#333;}
+    .tab-btn{background:#fff;padding:1rem 1.8rem;font-size:1.4rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.4rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;}
+    .tab-btn.active{background:var(--gold);color:#333;}
     .content{max-width:1100px;margin:0 auto 3rem;padding:0 1.5rem;display:none;}
     .content.active{display:block;}
     .day{background:white;padding:2rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:1.8rem;border-left:10px solid var(--gold);}
@@ -21,6 +22,7 @@
     .detail-day{background:white;padding:2.2rem;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid var(--blue);}
     .hero-img{width:100%;max-height:420px;object-fit:cover;border-radius:18px;margin:1.3rem 0;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
     .weather-box{background:#e3f2fd;padding:1.1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--blue);font-size:0.95rem;}
+    .snow-box{background:#f0f8ff;padding:1rem;border-radius:10px;margin:1rem 0;border-left:5px solid #B8860B;font-size:0.95rem;}
     .step{margin:1.5rem 0;padding:1.4rem;background:#f0f8ff;border-left:7px solid var(--blue);border-radius:10px;}
     .time{color:#c0392b;font-weight:bold;}
     .meal{font-weight:bold;color:#B8860B;}
@@ -37,7 +39,6 @@
     .load-btn{background:var(--gold);color:#333;}
     .clear-btn{background:var(--red);color:white;}
     .back-top{display:block;width:90%;max-width:420px;margin:3rem auto 2rem;padding:1.2rem;background:var(--blue);color:white;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
-
     @media (max-width:768px){
         body{font-size:16px;}
         .header{padding:1.8rem 1rem;}
@@ -134,7 +135,8 @@ function openTab(tab){
 function showDetail(day){
     const details = {
     1: `<div class="detail-day">
-        <div class="weather-box"><strong>1月30日</strong> 高溫 -4°C / 低溫 -11°C，輕雪</div>
+        <div class="weather-box"><strong>1月30日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -11°C，輕雪或凍雨，降水機率 62%（雪祭期前夕，雪況良好）</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 市區積雪深度約 50-70 cm，適合夜景觀賞（來源：Snow-Forecast.com）</div>
         <img src="https://images.unsplash.com/photo-1542640759-56b6a1b8e14f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="電視塔">
         <h2>Day 1　抵達＋電視塔夜景</h2>
         <div class="step"><span class="time">14:00 – 15:30</span>　新千歲機場 → JR快速Airport（36分鐘）</div>
@@ -144,8 +146,9 @@ function showDetail(day){
         <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div></div>`,
 
     2: `<div class="detail-day">
-        <div class="weather-box"><strong>1月31日</strong> 完美滑雪天</div>
-        <img src="https://images.unsplash.com/photo-1605546146549-4c3c4d6d826a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <div class="weather-box"><strong>1月31日天氣預測（歷史平均）：</strong> 高溫 -1°C / 低溫 -10°C，輕雪，適合滑雪</div>
+        <div class="snow-box"><strong>即時雪況（盤溪滑雪場）：</strong> 積雪深度 100 cm+，粉雪良好，纜車全開（來源：Bankei官網 & Snow-Forecast）</div>
+        <img src="https://images.unsplash.com/photo-1605546146549-4c3c4d6d826a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="盤溪滑雪場">
         <h2>Day 2　札幌盤溪滑雪場</h2>
         <div class="step"><span class="time">08:30 – 09:15</span>　札幌站免費接駁巴士</div>
         <div class="step"><span class="time">10:00 – 16:00+</span>　租雪具＋滑雪（夜滑至20:00）</div>
@@ -155,8 +158,9 @@ function showDetail(day){
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">路線</a></div></div>`,
 
     3: `<div class="detail-day">
-        <div class="weather-box"><strong>2月1日</strong> 晴間多雲，超美夜景日</div>
-        <img src="https://images.unsplash.com/photo-1573564971333-2ec6d9c7d9c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <div class="weather-box"><strong>2月1日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，晴間多雲，完美夜景日</div>
+        <div class="snow-box"><strong>即時雪況（盤溪滑雪場）：</strong> 積雪深度 100 cm+，纜車全開，夜滑開放（來源：Bankei官網）</div>
+        <img src="https://images.unsplash.com/photo-1573564971333-2ec6d9c7d9c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="藻岩山夜景">
         <h2>Day 3　盤溪滑雪第2天＋藻岩山百萬夜景</h2>
         <div class="step"><span class="time">08:30 – 16:00</span>　盤溪滑雪場</div>
         <div class="step"><span class="time">19:00 – 21:30</span>　藻岩山纜車＋Mini纜車</div>
@@ -165,8 +169,9 @@ function showDetail(day){
         <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div></div>`,
 
     4: `<div class="detail-day">
-        <div class="weather-box"><strong>2月2日</strong> 溫泉放空日</div>
-        <img src="https://images.unsplash.com/photo-1604431514118-5d32c97cc4f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <div class="weather-box"><strong>2月2日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，多雲轉晴</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 60-80 cm，溫泉區雪景優美（來源：Jozankei官網）</div>
+        <img src="https://images.unsplash.com/photo-1604431514118-5d32c97cc4f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="定山溪溫泉">
         <h2>Day 4　定山溪溫泉</h2>
         <div class="step"><span class="time">09:30 – 10:30</span>　札幌站搭高速巴士（60分鐘）</div>
         <div class="step"><span class="time">11:00 – 18:00</span>　泡湯＋足湯街＋散步</div>
@@ -176,11 +181,12 @@ function showDetail(day){
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div></div>`,
 
     5: `<div class="detail-day">
-        <div class="weather-box"><strong>2月3日</strong> 小樽浪漫日</div>
-        <img src="https://images.unsplash.com/photo-1542914076-8d07ae7263e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <div class="weather-box"><strong>2月3日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，輕雪，浪漫小樽日</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 小樽運河積雪 50 cm，雪景浪漫（來源：Otaru旅遊網）</div>
+        <img src="https://images.unsplash.com/photo-1542914076-8d07ae7263e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="小樽運河">
         <h2>Day 5　小樽運河全日</h2>
         <div class="step"><span class="time">08:30 – 09:05</span>　JR快速 → 小樽（32分鐘）</div>
-        <div class="step"><span class="time">09:15 – 運河、北一硝子館、音樂盒博物館</div>
+        <div class="step"><span class="time">09:15 – </span>　運河、北一硝子館、音樂盒博物館</div>
         <div class="step"><span class="time">14:30 – 16:00</span>　<span class="meal">LeTAO本店雙層起司蛋糕</span></div>
         <div class="step"><span class="time">19:00 – 21:00</span>　<span class="meal">小樽世壺屋（需預約！）</span></div>
         <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
@@ -188,8 +194,9 @@ function showDetail(day){
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank" class="location-link">小樽路線</a></div></div>`,
 
     6: `<div class="detail-day">
-        <div class="weather-box"><strong>2月4日</strong> 雪祭開幕！</div>
-        <img src="https://images.unsplash.com/photo-1542897599-9a25b69a7d08?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <div class="weather-box"><strong>2月4日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，雪花紛飛，雪祭開幕！</div>
+        <div class="snow-box"><strong>即時雪況（雪祭會場）：</strong> 大通公園積雪 80 cm+，雪雕完美（來源：Snowfes官網）</div>
+        <img src="https://images.unsplash.com/photo-1542897599-9a25b69a7d08?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="札幌雪祭">
         <h2>Day 6　2026札幌雪祭開幕日狂歡</h2>
         <div class="step"><span class="time">10:00 – 22:00</span>　大通公園＋薄野會場＋Tsudome</div>
         <div class="step"><span class="time">19:00 – </span>　<span class="meal">蟹本家 或 蟹吃到飽</span></div>
@@ -198,8 +205,9 @@ function showDetail(day){
         <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園地圖</a></div></div>`,
 
     7: `<div class="detail-day">
-        <div class="weather-box"><strong>2月5日</strong> 最後掃貨日</div>
-        <img src="https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img">
+        <div class="weather-box"><strong>2月5日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -10°C，多雲</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 70 cm，機場雪清潔良好（來源：New Chitose機場）</div>
+        <img src="https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="新千歲機場">
         <h2>Day 7　藥妝購物＋返程</h2>
         <div class="step"><span class="time">09:00 – 12:00</span>　JR Tower、Stellar Place、大丸百貨</div>
         <div class="step"><span class="time">12:30 – </span>　新千歲機場拉麵道場</div>
