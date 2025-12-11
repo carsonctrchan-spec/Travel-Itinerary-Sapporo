@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>2026 札幌雪祭｜可互動編輯版（永久儲存）</title>
+<title>2026 札幌雪祭｜手機優化可編輯版</title>
 <style>
     body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;}
-    .header{background:linear-gradient(135deg,#4682B4,#FFD700);color:white;padding:2rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+    .header{background:linear-gradient(135deg,#4682B4,#FFD700);color:white;padding:1.5rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
     .tabs{max-width:100%;margin:1rem auto;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:3px solid #FFD700;}
     .tab-btn{background:#fff;padding:0.8rem 1.5rem;font-size:1.2rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.3rem;box-shadow:0 3px 8px rgba(0,0,0,0.1);}
     .tab-btn.active{background:#FFD700;color:#333;font-weight:bold;}
@@ -19,14 +19,14 @@
              border-radius:12px;margin-top:1rem;cursor:pointer;font-weight:bold;}
     .big-btn:hover{background:#FF8C00;color:white;}
     .detail-day{background:white;padding:2rem;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid #4682B4;}
-    .hero-img{width:100%;max-height:300px;object-fit:contain;border-radius:15px;margin:1rem 0;box-shadow:0 8px 25px rgba(0,0,0,0.2);}
+    .hero-img{width:100%;max-height:250px;object-fit:cover;border-radius:15px;margin:1rem 0;box-shadow:0 8px 25px rgba(0,0,0,0.2);}
     .weather-box{background:#e3f2fd;padding:1rem;border-radius:8px;margin:1rem 0;border-left:4px solid #4682B4;font-weight:bold;font-size:1.1rem;}
-    .step{margin:1.2rem 0;padding:1.2rem;background:#f0f8ff;border-left:6px solid #4682B4;border-radius:10px;line-height:1.6;position:relative;font-size:1.1rem;}
+    .step{margin:1.2rem 0;padding:1.2rem;background:#f0f8ff;border-left:6px solid #4682B4;border-radius:10px;line-height:1.6;position:relative;font-size:1rem;}
     .step-controls{position:absolute;top:0.5rem;right:0.5rem;}
     .step-controls button{margin:0 0.3rem;background:#e74c3c;color:white;border:none;padding:0.3rem 0.6rem;border-radius:4px;cursor:pointer;font-size:0.8rem;}
     .step-controls button:hover{background:#c0392b;}
     .add-step{margin:1rem 0;text-align:center;}
-    .add-step input{width:70%;padding:0.6rem;border:1px solid #ddd;border-radius:6px;}
+    .add-step input{width:60%;padding:0.6rem;border:1px solid #ddd;border-radius:6px;}
     .add-step button{background:#27ae60;color:white;padding:0.6rem 1rem;border:none;border-radius:6px;cursor:pointer;}
     .save-section{text-align:center;margin:2rem 0;padding:1.5rem;background:#f8f9fa;border-radius:12px;}
     .save-btn,.export-btn{background:#28a745;color:white;padding:0.8rem 1.5rem;border:none;border-radius:8px;font-size:1.1rem;cursor:pointer;margin:0.3rem;}
@@ -34,16 +34,16 @@
     #importFile{display:none;}
     .time{color:#c0392b;font-weight:bold;font-size:1.1rem;}
     .meal{font-weight:bold;color:#B8860B;}
-    .links a{margin:0.3rem;display:block;background:#e3f2fd;padding:0.7rem 1.2rem;border-radius:8px;font-weight:600;font-size:1.1rem;}
+    .links a{margin:0.3rem;display:block;background:#e3f2fd;padding:0.7rem 1.2rem;border-radius:8px;font-weight:600;font-size:1rem;}
     .location-link{color:#0066cc;text-decoration:underline;font-weight:bold;}
     @media (max-width:600px){
-        .header{padding:1.5rem 0.5rem;}
-        .tabs{max-width:100%;margin:1rem 0.5rem;}
+        .header{padding:1rem 0.5rem;}
+        .tabs{max-width:100%;margin:0.5rem auto;}
         .tab-btn{padding:0.8rem 1.2rem;font-size:1.2rem;margin:0.2rem;}
-        .day{padding:1.5rem;}
+        .day{padding:1.2rem;}
         .big-btn{padding:1rem;font-size:1.4rem;}
-        .detail-day{padding:2rem;}
-        .hero-img{max-height:250px;}
+        .detail-day{padding:1.5rem;}
+        .hero-img{max-height:200px;}
         .step{padding:1rem;font-size:1rem;}
         .add-step input{width:60%;}
         .save-section{padding:1rem;}
@@ -54,7 +54,7 @@
 <body>
 
 <div class="header">
-    <h1>2026 札幌雪祭｜可互動編輯版（永久儲存）</h1>
+    <h1>2026 札幌雪祭｜手機優化可編輯版</h1>
     <p style="font-size:1.5rem;">1月30日 – 2月5日｜點「進入編輯模式」即可即時修改行程，自動永久保存！</p>
 </div>
 
@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <div style="text-align:center;margin:4rem;">
+    <div style="text-align:center;margin:2rem;">
         <h2>2026 雪祭7天總預算（HK$）</h2>
         人數 <input type="number" id="p" value="2" min="1" style="padding:0.8rem;width:100px;">
         <button onclick="calc()" style="background:#FFD700;padding:1rem 2.5rem;border:none;border-radius:12px;margin-left:1rem;font-size:1.3rem;cursor:pointer;">計算</button>
@@ -275,7 +275,7 @@ function importData(e){
             itinerary = JSON.parse(e.target.result);
             alert('匯入成功！');
             location.reload();
-        }catch(err){
+        }catch{
             alert('匯入失敗：檔案格式錯誤');
         }
     };
