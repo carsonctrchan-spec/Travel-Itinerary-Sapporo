@@ -39,6 +39,7 @@
     .load-btn{background:var(--gold);color:#333;}
     .clear-btn{background:var(--red);color:white;}
     .back-top{display:block;width:90%;max-width:420px;margin:3rem auto 2rem;padding:1.2rem;background:var(--blue);color:white;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .back-to-overview{display:block;width:90%;max-width:420px;margin:1rem auto 2rem;padding:1.2rem;background:var(--gold);color:#333;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
     @media (max-width:768px){
         body{font-size:16px;}
         .header{padding:1.8rem 1rem;}
@@ -54,7 +55,7 @@
         .packing-list input[type="checkbox"]{transform:scale(1.7);}
         .save-btn,.load-btn,.clear-btn{display:block;width:92%;margin:0.7rem auto;}
         .ticket-link{font-size:1rem;padding:1.1rem;}
-        .back-top{width:92%;font-size:1.2rem;}
+        .back-top,.back-to-overview{width:92%;font-size:1.2rem;}
     }
 </style>
 </head>
@@ -92,6 +93,10 @@
 
 <!-- 詳細日程表 -->
 <div id="details" class="content">
+    <!-- 新增：返回總覽按鈕 -->
+    <div onclick="openTab('overview')" class="back-to-overview">
+        返回總覽
+    </div>
     <div id="detail-content" style="max-width:1000px;margin:0 auto;"></div>
 </div>
 
@@ -129,7 +134,7 @@ function openTab(tab){
     document.getElementById(tab).classList.add('active');
     document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
     document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`).classList.add('active');
-    if(tab==='overview') window.scrollTo({top:0,behavior:'smooth'});
+    window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function showDetail(day){
@@ -137,7 +142,7 @@ function showDetail(day){
     1: `<div class="detail-day">
         <div class="weather-box"><strong>1月30日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -11°C，輕雪或凍雨，降水機率 62%（雪祭期前夕，雪況良好）</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪深度約 50-70 cm，適合夜景觀賞（來源：Snow-Forecast.com）</div>
-        <img src="https://res.klook.com/image/upload/w_1265,h_791,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/68a9c037-.webp" class="hero-img" alt="電視塔">
+        <img src="https://images.unsplash.com/photo-1542640759-56b6a1b8e14f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="電視塔">
         <h2>Day 1　抵達＋電視塔夜景</h2>
         <div class="step"><span class="time">14:00 – 15:30</span>　新千歲機場 → JR快速Airport（36分鐘）</div>
         <div class="step"><span class="time">19:00 – 20:30</span>　<span class="meal">晚餐：湯咖喱 Garaku</span></div>
@@ -196,7 +201,7 @@ function showDetail(day){
     6: `<div class="detail-day">
         <div class="weather-box"><strong>2月4日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，雪花紛飛，雪祭開幕！</div>
         <div class="snow-box"><strong>即時雪況（雪祭會場）：</strong> 大通公園積雪 80 cm+，雪雕完美（來源：Snowfes官網）</div>
-        <img src="https://assets.funliday.com/posts/wp-content/uploads/2024/10/15115743/top-1-1600x1219.webp" class="hero-img" alt="札幌雪祭">
+        <img src="https://images.unsplash.com/photo-1542897599-9a25b69a7d08?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="札幌雪祭">
         <h2>Day 6　2026札幌雪祭開幕日狂歡</h2>
         <div class="step"><span class="time">10:00 – 22:00</span>　大通公園＋薄野會場＋Tsudome</div>
         <div class="step"><span class="time">19:00 – </span>　<span class="meal">蟹本家 或 蟹吃到飽</span></div>
@@ -207,7 +212,7 @@ function showDetail(day){
     7: `<div class="detail-day">
         <div class="weather-box"><strong>2月5日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -10°C，多雲</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 70 cm，機場雪清潔良好（來源：New Chitose機場）</div>
-        <img src="https://www.sapporo.travel/cms/wp-content/uploads/2024/01/03-3.jpg" class="hero-img" alt="新千歲機場">
+        <img src="https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="新千歲機場">
         <h2>Day 7　藥妝購物＋返程</h2>
         <div class="step"><span class="time">09:00 – 12:00</span>　JR Tower、Stellar Place、大丸百貨</div>
         <div class="step"><span class="time">12:30 – </span>　新千歲機場拉麵道場</div>
