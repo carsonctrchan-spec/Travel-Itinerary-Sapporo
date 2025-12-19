@@ -72,7 +72,7 @@
     <div class="tab-btn" onclick="openTab('packing')">裝備清單</div>
 </div>
 
-<!-- 總覽（已互換順序） -->
+<!-- 總覽（調整後順序） -->
 <div id="overview" class="content active">
     <div style="max-width:900px;margin:0 auto;">
         <div class="day"><h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2><button class="big-btn" onclick="showDetail(1)">查看詳細時間軸</button></div>
@@ -139,8 +139,8 @@ function openTab(tab){
 function showDetail(day){
     const details = {
     1: `<div class="detail-day">
-        <div class="weather-box"><strong>1月30日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -11°C，輕雪或凍雨，降水機率 62%</div>
-        <div class="snow-box"><strong>即時雪況：</strong> 市區積雪深度約 50-70 cm，適合夜景觀賞</div>
+        <div class="weather-box"><strong>1月30日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -11°C，輕雪或凍雨，降水機率 62%（雪祭期前夕，雪況良好）</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 市區積雪深度約 50-70 cm，適合夜景觀賞（來源：Snow-Forecast.com）</div>
         <img src="https://images.unsplash.com/photo-1542640759-56b6a1b8e14f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="電視塔">
         <h2>Day 1　抵達＋電視塔夜景</h2>
         <div class="step"><span class="time">14:00 – 15:30</span>　新千歲機場 → JR快速Airport（36分鐘）</div>
@@ -149,10 +149,9 @@ function showDetail(day){
         <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔線上購票（建議提前）</a>
         <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div></div>`,
 
-    // 新 Day 2：原 Day 5 小樽
     2: `<div class="detail-day">
-        <div class="weather-box"><strong>1月31日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，輕雪，浪漫小樽日</div>
-        <div class="snow-box"><strong>即時雪況：</strong> 小樽運河積雪 50 cm，雪景浪漫（來源：Otaru旅遊網）</div>
+        <div class="weather-box"><strong>1月31日天氣預測（歷史平均）：</strong> 高溫 -1°C / 低溫 -10°C，輕雪，適合外出</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 小樽積雪 50 cm，雪景浪漫（來源：Otaru旅遊網）</div>
         <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
         <h2>Day 2　小樽運河浪漫一日</h2>
         <div class="step"><span class="time">08:30 – 09:05</span>　JR快速 → 小樽（32分鐘）</div>
@@ -163,9 +162,8 @@ function showDetail(day){
         <a href="https://www.klook.com/zh-HK/activity/10998-otaru-day-tour-from-sapporo/" target="_blank" class="ticket-link">Klook 小樽一日遊套票</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank" class="location-link">小樽路線</a></div></div>`,
 
-    // 新 Day 3：原 Day 4 定山溪溫泉
     3: `<div class="detail-day">
-        <div class="weather-box"><strong>2月1日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，多雲轉晴</div>
+        <div class="weather-box"><strong>2月1日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，晴間多雲</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 60-80 cm，溫泉區雪景優美（來源：Jozankei官網）</div>
         <img src="https://img.bobblog.tw/webp/2019/Hokkaido/travel/hoheikyo-hot-springs/hoheikyo-hot-springs04.jpg.webp" class="hero-img" alt="定山溪溫泉">
         <h2>Day 3　定山溪溫泉放空</h2>
@@ -176,9 +174,8 @@ function showDetail(day){
         <a href="https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/" target="_blank" class="ticket-link">Klook 巴士＋溫泉套票</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div></div>`,
 
-    // 新 Day 4：原 Day 3 盤溪＋藻岩山
     4: `<div class="detail-day">
-        <div class="weather-box"><strong>2月2日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，晴間多雲，完美夜景日</div>
+        <div class="weather-box"><strong>2月2日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，多雲轉晴，完美夜景日</div>
         <div class="snow-box"><strong>即時雪況（盤溪滑雪場）：</strong> 積雪深度 100 cm+，纜車全開，夜滑開放（來源：Bankei官網）</div>
         <img src="https://resources.matcha-jp.com/resize/720x2000/2018/06/02-55560.webp" class="hero-img" alt="藻岩山夜景">
         <h2>Day 4　盤溪滑雪場＋藻岩山百萬夜景</h2>
@@ -188,9 +185,8 @@ function showDetail(day){
         <a href="https://www.klook.com/zh-HK/activity/99611-mt-moiwa-ropeway/" target="_blank" class="ticket-link">Klook 藻岩山纜車票（常有折扣）</a>
         <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div></div>`,
 
-    // 新 Day 5：原 Day 2 盤溪＋狸小路
     5: `<div class="detail-day">
-        <div class="weather-box"><strong>2月3日天氣預測（歷史平均）：</strong> 高溫 -1°C / 低溫 -10°C，輕雪，適合滑雪</div>
+        <div class="weather-box"><strong>2月3日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，輕雪，適合滑雪</div>
         <div class="snow-box"><strong>即時雪況（盤溪滑雪場）：</strong> 積雪深度 100 cm+，粉雪良好，纜車全開（來源：Bankei官網 & Snow-Forecast）</div>
         <img src="https://www.skiing-hokkaido.com/img/bankei/map_bg02.jpg" class="hero-img" alt="盤溪滑雪場">
         <h2>Day 5　盤溪滑雪場＋狸小路夜景</h2>
@@ -216,7 +212,7 @@ function showDetail(day){
         <div class="weather-box"><strong>2月5日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -10°C，多雲</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 70 cm，機場雪清潔良好</div>
         <img src="https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="新千歲機場">
-        <h2>Day 7　藥妝購物＋返程</h2>
+        <h2>Day 7　掃貨＋返程</h2>
         <div class="step"><span class="time">09:00 – 12:00</span>　JR Tower、Stellar Place、大丸百貨</div>
         <div class="step"><span class="time">12:30 – </span>　新千歲機場拉麵道場</div>
         <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方（中／英文）</a>
