@@ -29,10 +29,6 @@
     .ticket-link{display:block;background:var(--red);color:white;padding:1rem;text-align:center;border-radius:12px;font-weight:bold;margin:1rem 0;font-size:1.05rem;}
     .ticket-link:hover{background:#c0392b;}
     .links a{display:inline-block;background:#e3f2fd;padding:0.8rem 1.4rem;border-radius:10px;margin:0.4rem;font-weight:600;}
-    .info-card{background:white;padding:2rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:2rem;}
-    .info-card h2{font-size:1.8rem;margin-bottom:1.2rem;color:#2c3e50;text-align:center;}
-    .info-item{margin:1rem 0;font-size:1.1rem;}
-    .info-label{font-weight:bold;color:var(--blue);}
     .packing-list{max-width:800px;margin:2rem auto;}
     .packing-list h2{font-size:1.7rem;text-align:center;margin-bottom:1rem;}
     .packing-list li{margin:1.2rem 0;font-size:1.35rem;}
@@ -60,7 +56,6 @@
         .save-btn,.load-btn,.clear-btn{display:block;width:92%;margin:0.7rem auto;}
         .ticket-link{font-size:1rem;padding:1.1rem;}
         .back-top,.back-to-overview{width:92%;font-size:1.2rem;}
-        .info-card{padding:1.6rem;}
     }
 </style>
 </head>
@@ -72,48 +67,23 @@
 </div>
 
 <div class="tabs">
-    <div class="tab-btn" onclick="openTab('info')">行程資訊</div>
     <div class="tab-btn active" onclick="openTab('overview')">總覽</div>
     <div class="tab-btn" onclick="openTab('details')">詳細日程表</div>
     <div class="tab-btn" onclick="openTab('packing')">裝備清單</div>
 </div>
 
-<!-- 新增：行程資訊頁 -->
-<div id="info" class="content">
-    <div style="max-width:900px;margin:0 auto;">
-        <div class="info-card">
-            <h2>航班資訊</h2>
-            <div class="info-item"><span class="info-label">訂單號：</span>NE2512180117514479</div>
-            <div class="info-item"><span class="info-label">去程（HK → Sapporo）：</span>1月30日 HX690　08:35AM - 14:20PM（新千歲機場）</div>
-            <div class="info-item"><span class="info-label">座位：</span>Carson 34K　｜　Riley 34H</div>
-            <div class="info-item"><span class="info-label">回程（Sapporo → HK）：</span>2月5日 HX691　15:20PM - 20:40PM</div>
-            <div class="info-item"><span class="info-label">座位：</span>Carson 34K　｜　Riley 34H</div>
-            <div class="info-item"><span class="info-label">每人價格：</span>HK$3,296</div>
-        </div>
-        <div class="info-card">
-            <h2>保險資訊</h2>
-            <div class="info-item"><span class="info-label">保險公司：</span>Zurich</div>
-            <div class="info-item"><span class="info-label">每人保費：</span>HK$238</div>
-        </div>
-        <div class="info-card">
-            <h2>酒店資訊（待填）</h2>
-            <p>（可在此填入酒店名稱、地址、Check-in/Check-out 時間、訂房確認號等）</p>
-        </div>
-    </div>
-</div>
-
-<!-- 總覽 -->
+<!-- 總覽（已互換順序） -->
 <div id="overview" class="content active">
     <div style="max-width:900px;margin:0 auto;">
         <div class="day"><h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2><button class="big-btn" onclick="showDetail(1)">查看詳細時間軸</button></div>
-        <div class="day"><h2>1月31日 (六) Day 2　盤溪滑雪場＋狸小路夜景</h2><button class="big-btn" onclick="showDetail(2)">查看詳細時間軸</button></div>
-        <div class="day"><h2>2月1日 (日) Day 3　盤溪滑雪場＋藻岩山夜景</h2><button class="big-btn" onclick="showDetail(3)">查看詳細時間軸</button></div>
-        <div class="day"><h2>2月2日 (一) Day 4　定山溪溫泉放空</h2><button class="big-btn" onclick="showDetail(4)">查看詳細時間軸</button></div>
-        <div class="day"><h2>2月3日 (二) Day 5　小樽運河浪漫一日</h2>
+        <div class="day"><h2>1月31日 (六) Day 2　小樽運河浪漫一日</h2>
             <p style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">下午茶：LeTAO本店　｜　晚餐：世壺屋</p>
-            <button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button></div>
+            <button class="big-btn" onclick="showDetail(2)">查看詳細時間軸</button></div>
+        <div class="day"><h2>2月1日 (日) Day 3　定山溪溫泉放空</h2><button class="big-btn" onclick="showDetail(3)">查看詳細時間軸</button></div>
+        <div class="day"><h2>2月2日 (一) Day 4　盤溪滑雪場＋藻岩山夜景</h2><button class="big-btn" onclick="showDetail(4)">查看詳細時間軸</button></div>
+        <div class="day"><h2>2月3日 (二) Day 5　盤溪滑雪場＋狸小路夜景</h2><button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button></div>
         <div class="day" style="border-left:16px solid var(--red);"><h2>2月4日 (三) Day 6　雪祭開幕日狂歡！</h2><button class="big-btn" style="background:var(--red);color:white;" onclick="showDetail(6)">立即查看</button></div>
-        <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程（15:20航班）</h2><button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button></div>
+        <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button></div>
     </div>
 
     <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-top">
@@ -172,36 +142,93 @@ function showDetail(day){
         <div class="weather-box"><strong>1月30日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -11°C，輕雪或凍雨，降水機率 62%</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪深度約 50-70 cm，適合夜景觀賞</div>
         <img src="https://images.unsplash.com/photo-1542640759-56b6a1b8e14f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="電視塔">
-        <h2>Day 1　抵達札幌（HX690 08:35-14:20 到達）</h2>
-        <div class="step"><span class="time">14:20</span>　抵達新千歲機場（取行李、海關約1小時）</div>
-        <div class="step"><span class="time">15:30 – 16:30</span>　JR快速Airport → 札幌站</div>
-        <div class="step"><span class="time">17:00</span>　酒店Check-in + 稍作休息</div>
+        <h2>Day 1　抵達＋電視塔夜景</h2>
+        <div class="step"><span class="time">14:00 – 15:30</span>　新千歲機場 → JR快速Airport（36分鐘）</div>
         <div class="step"><span class="time">19:00 – 20:30</span>　<span class="meal">晚餐：湯咖喱 Garaku</span></div>
         <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台</div>
         <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔線上購票（建議提前）</a>
         <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div></div>`,
 
-    // 其他日子保持不變（Day 2-6 同之前版本）
+    // 新 Day 2：原 Day 5 小樽
+    2: `<div class="detail-day">
+        <div class="weather-box"><strong>1月31日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，輕雪，浪漫小樽日</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 小樽運河積雪 50 cm，雪景浪漫（來源：Otaru旅遊網）</div>
+        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
+        <h2>Day 2　小樽運河浪漫一日</h2>
+        <div class="step"><span class="time">08:30 – 09:05</span>　JR快速 → 小樽（32分鐘）</div>
+        <div class="step"><span class="time">09:15 – </span>　運河、北一硝子館、音樂盒博物館</div>
+        <div class="step"><span class="time">14:30 – 16:00</span>　<span class="meal">LeTAO本店雙層起司蛋糕</span></div>
+        <div class="step"><span class="time">19:00 – 21:00</span>　<span class="meal">小樽世壺屋（需預約！）</span></div>
+        <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
+        <a href="https://www.klook.com/zh-HK/activity/10998-otaru-day-tour-from-sapporo/" target="_blank" class="ticket-link">Klook 小樽一日遊套票</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank" class="location-link">小樽路線</a></div></div>`,
+
+    // 新 Day 3：原 Day 4 定山溪溫泉
+    3: `<div class="detail-day">
+        <div class="weather-box"><strong>2月1日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，多雲轉晴</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 60-80 cm，溫泉區雪景優美（來源：Jozankei官網）</div>
+        <img src="https://img.bobblog.tw/webp/2019/Hokkaido/travel/hoheikyo-hot-springs/hoheikyo-hot-springs04.jpg.webp" class="hero-img" alt="定山溪溫泉">
+        <h2>Day 3　定山溪溫泉放空</h2>
+        <div class="step"><span class="time">09:30 – 10:30</span>　札幌站搭高速巴士（60分鐘）</div>
+        <div class="step"><span class="time">11:00 – 18:00</span>　泡湯＋足湯街＋散步</div>
+        <div class="step"><span class="time">18:30 – </span>　溫泉旅館懷石料理</div>
+        <a href="https://www.jozankei.jp/en/" target="_blank" class="ticket-link">定山溪官方旅遊網（英文）</a>
+        <a href="https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/" target="_blank" class="ticket-link">Klook 巴士＋溫泉套票</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div></div>`,
+
+    // 新 Day 4：原 Day 3 盤溪＋藻岩山
+    4: `<div class="detail-day">
+        <div class="weather-box"><strong>2月2日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，晴間多雲，完美夜景日</div>
+        <div class="snow-box"><strong>即時雪況（盤溪滑雪場）：</strong> 積雪深度 100 cm+，纜車全開，夜滑開放（來源：Bankei官網）</div>
+        <img src="https://resources.matcha-jp.com/resize/720x2000/2018/06/02-55560.webp" class="hero-img" alt="藻岩山夜景">
+        <h2>Day 4　盤溪滑雪場＋藻岩山百萬夜景</h2>
+        <div class="step"><span class="time">08:30 – 16:00</span>　盤溪滑雪場</div>
+        <div class="step"><span class="time">19:00 – 21:30</span>　藻岩山纜車＋Mini纜車</div>
+        <a href="https://mt-moiwa.jp/" target="_blank" class="ticket-link">藻岩山纜車官方（英文）＋線上套票</a>
+        <a href="https://www.klook.com/zh-HK/activity/99611-mt-moiwa-ropeway/" target="_blank" class="ticket-link">Klook 藻岩山纜車票（常有折扣）</a>
+        <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div></div>`,
+
+    // 新 Day 5：原 Day 2 盤溪＋狸小路
+    5: `<div class="detail-day">
+        <div class="weather-box"><strong>2月3日天氣預測（歷史平均）：</strong> 高溫 -1°C / 低溫 -10°C，輕雪，適合滑雪</div>
+        <div class="snow-box"><strong>即時雪況（盤溪滑雪場）：</strong> 積雪深度 100 cm+，粉雪良好，纜車全開（來源：Bankei官網 & Snow-Forecast）</div>
+        <img src="https://www.skiing-hokkaido.com/img/bankei/map_bg02.jpg" class="hero-img" alt="盤溪滑雪場">
+        <h2>Day 5　盤溪滑雪場＋狸小路夜景</h2>
+        <div class="step"><span class="time">08:30 – 09:15</span>　札幌站免費接駁巴士</div>
+        <div class="step"><span class="time">10:00 – 16:00+</span>　租雪具＋滑雪（夜滑至20:00）</div>
+        <div class="step"><span class="time">17:30 – 22:30</span>　狸小路逛街＋居酒屋</div>
+        <a href="https://www.bankei.co.jp/home-english/" target="_blank" class="ticket-link">盤溪滑雪場官網＋雪況</a>
+        <a href="https://www.bankei.co.jp/rental-en/" target="_blank" class="ticket-link">線上購票＋租雪具</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">路線</a></div></div>`,
+
+    6: `<div class="detail-day">
+        <div class="weather-box"><strong>2月4日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，雪花紛飛，雪祭開幕！</div>
+        <div class="snow-box"><strong>即時雪況（雪祭會場）：</strong> 大通公園積雪 80 cm+，雪雕完美（來源：Snowfes官網）</div>
+        <img src="https://images.unsplash.com/photo-1542897599-9a25b69a7d08?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="札幌雪祭">
+        <h2>Day 6　2026札幌雪祭開幕日狂歡</h2>
+        <div class="step"><span class="time">10:00 – 22:00</span>　大通公園＋薄野會場＋Tsudome</div>
+        <div class="step"><span class="time">19:00 – </span>　<span class="meal">蟹本家 或 蟹吃到飽</span></div>
+        <a href="https://www.snowfes.com/en/" target="_blank" class="ticket-link">2026雪祭官方網站（英文）</a>
+        <a href="https://www.klook.com/zh-HK/activity/12748-okurayama-viewing-point-sapporo/" target="_blank" class="ticket-link">大倉山夜間點燈雪雕（超推！）</a>
+        <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園地圖</a></div></div>`,
+
     7: `<div class="detail-day">
         <div class="weather-box"><strong>2月5日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -10°C，多雲</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 70 cm，機場雪清潔良好</div>
         <img src="https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="新千歲機場">
-        <h2>Day 7　掃貨＋返程（HX691 15:20起飛）</h2>
-        <div class="step"><span class="time">09:00 – 11:30</span>　JR Tower、Stellar Place、大丸百貨最後購物</div>
-        <div class="step"><span class="time">11:30 – 12:30</span>　札幌站 → 新千歲機場（JR快速Airport）</div>
-        <div class="step"><span class="time">13:00 前</span>　抵達機場辦理登機＋安檢（建議提前2小時）</div>
-        <div class="step"><span class="time">12:30 – 14:00</span>　<span class="meal">機場拉麵道場午餐</span></div>
-        <div class="step"><span class="time">15:20</span>　HX691 起飛 → 20:40 抵達香港</div>
-        <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方</a>
+        <h2>Day 7　藥妝購物＋返程</h2>
+        <div class="step"><span class="time">09:00 – 12:00</span>　JR Tower、Stellar Place、大丸百貨</div>
+        <div class="step"><span class="time">12:30 – </span>　新千歲機場拉麵道場</div>
+        <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方（中／英文）</a>
         <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div></div>`
     };
 
-    document.getElementById('detail-content').innerHTML = details[day] || details[1];
+    document.getElementById('detail-content').innerHTML = details[day];
     openTab('details');
 }
 
-// 裝備清單功能（不變）
+// 裝備清單功能
 const checkboxes = document.querySelectorAll('.pack-item');
 const saveBtn = document.getElementById('savePacking');
 const loadBtn = document.getElementById('loadPackingBtn');
