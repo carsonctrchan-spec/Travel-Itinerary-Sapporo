@@ -35,6 +35,8 @@
     .info-label{font-weight:bold;color:var(--blue);}
     .packing-list{max-width:800px;margin:2rem auto;}
     .packing-list h2{font-size:1.7rem;text-align:center;margin-bottom:1rem;}
+    .packing-category{margin-top:2rem;}
+    .packing-category h3{font-size:1.5rem;color:var(--blue);margin-bottom:0.8rem;border-bottom:2px solid var(--gold);padding-bottom:0.4rem;}
     .packing-list li{margin:1.2rem 0;font-size:1.35rem;}
     .packing-list input[type="checkbox"]{transform:scale(1.9);margin-right:16px;vertical-align:middle;}
     .btn-group{text-align:center;margin:1.5rem 0;}
@@ -61,6 +63,7 @@
         .ticket-link{font-size:1rem;padding:1.1rem;}
         .back-top,.back-to-overview{width:92%;font-size:1.2rem;}
         .info-card{padding:1.6rem;}
+        .packing-category h3{font-size:1.4rem;}
     }
 </style>
 </head>
@@ -78,7 +81,7 @@
     <div class="tab-btn" onclick="openTab('packing')">裝備清單</div>
 </div>
 
-<!-- 新增：行程資訊頁（最左邊） -->
+<!-- 行程資訊頁 -->
 <div id="info" class="content">
     <div style="max-width:900px;margin:0 auto;">
         <div class="info-card">
@@ -115,7 +118,7 @@
         <div class="day"><h2>2月2日 (一) Day 4　盤溪滑雪場＋藻岩山夜景</h2><button class="big-btn" onclick="showDetail(4)">查看詳細時間軸</button></div>
         <div class="day"><h2>2月3日 (二) Day 5　盤溪滑雪場＋狸小路夜景</h2><button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button></div>
         <div class="day" style="border-left:16px solid var(--red);"><h2>2月4日 (三) Day 6　雪祭開幕日狂歡！</h2><button class="big-btn" style="background:var(--red);color:white;" onclick="showDetail(6)">立即查看</button></div>
-        <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程（15:20航班）</h2><button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button></div>
+        <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button></div>
     </div>
 
     <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-top">
@@ -140,23 +143,89 @@
         <button id="clearPacking" class="clear-btn">取消全部勾選（保留備份）</button>
         <p style="font-size:0.95rem;color:#666;margin-top:0.8rem;">儲存後關閉瀏覽器仍會保留，下次自動載入</p>
     </div>
-    <ul>
-        <li><input type="checkbox" class="pack-item"> 極厚羽絨服（-20°C等級）</li>
-        <li><input type="checkbox" class="pack-item"> 保暖內層（HeatTech極暖）</li>
-        <li><input type="checkbox" class="pack-item"> 抓絨中層</li>
-        <li><input type="checkbox" class="pack-item"> 防水滑雪褲／雪褲</li>
-        <li><input type="checkbox" class="pack-item"> 防水雪靴（Sorel / TNF）</li>
-        <li><input type="checkbox" class="pack-item"> 滑雪手套（防水＋內刷毛）</li>
-        <li><input type="checkbox" class="pack-item"> 毛帽／護耳帽</li>
-        <li><input type="checkbox" class="pack-item"> 圍巾或脖圍（Buff）</li>
-        <li><input type="checkbox" class="pack-item"> 雪鏡／護目鏡</li>
-        <li><input type="checkbox" class="pack-item"> 暖暖包（大量！）</li>
-        <li><input type="checkbox" class="pack-item"> 保濕面霜／護手霜</li>
-        <li><input type="checkbox" class="pack-item"> 行動電源（低溫易掉電）</li>
-        <li><input type="checkbox" class="pack-item"> 泳裝（溫泉用）</li>
-        <li><input type="checkbox" class="pack-item"> 替換厚襪（美利奴羊毛最佳）</li>
-        <li><input type="checkbox" class="pack-item"> 護唇膏 + 鼻噴劑</li>
-    </ul>
+
+    <div class="packing-category">
+        <h3>必需品</h3>
+        <ul>
+            <li><input type="checkbox" class="pack-item"> Backpack</li>
+            <li><input type="checkbox" class="pack-item"> Boarding pass</li>
+            <li><input type="checkbox" class="pack-item"> Cash</li>
+            <li><input type="checkbox" class="pack-item"> Credit / Debit card</li>
+            <li><input type="checkbox" class="pack-item"> ID</li>
+            <li><input type="checkbox" class="pack-item"> Passport</li>
+        </ul>
+    </div>
+
+    <div class="packing-category">
+        <h3>隨身裝備</h3>
+        <ul>
+            <li><input type="checkbox" class="pack-item"> Bracelets</li>
+            <li><input type="checkbox" class="pack-item"> Earrings</li>
+            <li><input type="checkbox" class="pack-item"> Hair ties</li>
+            <li><input type="checkbox" class="pack-item"> Watch</li>
+            <li><input type="checkbox" class="pack-item"> Camera stick</li>
+            <li><input type="checkbox" class="pack-item"> Portable charger</li>
+            <li><input type="checkbox" class="pack-item"> Sunglasses</li>
+            <li><input type="checkbox" class="pack-item"> Sunscreen</li>
+            <li><input type="checkbox" class="pack-item"> Tissue</li>
+            <li><input type="checkbox" class="pack-item"> 暖暖包</li>
+        </ul>
+    </div>
+
+    <div class="packing-category">
+        <h3>藥</h3>
+        <ul>
+            <li><input type="checkbox" class="pack-item"> Band aids</li>
+            <li><input type="checkbox" class="pack-item"> Headache pills</li>
+            <li><input type="checkbox" class="pack-item"> Pain relief pills</li>
+        </ul>
+    </div>
+
+    <div class="packing-category">
+        <h3>廁所用品</h3>
+        <ul>
+            <li><input type="checkbox" class="pack-item"> Body wash</li>
+            <li><input type="checkbox" class="pack-item"> Comb</li>
+            <li><input type="checkbox" class="pack-item"> Conditioner</li>
+            <li><input type="checkbox" class="pack-item"> Contacts</li>
+            <li><input type="checkbox" class="pack-item"> Hairspray</li>
+            <li><input type="checkbox" class="pack-item"> Moisturizer</li>
+            <li><input type="checkbox" class="pack-item"> Pads</li>
+            <li><input type="checkbox" class="pack-item"> Perfume</li>
+            <li><input type="checkbox" class="pack-item"> Razor</li>
+            <li><input type="checkbox" class="pack-item"> Shampoo</li>
+            <li><input type="checkbox" class="pack-item"> Soap</li>
+            <li><input type="checkbox" class="pack-item"> Toothbrush</li>
+            <li><input type="checkbox" class="pack-item"> Toothpaste</li>
+            <li><input type="checkbox" class="pack-item"> Hair straightener</li>
+        </ul>
+    </div>
+
+    <div class="packing-category">
+        <h3>衣服</h3>
+        <ul>
+            <li><input type="checkbox" class="pack-item"> Shoes</li>
+            <li><input type="checkbox" class="pack-item"> Bras</li>
+            <li><input type="checkbox" class="pack-item"> Dress</li>
+            <li><input type="checkbox" class="pack-item"> Gloves</li>
+            <li><input type="checkbox" class="pack-item"> Pajamas</li>
+            <li><input type="checkbox" class="pack-item"> Pants</li>
+            <li><input type="checkbox" class="pack-item"> Scarf</li>
+            <li><input type="checkbox" class="pack-item"> Shorts</li>
+            <li><input type="checkbox" class="pack-item"> Skirt</li>
+            <li><input type="checkbox" class="pack-item"> Socks</li>
+            <li><input type="checkbox" class="pack-item"> Sweater</li>
+            <li><input type="checkbox" class="pack-item"> T-Shirt</li>
+            <li><input type="checkbox" class="pack-item"> 極厚羽絨服</li>
+            <li><input type="checkbox" class="pack-item"> HeatTech</li>
+            <li><input type="checkbox" class="pack-item"> 防水滑雪褲</li>
+            <li><input type="checkbox" class="pack-item"> 防水雪靴</li>
+            <li><input type="checkbox" class="pack-item"> 滑雪手套</li>
+            <li><input type="checkbox" class="pack-item"> 毛帽／護耳帽</li>
+            <li><input type="checkbox" class="pack-item"> 圍巾</li>
+            <li><input type="checkbox" class="pack-item"> 雪鏡</li>
+        </ul>
+    </div>
 </div>
 
 <script>
@@ -173,8 +242,8 @@ function showDetail(day){
     1: `<div class="detail-day">
         <div class="weather-box"><strong>1月30日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -11°C，輕雪或凍雨，降水機率 62%</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪深度約 50-70 cm，適合夜景觀賞</div>
-        <img src="https://images.unsplash.com/photo-1542640759-56b6a1b8e14f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="電視塔">
-        <h2>Day 1　抵達札幌（HX690 08:35AM - 14:20PM 到達）</h2>
+        <img src="https://www.japanholiday.net/wp-content/uploads/2023/12/tv-tower1.jpg" class="hero-img" alt="電視塔">
+        <h2>Day 1　抵達＋電視塔夜景</h2>
         <div class="step"><span class="time">14:20</span>　抵達新千歲機場（取行李、海關約1小時）</div>
         <div class="step"><span class="time">15:30 – 16:30</span>　JR快速Airport → 札幌站</div>
         <div class="step"><span class="time">17:00</span>　酒店Check-in + 稍作休息</div>
@@ -234,7 +303,7 @@ function showDetail(day){
     6: `<div class="detail-day">
         <div class="weather-box"><strong>2月4日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，雪花紛飛，雪祭開幕！</div>
         <div class="snow-box"><strong>即時雪況（雪祭會場）：</strong> 大通公園積雪 80 cm+，雪雕完美（來源：Snowfes官網）</div>
-        <img src="https://images.unsplash.com/photo-1542897599-9a25b69a7d08?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="札幌雪祭">
+        <img src="data:image/jpeg;base64,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" class="hero-img" alt="札幌雪祭">
         <h2>Day 6　2026札幌雪祭開幕日狂歡</h2>
         <div class="step"><span class="time">10:00 – 22:00</span>　大通公園＋薄野會場＋Tsudome</div>
         <div class="step"><span class="time">19:00 – </span>　<span class="meal">蟹本家 或 蟹吃到飽</span></div>
@@ -245,13 +314,10 @@ function showDetail(day){
     7: `<div class="detail-day">
         <div class="weather-box"><strong>2月5日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -10°C，多雲</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 70 cm，機場雪清潔良好</div>
-        <img src="https://images.unsplash.com/photo-1559598467-f8b76c5f2b3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" class="hero-img" alt="新千歲機場">
-        <h2>Day 7　掃貨＋返程（HX691 15:20PM 起飛）</h2>
-        <div class="step"><span class="time">09:00 – 11:00</span>　JR Tower、Stellar Place、大丸百貨最後購物</div>
-        <div class="step"><span class="time">11:00 – 12:00</span>　札幌站 → 新千歲機場（JR快速Airport）</div>
-        <div class="step"><span class="time">12:00 – 14:00</span>　<span class="meal">機場午餐（拉麵道場或其他）</span></div>
-        <div class="step"><span class="time">13:00 前</span>　建議抵達機場辦理登機（國際航班提前2小時）</div>
-        <div class="step"><span class="time">15:20</span>　HX691 起飛 → 20:40 抵達香港</div>
+        <img src="https://www.bring-you.info/imgs/2023/11/daimaru-shinsaibashi-2.jpg" class="hero-img" alt="大丸百貨購物">
+        <h2>Day 7　藥妝購物＋返程</h2>
+        <div class="step"><span class="time">09:00 – 12:00</span>　JR Tower、Stellar Place、大丸百貨</div>
+        <div class="step"><span class="time">12:30 – </span>　新千歲機場拉麵道場</div>
         <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方（中／英文）</a>
         <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div></div>`
@@ -261,7 +327,7 @@ function showDetail(day){
     openTab('details');
 }
 
-// 裝備清單功能
+// 裝備清單功能（支援多個 category 的 checkbox）
 const checkboxes = document.querySelectorAll('.pack-item');
 const saveBtn = document.getElementById('savePacking');
 const loadBtn = document.getElementById('loadPackingBtn');
