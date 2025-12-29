@@ -46,6 +46,11 @@
     .clear-btn{background:var(--red);color:white;}
     .back-top{display:block;width:90%;max-width:420px;margin:3rem auto 2rem;padding:1.2rem;background:var(--blue);color:white;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
     .back-to-overview{display:block;width:90%;max-width:420px;margin:1rem auto 2rem;padding:1.2rem;background:var(--gold);color:#333;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .place-list{margin:1rem 0;padding:1rem;background:#e3f2fd;border-radius:10px;}
+    .place-list h3{font-size:1.3rem;color:var(--blue);margin-bottom:0.5rem;}
+    .place-list ul{list-style-type: disc;padding-left:1.5rem;}
+    .place-list li{margin:0.5rem 0;}
+    .map-embed{width:100%;height:400px;border:0;border-radius:18px;margin-top:1rem;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
     @media (max-width:768px){
         body{font-size:16px;}
         .header{padding:1.8rem 1rem;}
@@ -64,6 +69,8 @@
         .back-top,.back-to-overview{width:92%;font-size:1.2rem;}
         .info-card{padding:1.6rem;}
         .packing-category h3{font-size:1.4rem;}
+        .place-list h3{font-size:1.2rem;}
+        .map-embed{height:300px;}
     }
 </style>
 </head>
@@ -262,13 +269,35 @@ function showDetail(day){
         <div class="snow-box"><strong>即時雪況：</strong> 小樽運河積雪 50 cm，雪景浪漫（來源：Otaru旅遊網）</div>
         <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
         <h2>Day 2　小樽運河浪漫一日</h2>
-        <div class="step"><span class="time">08:30 – 09:05</span>　JR快速 → 小樽（32分鐘）</div>
-        <div class="step"><span class="time">09:15 – </span>　運河、北一硝子館、音樂盒博物館</div>
-        <div class="step"><span class="time">14:30 – 16:00</span>　<span class="meal">LeTAO本店雙層起司蛋糕</span></div>
-        <div class="step"><span class="time">19:00 – 21:00</span>　<span class="meal">小樽世壺屋（需預約！）</span></div>
+        <div class="step"><span class="time">10:00</span>　從Airbnb出發前往小樽</div>
+        <div class="step"><span class="time">10:45</span>　參觀船見阪</div>
+        <div class="step"><span class="time">11:00</span>　參觀三角市場用午餐</div>
+        <div class="step"><span class="time">12:00</span>　前往堺町通商店街逛街</div>
+        <div class="step"><span class="time">13:30</span>　參觀LeTAO（起司蛋糕 & 紀念品）</div>
+        <div class="step"><span class="time">14:30</span>　搭纜車前往天狗山展望台</div>
+        <div class="step"><span class="time">17:30</span>　返回小樽運河</div>
+        <div class="step"><span class="time">18:30</span>　<span class="meal">晚餐：小樽世壺屋</span></div>
+        <div class="step"><span class="time">20:00</span>　返回Airbnb</div>
         <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
         <a href="https://www.klook.com/zh-HK/activity/10998-otaru-day-tour-from-sapporo/" target="_blank" class="ticket-link">Klook 小樽一日遊套票</a>
-        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank" class="location-link">小樽路線</a></div></div>`,
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank" class="location-link">小樽路線</a></div>
+        <div class="place-list">
+            <h3>咖啡店</h3>
+            <ul>
+                <li>Coffee House CHAFF (開門時間: 12pm-6pm) <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1055275/" target="_blank">連結</a></li>
+                <li>小樽芸術村ミュージアムカフェ (開門時間: 10:30am-4pm) <a href="https://tabelog.com/hokkaido/A0106/A010601/1075407/" target="_blank">連結</a></li>
+                <li>COFFEE STAND MORAN (開門時間: 10am-6pm) <a href="https://tabelog.com/en/hokkaido/A0106/A010601/1078050/" target="_blank">連結</a></li>
+                <li>れんげ洞 (開門時間: 1pm-9pm) <a href="https://tabelog.com/hokkaido/A0106/A010601/1015571/" target="_blank">連結</a></li>
+                <li>Cat Cafe-Meow Legend (開門時間: 10:30am-6pm) <a href="https://tabelog.com/hokkaido/A0106/A010601/1081528/" target="_blank">連結</a></li>
+            </ul>
+            <h3>商店</h3>
+            <ul>
+                <li>イメージ・グラス (開門時間: 10:30am-4:30pm) <a href="https://image-glass.com/" target="_blank">連結</a></li>
+                <li>Unga Plus (開門時間: 10am-6pm) <a href="https://unga-plus.com/" target="_blank">連結</a></li>
+                <li>硝子と雑貨のお店 ゆず工房</li>
+            </ul>
+        </div>
+        <iframe class="map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2915.109506503616!2d141.1480398!3d43.0538375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0b3a2e2f2f2f2f%3A0x2f2f2f2f2f2f2f2f!2sOtaru!5e0!3m2!1sen!2sus!4v1703840000000!5m2!1sen!2sus&maptype=roadmap&markers=color:red|label:Airbnb|43.0695,141.363|color:red|label:船見阪|43.191,141.000|color:red|label:三角市場|43.198,141.002|color:red|label:堺町通商店街|43.195,141.001|color:red|label:LeTAO|43.194,141.001|color:red|label:天狗山展望台|43.180,140.990|color:red|label:小樽運河|43.198,141.001|color:red|label:小樽世壺屋|43.197,141.001|color:red|label:Coffee House CHAFF|43.195,141.001|color:red|label:小樽芸術村ミュージアムカフェ|43.196,141.001|color:red|label:COFFEE STAND MORAN|43.194,141.001|color:red|label:れんげ洞|43.195,141.001|color:red|label:Cat Cafe-Meow Legend|43.196,141.001|color:red|label:イメージ・グラス|43.195,141.001|color:red|label:Unga Plus|43.195,141.001|color:red|label:硝子と雑貨のお店 ゆず工房|43.195,141.001" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>`,
 
     3: `<div class="detail-day">
         <div class="weather-box"><strong>2月1日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，多雲轉晴</div>
@@ -318,52 +347,4 @@ function showDetail(day){
 
     7: `<div class="detail-day">
         <div class="weather-box"><strong>2月5日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -10°C，多雲</div>
-        <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 70 cm，機場雪清潔良好</div>
-        <img src="https://www.bring-you.info/imgs/2023/11/daimaru-shinsaibashi-2.jpg" class="hero-img" alt="大丸百貨購物">
-        <h2>Day 7　掃貨＋返程（HX691 15:20PM 起飛）</h2>
-        <div class="step"><span class="time">09:00 – 11:00</span>　JR Tower、Stellar Place、大丸百貨最後購物</div>
-        <div class="step"><span class="time">11:00 – 12:00</span>　札幌站 → 新千歲機場（JR快速Airport）</div>
-        <div class="step"><span class="time">12:00 – 14:00</span>　<span class="meal">機場午餐（拉麵道場或其他）</span></div>
-        <div class="step"><span class="time">13:00 前</span>　建議抵達機場辦理登機（國際航班提前2小時）</div>
-        <div class="step"><span class="time">15:20</span>　HX691 起飛 → 20:40 抵達香港</div>
-        <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方</a>
-        <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
-        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div></div>`
-    };
-
-    document.getElementById('detail-content').innerHTML = details[day];
-    openTab('details');
-}
-
-// 裝備清單功能
-const checkboxes = document.querySelectorAll('.pack-item');
-const saveBtn = document.getElementById('savePacking');
-const loadBtn = document.getElementById('loadPackingBtn');
-const clearBtn = document.getElementById('clearPacking');
-
-function savePacking() {
-    const states = {};
-    checkboxes.forEach((cb, i) => states[i] = cb.checked);
-    localStorage.setItem('sapporo2026_packing', JSON.stringify(states));
-    alert('已儲存！');
-}
-
-function loadPacking() {
-    const saved = localStorage.getItem('sapporo2026_packing');
-    if (!saved) return;
-    const states = JSON.parse(saved);
-    checkboxes.forEach((cb, i) => cb.checked = states[i] ?? false);
-}
-
-function clearScreenOnly() {
-    checkboxes.forEach(cb => cb.checked = false);
-    alert('已取消勾選（備份仍在）');
-}
-
-saveBtn.addEventListener('click', savePacking);
-loadBtn.addEventListener('click', loadPacking);
-clearBtn.addEventListener('click', clearScreenOnly);
-loadPacking();
-</script>
-</body>
-</html>
+        <div class="snow-box"><strong>即時雪
