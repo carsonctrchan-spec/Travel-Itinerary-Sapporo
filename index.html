@@ -81,7 +81,7 @@
     <div class="tab-btn" onclick="openTab('packing')">裝備清單</div>
 </div>
 
-<!-- 行程資訊頁（已加入Airbnb酒店資訊） -->
+<!-- 行程資訊頁 -->
 <div id="info" class="content">
     <div style="max-width:900px;margin:0 auto;">
         <div class="info-card">
@@ -100,7 +100,7 @@
             <div class="info-item"><span class="info-label">地址：</span> Kita 11 Johigashi-1-8 Chome Higashi Ward, Sapporo, Hokkaido 065-0011</div>
             <div class="info-item"><span class="info-label">距離札幌站：</span> 步行約5分鐘</div>
             <div class="info-item"><span class="info-label">Check-in 連結：</span> <a href="https://msisys.com/shukuhaku/check_in/HMRJN9C4DT" target="_blank">https://msisys.com/shukuhaku/check_in/HMRJN9C4DT</a></div>
-            <div class="info-item"><span class="info-label">Check-in Code：</span> HMRJN9C4DT</div>
+            <div class="info-item"><span class="info-label">Confirmation Code：</span> HMRJN9C4DT</div>
             <div class="info-item"><span class="info-label">網站：</span> <a href="https://statics.teams.cdn.office.net/evergreen-assets/safelinks/2/atp-safelinks.html" target="_blank">Airbnb 連結</a></div>
         </div>
 
@@ -257,7 +257,65 @@ function showDetail(day){
         <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔線上購票（建議提前）</a>
         <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div></div>`,
 
-    // 其他日子內容保持不變（為節省篇幅這裡僅顯示 Day 1 和 Day 7，實際使用時請保留全部）
+    2: `<div class="detail-day">
+        <div class="weather-box"><strong>1月31日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，輕雪，浪漫小樽日</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 小樽運河積雪 50 cm，雪景浪漫（來源：Otaru旅遊網）</div>
+        <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
+        <h2>Day 2　小樽運河浪漫一日</h2>
+        <div class="step"><span class="time">08:30 – 09:05</span>　JR快速 → 小樽（32分鐘）</div>
+        <div class="step"><span class="time">09:15 – </span>　運河、北一硝子館、音樂盒博物館</div>
+        <div class="step"><span class="time">14:30 – 16:00</span>　<span class="meal">LeTAO本店雙層起司蛋糕</span></div>
+        <div class="step"><span class="time">19:00 – 21:00</span>　<span class="meal">小樽世壺屋（需預約！）</span></div>
+        <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
+        <a href="https://www.klook.com/zh-HK/activity/10998-otaru-day-tour-from-sapporo/" target="_blank" class="ticket-link">Klook 小樽一日遊套票</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Canal" target="_blank" class="location-link">小樽路線</a></div></div>`,
+
+    3: `<div class="detail-day">
+        <div class="weather-box"><strong>2月1日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，多雲轉晴</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 60-80 cm，溫泉區雪景優美（來源：Jozankei官網）</div>
+        <img src="https://img.bobblog.tw/webp/2019/Hokkaido/travel/hoheikyo-hot-springs/hoheikyo-hot-springs04.jpg.webp" class="hero-img" alt="定山溪溫泉">
+        <h2>Day 3　定山溪溫泉放空</h2>
+        <div class="step"><span class="time">09:30 – 10:30</span>　札幌站搭高速巴士（60分鐘）</div>
+        <div class="step"><span class="time">11:00 – 18:00</span>　泡湯＋足湯街＋散步</div>
+        <div class="step"><span class="time">18:30 – </span>　溫泉旅館懷石料理</div>
+        <a href="https://www.jozankei.jp/en/" target="_blank" class="ticket-link">定山溪官方旅遊網（英文）</a>
+        <a href="https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/" target="_blank" class="ticket-link">Klook 巴士＋溫泉套票</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div></div>`,
+
+    4: `<div class="detail-day">
+        <div class="weather-box"><strong>2月2日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，晴間多雲，完美夜景日</div>
+        <div class="snow-box"><strong>即時雪況（盤溪滑雪場）：</strong> 積雪深度 100 cm+，纜車全開，夜滑開放（來源：Bankei官網）</div>
+        <img src="https://resources.matcha-jp.com/resize/720x2000/2018/06/02-55560.webp" class="hero-img" alt="藻岩山夜景">
+        <h2>Day 4　盤溪滑雪場＋藻岩山百萬夜景</h2>
+        <div class="step"><span class="time">08:30 – 16:00</span>　盤溪滑雪場</div>
+        <div class="step"><span class="time">19:00 – 21:30</span>　藻岩山纜車＋Mini纜車</div>
+        <a href="https://mt-moiwa.jp/" target="_blank" class="ticket-link">藻岩山纜車官方（英文）＋線上套票</a>
+        <a href="https://www.klook.com/zh-HK/activity/99611-mt-moiwa-ropeway/" target="_blank" class="ticket-link">Klook 藻岩山纜車票（常有折扣）</a>
+        <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div></div>`,
+
+    5: `<div class="detail-day">
+        <div class="weather-box"><strong>2月3日天氣預測（歷史平均）：</strong> 高溫 -1°C / 低溫 -10°C，輕雪，適合滑雪</div>
+        <div class="snow-box"><strong>即時雪況（盤溪滑雪場）：</strong> 積雪深度 100 cm+，粉雪良好，纜車全開（來源：Bankei官網 & Snow-Forecast）</div>
+        <img src="https://www.skiing-hokkaido.com/img/bankei/map_bg02.jpg" class="hero-img" alt="盤溪滑雪場">
+        <h2>Day 5　盤溪滑雪場＋狸小路夜景</h2>
+        <div class="step"><span class="time">08:30 – 09:15</span>　札幌站免費接駁巴士</div>
+        <div class="step"><span class="time">10:00 – 16:00+</span>　租雪具＋滑雪（夜滑至20:00）</div>
+        <div class="step"><span class="time">17:30 – 22:30</span>　狸小路逛街＋居酒屋</div>
+        <a href="https://www.bankei.co.jp/home-english/" target="_blank" class="ticket-link">盤溪滑雪場官網＋雪況</a>
+        <a href="https://www.bankei.co.jp/rental-en/" target="_blank" class="ticket-link">線上購票＋租雪具</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">路線</a></div></div>`,
+
+    6: `<div class="detail-day">
+        <div class="weather-box"><strong>2月4日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，雪花紛飛，雪祭開幕！</div>
+        <div class="snow-box"><strong>即時雪況（雪祭會場）：</strong> 大通公園積雪 80 cm+，雪雕完美（來源：Snowfes官網）</div>
+        <img src="data:image/jpeg;base64,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" class="hero-img" alt="札幌雪祭">
+        <h2>Day 6　2026札幌雪祭開幕日狂歡</h2>
+        <div class="step"><span class="time">10:00 – 22:00</span>　大通公園＋薄野會場＋Tsudome</div>
+        <div class="step"><span class="time">19:00 – </span>　<span class="meal">蟹本家 或 蟹吃到飽</span></div>
+        <a href="https://www.snowfes.com/en/" target="_blank" class="ticket-link">2026雪祭官方網站（英文）</a>
+        <a href="https://www.klook.com/zh-HK/activity/12748-okurayama-viewing-point-sapporo/" target="_blank" class="ticket-link">大倉山夜間點燈雪雕（超推！）</a>
+        <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園地圖</a></div></div>`,
+
     7: `<div class="detail-day">
         <div class="weather-box"><strong>2月5日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -10°C，多雲</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 70 cm，機場雪清潔良好</div>
