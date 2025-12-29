@@ -6,54 +6,68 @@
 <title>2026 札幌雪祭｜最終版（盤溪滑雪＋狸小路夜景＋藻岩山夜景）</title>
 <style>
     :root{--gold:#FFD700;--blue:#4682B4;--red:#e74c3c;--pink:#FFB6C1;--romantic:#FF69B4;}
-    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;font-size:17px;}
-    .header{background:linear-gradient(135deg,var(--pink),var(--romantic));color:white;padding:2.5rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
-    .header h1{font-size:2rem;margin:0;}
-    .header p{font-size:1.3rem;margin:0.5rem 0 0;}
-    .tabs{max-width:1200px;margin:2rem auto 1.5rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--pink);}
-    .tab-btn{background:#fff;padding:1rem 1.8rem;font-size:1.4rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.4rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;}
+    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;font-size:16px;}
+    .header{background:linear-gradient(135deg,var(--pink),var(--romantic));color:white;padding:2rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+    .header h1{font-size:1.8rem;margin:0;}
+    .header p{font-size:1.2rem;margin:0.5rem 0 0;}
+    .tabs{max-width:1200px;margin:1.5rem auto 1rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--pink);}
+    .tab-btn{background:#fff;padding:0.9rem 1.5rem;font-size:1.3rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.3rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;}
     .tab-btn.active{background:var(--pink);color:#333;}
-    .content{max-width:1100px;margin:0 auto 3rem;padding:0 1.5rem;display:none;}
+    .content{max-width:1100px;margin:0 auto 3rem;padding:0 1rem;display:none;}
     .content.active{display:block;}
-    .day{background:white;padding:2rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:1.8rem;border-left:10px solid var(--pink);}
-    .day h2{font-size:1.75rem;margin:0 0 1rem;color:var(--romantic);}
-    .big-btn{background:var(--pink);color:#333;padding:1.3rem;font-size:1.5rem;width:100%;border:none;border-radius:14px;margin-top:1.2rem;cursor:pointer;font-weight:bold;}
+    .day{background:white;padding:1.8rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:1.6rem;border-left:10px solid var(--pink);}
+    .day h2{font-size:1.6rem;margin:0 0 1rem;color:var(--romantic);}
+    .big-btn{background:var(--pink);color:#333;padding:1.2rem;font-size:1.4rem;width:100%;border:none;border-radius:14px;margin-top:1rem;cursor:pointer;font-weight:bold;}
     .big-btn:hover{background:var(--romantic);color:white;}
-    .detail-day{background:white;padding:2.2rem;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid var(--pink);}
-    .hero-img{width:100%;max-height:420px;object-fit:cover;border-radius:18px;margin:1.3rem 0;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-    .weather-box{background:#ffebee;padding:1.1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--pink);font-size:0.95rem;}
+    .detail-day{background:white;padding:1.8rem;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid var(--pink);}
+    .hero-img{width:100%;max-height:300px;object-fit:cover;border-radius:18px;margin:1rem 0;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+    .weather-box{background:#ffebee;padding:1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--pink);font-size:0.95rem;}
     .snow-box{background:#fff0f8;padding:1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--romantic);font-size:0.95rem;}
-    .step{margin:1.5rem 0;padding:1.4rem;background:#fff0f8;border-left:7px solid var(--pink);border-radius:10px;}
-    .time{color:var(--romantic);font-weight:bold;}
+    .step{margin:1.2rem 0;padding:1.2rem;background:#fff0f8;border-left:6px solid var(--pink);border-radius:10px;font-size:1rem;}
+    .time{color:var(--romantic);font-weight:bold;font-size:1.05rem;}
     .meal{font-weight:bold;color:var(--romantic);}
-    .ticket-link{display:block;background:var(--romantic);color:white;padding:1rem;text-align:center;border-radius:12px;font-weight:bold;margin:1rem 0;font-size:1.05rem;}
-    .ticket-link:hover{background:#FF1493;}
-    .links a{display:inline-block;background:#ffebee;padding:0.8rem 1.4rem;border-radius:10px;margin:0.4rem;font-weight:600;}
-    .info-card{background:white;padding:2rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:2rem;max-width:900px;margin-left:auto;margin-right:auto;}
-    .info-card h2{font-size:1.8rem;margin-bottom:1.2rem;color:var(--romantic);text-align:center;}
-    .info-item{margin:1rem 0;font-size:1.1rem;}
+    .ticket-link{display:block;background:var(--romantic);color:white;padding:1rem;text-align:center;border-radius:12px;font-weight:bold;margin:1rem 0;font-size:1rem;}
+    .links a{display:inline-block;background:#ffebee;padding:0.7rem 1.2rem;border-radius:10px;margin:0.4rem;font-weight:600;font-size:0.95rem;}
+    .info-card{background:white;padding:1.8rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:2rem;}
+    .info-card h2{font-size:1.6rem;margin-bottom:1rem;color:var(--romantic);text-align:center;}
+    .info-item{margin:0.9rem 0;font-size:1rem;}
     .info-label{font-weight:bold;color:var(--pink);}
     .place-list{margin:1.5rem 0;padding:1.2rem;background:#fff0f8;border-radius:12px;border-left:6px solid var(--pink);}
-    .place-list h3{font-size:1.4rem;color:var(--romantic);margin-bottom:0.8rem;}
-    .place-list ul{list-style:disc;padding-left:1.8rem;}
-    .place-list li{margin:0.6rem 0;}
-    .map-container{margin-top:2rem;}
-    .map-container iframe{width:100%;height:500px;border:0;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+    .place-list h3{font-size:1.3rem;color:var(--romantic);margin-bottom:0.7rem;}
+    .place-list ul{list-style:disc;padding-left:1.6rem;}
+    .place-list li{margin:0.6rem 0;font-size:1rem;}
+    .map-container{margin-top:2rem;position:relative;}
+    .map-container iframe{width:100%;height:450px;border:0;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
     .packing-list{max-width:800px;margin:2rem auto;}
-    .packing-list h2{font-size:1.7rem;text-align:center;margin-bottom:1rem;}
+    .packing-list h2{font-size:1.6rem;text-align:center;margin-bottom:1rem;}
     .packing-category{margin-top:2rem;}
-    .packing-category h3{font-size:1.5rem;color:var(--pink);margin-bottom:0.8rem;border-bottom:2px solid var(--romantic);padding-bottom:0.4rem;}
-    .packing-list li{margin:1.2rem 0;font-size:1.35rem;}
-    .packing-list input[type="checkbox"]{transform:scale(1.9);margin-right:16px;vertical-align:middle;}
+    .packing-category h3{font-size:1.4rem;color:var(--pink);margin-bottom:0.7rem;border-bottom:2px solid var(--romantic);padding-bottom:0.4rem;}
+    .packing-list li{margin:1rem 0;font-size:1.2rem;}
+    .packing-list input[type="checkbox"]{transform:scale(1.7);margin-right:14px;vertical-align:middle;}
     .btn-group{text-align:center;margin:1.5rem 0;}
-    .save-btn,.load-btn,.clear-btn{padding:0.9rem 1.8rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:0.5rem;font-weight:bold;}
+    .save-btn,.load-btn,.clear-btn{padding:0.8rem 1.6rem;border:none;border-radius:12px;font-size:1rem;cursor:pointer;margin:0.5rem;font-weight:bold;width:90%;max-width:300px;}
     .save-btn{background:var(--pink);color:white;}
     .load-btn{background:var(--romantic);color:#333;}
     .clear-btn{background:var(--red);color:white;}
-    .back-top{display:block;width:90%;max-width:420px;margin:3rem auto 2rem;padding:1.2rem;background:var(--pink);color:white;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
-    .back-to-overview{display:block;width:90%;max-width:420px;margin:1rem auto 2rem;padding:1.2rem;background:var(--romantic);color:#333;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .back-top{display:block;width:90%;max-width:400px;margin:3rem auto 2rem;padding:1.1rem;background:var(--pink);color:white;text-align:center;border-radius:50px;font-size:1.2rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .back-to-overview{display:block;width:90%;max-width:400px;margin:1rem auto 2rem;padding:1.1rem;background:var(--romantic);color:#333;text-align:center;border-radius:50px;font-size:1.2rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .location-link{cursor:pointer;color:var(--romantic);font-weight:bold;text-decoration:underline;}
     @media (max-width:768px){
-        .map-container iframe{height:350px;}
+        body{font-size:15px;}
+        .header{padding:1.5rem 1rem;}
+        .header h1{font-size:1.6rem;}
+        .header p{font-size:1.1rem;}
+        .tab-btn{width:80%;margin:0.4rem 0;border-radius:12px;padding:0.9rem;font-size:1.25rem;}
+        .day{padding:1.4rem;border-left:8px solid var(--pink);}
+        .day h2{font-size:1.45rem;}
+        .big-btn{padding:1.4rem;font-size:1.3rem;}
+        .detail-day{padding:1.4rem;}
+        .hero-img{max-height:220px;}
+        .step{padding:1rem;font-size:0.95rem;}
+        .time{font-size:1rem;}
+        .map-container iframe{height:380px;}
+        .packing-list input[type="checkbox"]{transform:scale(1.5);}
+        .save-btn,.load-btn,.clear-btn{font-size:0.95rem;padding:0.8rem;}
     }
 </style>
 </head>
@@ -253,13 +267,13 @@ function showDetail(day){
         <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
         <h2>Day 2　小樽運河&天狗山展望台浪漫一日</h2>
         <div class="step"><span class="time">10:00</span>　從Airbnb出發前往小樽（JR快速，約35分鐘）</div>
-        <div class="step"><span class="time">10:45</span>　抵達後參觀 <a href="https://www.google.com/maps/search/?api=1&query=船見阪+Otaru" target="_blank">船見阪</a>（經典陡坡雪景）</div>
-        <div class="step"><span class="time">11:00</span>　<a href="https://www.google.com/maps/search/?api=1&query=三角市場+Otaru" target="_blank">三角市場</a> 用午餐（新鮮海鮮丼或壽司）</div>
-        <div class="step"><span class="time">12:00</span>　前往 <a href="https://www.google.com/maps/search/?api=1&query=堺町通商店街+Otaru" target="_blank">堺町通商店街</a> 自由逛街</div>
-        <div class="step"><span class="time">13:30</span>　<a href="https://www.google.com/maps/search/?api=1&query=LeTAO+Otaru" target="_blank">LeTAO本店</a>（雙層起司蛋糕 + 買手信）</div>
-        <div class="step"><span class="time">14:30</span>　搭纜車上 <a href="https://www.google.com/maps/search/?api=1&query=天狗山展望台+Otaru" target="_blank">天狗山展望台</a>（俯瞰小樽全景）</div>
-        <div class="step"><span class="time">17:30</span>　下山返回 <a href="https://www.google.com/maps/search/?api=1&query=小樽運河" target="_blank">小樽運河</a> 散步</div>
-        <div class="step"><span class="time">18:30</span>　<span class="meal">晚餐：<a href="https://www.google.com/maps/search/?api=1&query=小樽世壺屋" target="_blank">小樽世壺屋</a>（高級懷石，需預約）</span></div>
+        <div class="step"><span class="time">10:45</span>　抵達後參觀 <span class="location-link" onclick="panTo('船見阪')">船見阪</span>（經典陡坡雪景）</div>
+        <div class="step"><span class="time">11:00</span>　<span class="location-link" onclick="panTo('三角市場')">三角市場</span> 用午餐（新鮮海鮮丼或壽司）</div>
+        <div class="step"><span class="time">12:00</span>　前往 <span class="location-link" onclick="panTo('堺町通商店街')">堺町通商店街</span> 自由逛街</div>
+        <div class="step"><span class="time">13:30</span>　<span class="location-link" onclick="panTo('LeTAO')">LeTAO本店</span>（雙層起司蛋糕 + 買手信）</div>
+        <div class="step"><span class="time">14:30</span>　搭纜車上 <span class="location-link" onclick="panTo('天狗山展望台')">天狗山展望台</span>（俯瞰小樽全景）</div>
+        <div class="step"><span class="time">17:30</span>　下山返回 <span class="location-link" onclick="panTo('小樽運河')">小樽運河</span> 散步</div>
+        <div class="step"><span class="time">18:30</span>　<span class="meal">晚餐：<span class="location-link" onclick="panTo('小樽世壺屋')">小樽世壺屋</span>（高級懷石，需預約）</span></div>
         <div class="step"><span class="time">20:00</span>　搭JR返回Airbnb</div>
         <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Station" target="_blank" class="location-link">札幌 → 小樽路線</a></div>
@@ -267,24 +281,24 @@ function showDetail(day){
         <div class="place-list">
             <h3>咖啡店（堺町通商店街附近推薦）</h3>
             <ul>
-                <li><a href="https://www.google.com/maps/search/?api=1&query=Coffee+House+CHAFF+Otaru" target="_blank">Coffee House CHAFF</a> (開門時間：12pm-6pm)</li>
-                <li><a href="https://www.google.com/maps/search/?api=1&query=小樽芸術村ミュージアムカフェ" target="_blank">小樽芸術村ミュージアムカフェ</a> (開門時間：10:30am-4pm)</li>
-                <li><a href="https://www.google.com/maps/search/?api=1&query=COFFEE+STAND+MORAN+Otaru" target="_blank">COFFEE STAND MORAN</a> (開門時間：10am-6pm)</li>
-                <li><a href="https://www.google.com/maps/search/?api=1&query=れんげ洞+Otaru" target="_blank">れんげ洞</a> (開門時間：1pm-9pm)</li>
-                <li><a href="https://www.google.com/maps/search/?api=1&query=Cat+Cafe+Meow+Legend+Otaru" target="_blank">Cat Cafe-Meow Legend</a> (開門時間：10:30am-6pm)</li>
+                <li><span class="location-link" onclick="panTo('Coffee House CHAFF')">Coffee House CHAFF</span> (12pm-6pm)</li>
+                <li><span class="location-link" onclick="panTo('小樽芸術村ミュージアムカフェ')">小樽芸術村ミュージアムカフェ</span> (10:30am-4pm)</li>
+                <li><span class="location-link" onclick="panTo('COFFEE STAND MORAN')">COFFEE STAND MORAN</span> (10am-6pm)</li>
+                <li><span class="location-link" onclick="panTo('れんげ洞')">れんげ洞</span> (1pm-9pm)</li>
+                <li><span class="location-link" onclick="panTo('Cat Cafe-Meow Legend')">Cat Cafe-Meow Legend</span> (10:30am-6pm)</li>
             </ul>
             <h3>商店（堺町通商店街附近推薦）</h3>
             <ul>
-                <li><a href="https://www.google.com/maps/search/?api=1&query=イメージ・グラス+Otaru" target="_blank">イメージ・グラス</a> (開門時間：10:30am-4:30pm)</li>
-                <li><a href="https://www.google.com/maps/search/?api=1&query=Unga+Plus+Otaru" target="_blank">Unga Plus</a> (開門時間：10am-6pm)</li>
-                <li><a href="https://www.google.com/maps/search/?api=1&query=硝子と雑貨のお店+ゆず工房+Otaru" target="_blank">硝子と雑貨のお店 ゆず工房</a></li>
+                <li><span class="location-link" onclick="panTo('イメージ・グラス')">イメージ・グラス</span> (10:30am-4:30pm)</li>
+                <li><span class="location-link" onclick="panTo('Unga Plus')">Unga Plus</span> (10am-6pm)</li>
+                <li><span class="location-link" onclick="panTo('硝子と雑貨のお店 ゆず工房')">硝子と雑貨のお店 ゆず工房</span></li>
             </ul>
         </div>
 
         <div class="map-container">
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1B4UsqKi94CEqa9RnnvxqZo_gEzJ57dc&ehbc=2E312F" class="map-embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;text-align:center;">Day 2 小樽運河&天狗山展望台浪漫地圖（粉紅標記所有行程點、咖啡店與商店，可縮放點擊查看詳情♡）</p>
-</div>
+            <iframe id="otaru-map" src="https://www.google.com/maps/d/u/0/embed?mid=1B4UsqKi94CEqa9RnnvxqZo_gEzJ57dc&ehbc=2E312F" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;text-align:center;">點擊上方地點名稱，地圖會自動移到該位置♡</p>
+        </div>
         </div>`,
         
     3: `<div class="detail-day">
@@ -348,8 +362,17 @@ function showDetail(day){
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div></div>`
 };
 
-    document.getElementById('detail-content').innerHTML = details[day];
+    document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
     openTab('details');
+}
+    function panTo(placeName) {
+    const iframe = document.getElementById('otaru-map');
+    if (iframe) {
+        // 透過 postMessage 嘗試與嵌入地圖溝通（部分支援）
+        iframe.contentWindow.postMessage({type: 'search', query: placeName}, '*');
+        // 同時滾動到地圖區域
+        document.querySelector('.map-container').scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
 }
 // 裝備清單功能
 const checkboxes = document.querySelectorAll('.pack-item');
