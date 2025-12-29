@@ -53,24 +53,6 @@
     .back-top{display:block;width:90%;max-width:420px;margin:3rem auto 2rem;padding:1.2rem;background:var(--pink);color:white;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
     .back-to-overview{display:block;width:90%;max-width:420px;margin:1rem auto 2rem;padding:1.2rem;background:var(--romantic);color:#333;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
     @media (max-width:768px){
-        body{font-size:16px;}
-        .header{padding:1.8rem 1rem;}
-        .header h1{font-size:1.75rem;}
-        .tabs{flex-direction:column;align-items:center;border:none;}
-        .tab-btn{width:88%;margin:0.35rem 0;border-radius:14px;padding:1rem;font-size:1.35rem;}
-        .content{padding:0 1rem;}
-        .day{padding:1.6rem;border-left:6px solid var(--pink);}
-        .day h2{font-size:1.55rem;}
-        .big-btn{padding:1.9rem;font-size:1.4rem;}
-        .detail-day{padding:1.6rem;}
-        .hero-img{max-height:260px;}
-        .packing-list input[type="checkbox"]{transform:scale(1.7);}
-        .save-btn,.load-btn,.clear-btn{display:block;width:92%;margin:0.7rem auto;}
-        .ticket-link{font-size:1rem;padding:1.1rem;}
-        .back-top,.back-to-overview{width:92%;font-size:1.2rem;}
-        .info-card{padding:1.6rem;}
-        .packing-category h3{font-size:1.4rem;}
-        .place-list h3{font-size:1.2rem;}
         .map-container iframe{height:350px;}
     }
 </style>
@@ -252,9 +234,20 @@ function openTab(tab){
 
 function showDetail(day){
     const details = {
-1: `<!-- Day 1 內容保持不變 -->`,
+1: `<div class="detail-day">
+        <div class="weather-box"><strong>1月30日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -11°C，輕雪或凍雨，降水機率 62%</div>
+        <div class="snow-box"><strong>即時雪況：</strong> 市區積雪深度約 50-70 cm，適合夜景觀賞</div>
+        <img src="https://www.japanholiday.net/wp-content/uploads/2023/12/tv-tower1.jpg" class="hero-img" alt="電視塔">
+        <h2>Day 1　抵達札幌（HX690 08:35AM - 14:20PM 到達）</h2>
+        <div class="step"><span class="time">14:20</span>　抵達新千歲機場（取行李、海關約1小時）</div>
+        <div class="step"><span class="time">15:30 – 16:30</span>　JR快速Airport → 札幌站</div>
+        <div class="step"><span class="time">17:00</span>　酒店Check-in + 稍作休息</div>
+        <div class="step"><span class="time">19:00 – 20:30</span>　<span class="meal">晚餐：湯咖喱 Garaku</span></div>
+        <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台</div>
+        <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔線上購票（建議提前）</a>
+        <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div></div>`,
 
-   2: `<div class="detail-day">
+    2: `<div class="detail-day">
         <div class="weather-box"><strong>1月31日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，輕雪，浪漫小樽日</div>
         <div class="snow-box"><strong>即時雪況：</strong> 小樽運河積雪 50 cm，雪景浪漫（來源：Otaru旅遊網）</div>
         <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
@@ -290,8 +283,8 @@ function showDetail(day){
         </div>
 
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5829.5!2d140.987!3d43.192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0b29c0!2sOtaru!5e0!3m2!1szh-HK!2shk!4v1735000000000&markers=color:0xFF69B4%7Clabel:T%7C43.175,140.975%7Cmarkers=color:0xFF69B4%7Clabel:F%7C43.199,140.999%7Cmarkers=color:0xFF69B4%7Clabel:S%7C43.1995,140.999%7Cmarkers=color:0xFF69B4%7Clabel:K%7C43.195,141.001%7Cmarkers=color:0xFF69B4%7Clabel:L%7C43.1914,141.007%7Cmarkers=color:0xFF69B4%7Clabel:C%7C43.198,141.001%7Cmarkers=color:0xFF69B4%7Clabel:W%7C43.197,141.001%7Cmarkers=color:0xFF69B4%7Clabel:CH%7C43.199,140.998%7Cmarkers=color:0xFF69B4%7Clabel:AM%7C43.193,141.002%7Cmarkers=color:0xFF69B4%7Clabel:MO%7C43.194,141.001%7Cmarkers=color:0xFF69B4%7Clabel:RE%7C43.195,141.001%7Cmarkers=color:0xFF69B4%7Clabel:CA%7C43.196,141.001%7Cmarkers=color:0xFF69B4%7Clabel:IG%7C43.195,141.001%7Cmarkers=color:0xFF69B4%7Clabel:UP%7C43.193,141.000%7Cmarkers=color:0xFF69B4%7Clabel:YZ%7C43.193,141.002" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;text-align:center;">Day 2 浪漫小樽地圖（粉紅標記所有行程點、咖啡店與商店，可縮放點擊查看名稱♡）</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2915.5!2d140.995!3d43.195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0b29c0c5c5c5c5%3A0xc5c5c5c5c5c5c5c5!2sOtaru+Canal!5e0!3m2!1szh-HK!2shk!4v1730000000000&markers=color:0xFF69B4%7Clabel:T天狗山%7C43.1755,140.975!markers=color:0xFF69B4%7Clabel:F船見阪%7C43.199,140.999!markers=color:0xFF69B4%7Clabel:三角市場%7C43.1995,140.999!markers=color:0xFF69B4%7Clabel:堺町通%7C43.195,141.001!markers=color:0xFF69B4%7Clabel:LeTAO%7C43.1914,141.0074!markers=color:0xFF69B4%7Clabel:運河%7C43.198,141.001!markers=color:0xFF69B4%7Clabel:世壺屋%7C43.197,141.001!markers=color:0xFF69B4%7Clabel:CHAFF%7C43.199,140.998!markers=color:0xFF69B4%7Clabel:芸術村カフェ%7C43.193,141.002!markers=color:0xFF69B4%7Clabel:MORAN%7C43.194,141.001!markers=color:0xFF69B4%7Clabel:れんげ洞%7C43.195,141.001!markers=color:0xFF69B4%7Clabel:CatCafe%7C43.196,141.001!markers=color:0xFF69B4%7Clabel:イメージグラス%7C43.195,141.001!markers=color:0xFF69B4%7Clabel:UngaPlus%7C43.193,141.000!markers=color:0xFF69B4%7Clabel:ゆず工房%7C43.193,141.002" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;text-align:center;">Day 2 小樽浪漫地圖（粉紅標記所有地點，可縮放點擊查看名稱♡）</p>
         </div>
         </div>`,
         
@@ -356,7 +349,7 @@ function showDetail(day){
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div></div>`
 };
 
-    document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;color:#999;">內容建設中...</p>';
+    document.getElementById('detail-content').innerHTML = details[day];
     openTab('details');
 }
 // 裝備清單功能
