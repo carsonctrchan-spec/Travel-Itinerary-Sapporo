@@ -53,6 +53,24 @@
     .back-top{display:block;width:90%;max-width:420px;margin:3rem auto 2rem;padding:1.2rem;background:var(--pink);color:white;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
     .back-to-overview{display:block;width:90%;max-width:420px;margin:1rem auto 2rem;padding:1.2rem;background:var(--romantic);color:#333;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
     @media (max-width:768px){
+        body{font-size:16px;}
+        .header{padding:1.8rem 1rem;}
+        .header h1{font-size:1.75rem;}
+        .tabs{flex-direction:column;align-items:center;border:none;}
+        .tab-btn{width:88%;margin:0.35rem 0;border-radius:14px;padding:1rem;font-size:1.35rem;}
+        .content{padding:0 1rem;}
+        .day{padding:1.6rem;border-left:6px solid var(--pink);}
+        .day h2{font-size:1.55rem;}
+        .big-btn{padding:1.9rem;font-size:1.4rem;}
+        .detail-day{padding:1.6rem;}
+        .hero-img{max-height:260px;}
+        .packing-list input[type="checkbox"]{transform:scale(1.7);}
+        .save-btn,.load-btn,.clear-btn{display:block;width:92%;margin:0.7rem auto;}
+        .ticket-link{font-size:1rem;padding:1.1rem;}
+        .back-top,.back-to-overview{width:92%;font-size:1.2rem;}
+        .info-card{padding:1.6rem;}
+        .packing-category h3{font-size:1.4rem;}
+        .place-list h3{font-size:1.2rem;}
         .map-container iframe{height:350px;}
     }
 </style>
@@ -236,7 +254,7 @@ function showDetail(day){
     const details = {
 1: `<!-- Day 1 內容保持不變 -->`,
 
-    2: `<div class="detail-day">
+   2: `<div class="detail-day">
         <div class="weather-box"><strong>1月31日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，輕雪，浪漫小樽日</div>
         <div class="snow-box"><strong>即時雪況：</strong> 小樽運河積雪 50 cm，雪景浪漫（來源：Otaru旅遊網）</div>
         <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
@@ -272,8 +290,8 @@ function showDetail(day){
         </div>
 
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2915.200000000000!2d140.990000!3d43.190000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0b29a5e5e5e5e5%3A0xe5e5e5e5e5e5e5e5!2sOtaru%2C%20Hokkaido!5e0!3m2!1szh-HK!2shk!4v1730000000000&z=14&markers=color:pink%7Clabel:1%7C43.198,140.995%7Ccolor:pink%7Clabel:2%7C43.191,141.000%7Ccolor:pink%7Clabel:3%7C43.198,141.002%7Ccolor:pink%7Clabel:4%7C43.195,141.001%7Ccolor:pink%7Clabel:5%7C43.194,141.001%7Ccolor:pink%7Clabel:6%7C43.180,140.990%7Ccolor:pink%7Clabel:7%7C43.198,141.001%7Ccolor:pink%7Clabel:8%7C43.197,141.001%7Ccolor:pink%7Clabel:C1%7C43.198,141.002%7Ccolor:pink%7Clabel:C2%7C43.196,141.001%7Ccolor:pink%7Clabel:C3%7C43.194,141.001%7Ccolor:pink%7Clabel:C4%7C43.195,141.001%7Ccolor:pink%7Clabel:C5%7C43.196,141.001%7Ccolor:pink%7Clabel:S1%7C43.195,141.001%7Ccolor:pink%7Clabel:S2%7C43.195,141.001%7Ccolor:pink%7Clabel:S3%7C43.195,141.001" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;text-align:center;">Day 2 小樽浪漫地圖（標記所有行程點、咖啡店及商店，粉紅色標記更浪漫♡）</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5829.5!2d140.987!3d43.192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0b29c0!2sOtaru!5e0!3m2!1szh-HK!2shk!4v1735000000000&markers=color:0xFF69B4%7Clabel:T%7C43.175,140.975%7Cmarkers=color:0xFF69B4%7Clabel:F%7C43.199,140.999%7Cmarkers=color:0xFF69B4%7Clabel:S%7C43.1995,140.999%7Cmarkers=color:0xFF69B4%7Clabel:K%7C43.195,141.001%7Cmarkers=color:0xFF69B4%7Clabel:L%7C43.1914,141.007%7Cmarkers=color:0xFF69B4%7Clabel:C%7C43.198,141.001%7Cmarkers=color:0xFF69B4%7Clabel:W%7C43.197,141.001%7Cmarkers=color:0xFF69B4%7Clabel:CH%7C43.199,140.998%7Cmarkers=color:0xFF69B4%7Clabel:AM%7C43.193,141.002%7Cmarkers=color:0xFF69B4%7Clabel:MO%7C43.194,141.001%7Cmarkers=color:0xFF69B4%7Clabel:RE%7C43.195,141.001%7Cmarkers=color:0xFF69B4%7Clabel:CA%7C43.196,141.001%7Cmarkers=color:0xFF69B4%7Clabel:IG%7C43.195,141.001%7Cmarkers=color:0xFF69B4%7Clabel:UP%7C43.193,141.000%7Cmarkers=color:0xFF69B4%7Clabel:YZ%7C43.193,141.002" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;text-align:center;">Day 2 浪漫小樽地圖（粉紅標記所有行程點、咖啡店與商店，可縮放點擊查看名稱♡）</p>
         </div>
         </div>`,
         
@@ -338,7 +356,7 @@ function showDetail(day){
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div></div>`
 };
 
-    document.getElementById('detail-content').innerHTML = details[day];
+    document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;color:#999;">內容建設中...</p>';
     openTab('details');
 }
 // 裝備清單功能
