@@ -5,36 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026 札幌雪祭｜最終版（盤溪滑雪＋狸小路夜景＋藻岩山夜景）</title>
 <style>
-    :root{--gold:#FFD700;--blue:#4682B4;--red:#e74c3c;}
+    :root{--gold:#FFD700;--blue:#4682B4;--red:#e74c3c;--pink:#FFB6C1;--romantic:#FF69B4;}
     body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;font-size:17px;}
-    .header{background:linear-gradient(135deg,var(--blue),var(--gold));color:white;padding:2.5rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+    .header{background:linear-gradient(135deg,var(--pink),var(--romantic));color:white;padding:2.5rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
     .header h1{font-size:2rem;margin:0;}
     .header p{font-size:1.3rem;margin:0.5rem 0 0;}
-    .tabs{max-width:1200px;margin:2rem auto 1.5rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--gold);}
+    .tabs{max-width:1200px;margin:2rem auto 1.5rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--pink);}
     .tab-btn{background:#fff;padding:1rem 1.8rem;font-size:1.4rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.4rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;}
-    .tab-btn.active{background:var(--gold);color:#333;}
+    .tab-btn.active{background:var(--pink);color:#333;}
     .content{max-width:1100px;margin:0 auto 3rem;padding:0 1.5rem;display:none;}
     .content.active{display:block;}
-    .day{background:white;padding:2rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:1.8rem;border-left:10px solid var(--gold);}
-    .day h2{font-size:1.75rem;margin:0 0 1rem;color:#2c3e50;}
-    .big-btn{background:var(--gold);color:#333;padding:1.3rem;font-size:1.5rem;width:100%;border:none;border-radius:14px;margin-top:1.2rem;cursor:pointer;font-weight:bold;}
-    .big-btn:hover{background:#FF8C00;color:white;}
-    .detail-day{background:white;padding:2.2rem;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid var(--blue);}
+    .day{background:white;padding:2rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:1.8rem;border-left:10px solid var(--pink);}
+    .day h2{font-size:1.75rem;margin:0 0 1rem;color:var(--romantic);}
+    .big-btn{background:var(--pink);color:#333;padding:1.3rem;font-size:1.5rem;width:100%;border:none;border-radius:14px;margin-top:1.2rem;cursor:pointer;font-weight:bold;}
+    .big-btn:hover{background:var(--romantic);color:white;}
+    .detail-day{background:white;padding:2.2rem;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid var(--pink);}
     .hero-img{width:100%;max-height:420px;object-fit:cover;border-radius:18px;margin:1.3rem 0;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
-    .weather-box{background:#e3f2fd;padding:1.1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--blue);font-size:0.95rem;}
-    .snow-box{background:#f0f8ff;padding:1rem;border-radius:10px;margin:1rem 0;border-left:5px solid #B8860B;font-size:0.95rem;}
-    .step{margin:1.5rem 0;padding:1.4rem;background:#f0f8ff;border-left:7px solid var(--blue);border-radius:10px;}
-    .time{color:#c0392b;font-weight:bold;}
-    .meal{font-weight:bold;color:#B8860B;}
-    .ticket-link{display:block;background:var(--red);color:white;padding:1rem;text-align:center;border-radius:12px;font-weight:bold;margin:1rem 0;font-size:1.05rem;}
-    .ticket-link:hover{background:#c0392b;}
-    .links a{display:inline-block;background:#e3f2fd;padding:0.8rem 1.4rem;border-radius:10px;margin:0.4rem;font-weight:600;}
+    .weather-box{background:#ffebee;padding:1.1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--pink);font-size:0.95rem;}
+    .snow-box{background:#fff0f8;padding:1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--romantic);font-size:0.95rem;}
+    .step{margin:1.5rem 0;padding:1.4rem;background:#fff0f8;border-left:7px solid var(--pink);border-radius:10px;}
+    .time{color:var(--romantic);font-weight:bold;}
+    .meal{font-weight:bold;color:var(--romantic);}
+    .ticket-link{display:block;background:var(--romantic);color:white;padding:1rem;text-align:center;border-radius:12px;font-weight:bold;margin:1rem 0;font-size:1.05rem;}
+    .ticket-link:hover{background:#FF1493;}
+    .links a{display:inline-block;background:#ffebee;padding:0.8rem 1.4rem;border-radius:10px;margin:0.4rem;font-weight:600;}
     .info-card{background:white;padding:2rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:2rem;max-width:900px;margin-left:auto;margin-right:auto;}
-    .info-card h2{font-size:1.8rem;margin-bottom:1.2rem;color:#2c3e50;text-align:center;}
+    .info-card h2{font-size:1.8rem;margin-bottom:1.2rem;color:var(--romantic);text-align:center;}
     .info-item{margin:1rem 0;font-size:1.1rem;}
-    .info-label{font-weight:bold;color:var(--blue);}
-    .place-list{margin:1.5rem 0;padding:1.2rem;background:#f0f8ff;border-radius:12px;border-left:6px solid var(--gold);}
-    .place-list h3{font-size:1.4rem;color:var(--blue);margin-bottom:0.8rem;}
+    .info-label{font-weight:bold;color:var(--pink);}
+    .place-list{margin:1.5rem 0;padding:1.2rem;background:#fff0f8;border-radius:12px;border-left:6px solid var(--pink);}
+    .place-list h3{font-size:1.4rem;color:var(--romantic);margin-bottom:0.8rem;}
     .place-list ul{list-style:disc;padding-left:1.8rem;}
     .place-list li{margin:0.6rem 0;}
     .map-container{margin-top:2rem;}
@@ -42,35 +42,17 @@
     .packing-list{max-width:800px;margin:2rem auto;}
     .packing-list h2{font-size:1.7rem;text-align:center;margin-bottom:1rem;}
     .packing-category{margin-top:2rem;}
-    .packing-category h3{font-size:1.5rem;color:var(--blue);margin-bottom:0.8rem;border-bottom:2px solid var(--gold);padding-bottom:0.4rem;}
+    .packing-category h3{font-size:1.5rem;color:var(--pink);margin-bottom:0.8rem;border-bottom:2px solid var(--romantic);padding-bottom:0.4rem;}
     .packing-list li{margin:1.2rem 0;font-size:1.35rem;}
     .packing-list input[type="checkbox"]{transform:scale(1.9);margin-right:16px;vertical-align:middle;}
     .btn-group{text-align:center;margin:1.5rem 0;}
     .save-btn,.load-btn,.clear-btn{padding:0.9rem 1.8rem;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin:0.5rem;font-weight:bold;}
-    .save-btn{background:var(--blue);color:white;}
-    .load-btn{background:var(--gold);color:#333;}
+    .save-btn{background:var(--pink);color:white;}
+    .load-btn{background:var(--romantic);color:#333;}
     .clear-btn{background:var(--red);color:white;}
-    .back-top{display:block;width:90%;max-width:420px;margin:3rem auto 2rem;padding:1.2rem;background:var(--blue);color:white;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
-    .back-to-overview{display:block;width:90%;max-width:420px;margin:1rem auto 2rem;padding:1.2rem;background:var(--gold);color:#333;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .back-top{display:block;width:90%;max-width:420px;margin:3rem auto 2rem;padding:1.2rem;background:var(--pink);color:white;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .back-to-overview{display:block;width:90%;max-width:420px;margin:1rem auto 2rem;padding:1.2rem;background:var(--romantic);color:#333;text-align:center;border-radius:50px;font-size:1.3rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
     @media (max-width:768px){
-        body{font-size:16px;}
-        .header{padding:1.8rem 1rem;}
-        .header h1{font-size:1.75rem;}
-        .tabs{flex-direction:column;align-items:center;border:none;}
-        .tab-btn{width:88%;margin:0.35rem 0;border-radius:14px;padding:1rem;font-size:1.35rem;}
-        .content{padding:0 1rem;}
-        .day{padding:1.6rem;border-left:6px solid var(--gold);}
-        .day h2{font-size:1.55rem;}
-        .big-btn{padding:1.9rem;font-size:1.4rem;}
-        .detail-day{padding:1.6rem;}
-        .hero-img{max-height:260px;}
-        .packing-list input[type="checkbox"]{transform:scale(1.7);}
-        .save-btn,.load-btn,.clear-btn{display:block;width:92%;margin:0.7rem auto;}
-        .ticket-link{font-size:1rem;padding:1.1rem;}
-        .back-top,.back-to-overview{width:92%;font-size:1.2rem;}
-        .info-card{padding:1.6rem;}
-        .packing-category h3{font-size:1.4rem;}
-        .place-list h3{font-size:1.2rem;}
         .map-container iframe{height:350px;}
     }
 </style>
@@ -124,7 +106,7 @@
 <div id="overview" class="content active">
     <div style="max-width:900px;margin:0 auto;">
         <div class="day"><h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2><button class="big-btn" onclick="showDetail(1)">查看詳細時間軸</button></div>
-        <div class="day"><h2>1月31日 (六) Day 2　小樽運河浪漫一日</h2>
+        <div class="day"><h2>1月31日 (六) Day 2　小樽運河&天狗山展望台浪漫一日</h2>
             <p style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">下午茶：LeTAO本店　｜　晚餐：世壺屋</p>
             <button class="big-btn" onclick="showDetail(2)">查看詳細時間軸</button></div>
         <div class="day"><h2>2月1日 (日) Day 3　定山溪溫泉放空</h2><button class="big-btn" onclick="showDetail(3)">查看詳細時間軸</button></div>
@@ -132,7 +114,7 @@
         <div class="day"><h2>2月3日 (二) Day 5　盤溪滑雪場＋狸小路夜景</h2><button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button></div>
         <div class="day" style="border-left:16px solid var(--red);"><h2>2月4日 (三) Day 6　雪祭開幕日狂歡！</h2><button class="big-btn" style="background:var(--red);color:white;" onclick="showDetail(6)">立即查看</button></div>
         <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button></div>
-    </div>
+   </div>
 
     <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-top">
         Back to Top
@@ -356,9 +338,9 @@ function showDetail(day){
         <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方</a>
         <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div></div>`
-   };
+};
 
-    document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;font-size:1.2rem;">此日詳細內容建設中...</p>';
+    document.getElementById('detail-content').innerHTML = details[day];
     openTab('details');
 }
 // 裝備清單功能
