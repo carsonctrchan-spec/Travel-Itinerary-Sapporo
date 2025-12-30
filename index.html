@@ -6,12 +6,12 @@
 <title>2026 札幌雪祭 7 天行程</title>
 <style>
     :root{--gold:#FFD700;--blue:#4682B4;--red:#e74c3c;--pink:#FFB6C1;--romantic:#FF69B4;}
-    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;font-size:16px;}
+    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;font-size:16px;overflow-x:hidden;}
     .header{background:linear-gradient(135deg,var(--pink),var(--romantic));color:white;padding:2rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
-    .header h1{font-size:1.8rem;margin:0;}
+    .header h1{font-size:1.9rem;margin:0;}
     .header p{font-size:1.3rem;margin:0.5rem 0 0;}
-    .tabs{max-width:1200px;margin:1.5rem auto 1rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--pink);}
-    .tab-btn{background:#fff;padding:0.9rem 1.5rem;font-size:1.3rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.3rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;}
+    .tabs{max-width:1200px;margin:1.5rem auto 1rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--pink);padding:0 1rem;}
+    .tab-btn{background:#fff;padding:0.9rem 1.4rem;font-size:1.3rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.3rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;flex:1 1 120px;text-align:center;max-width:200px;}
     .tab-btn.active{background:var(--pink);color:#333;}
     .content{max-width:1100px;margin:0 auto 3rem;padding:0 1rem;display:none;}
     .content.active{display:block;}
@@ -57,12 +57,14 @@
     .clear-btn{background:var(--red);color:white;}
     .back-top{display:block;width:90%;max-width:400px;margin:3rem auto 2rem;padding:1.1rem;background:var(--pink);color:white;text-align:center;border-radius:50px;font-size:1.2rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
     .back-to-overview{display:block;width:90%;max-width:400px;margin:1rem auto 2rem;padding:1.1rem;background:var(--romantic);color:#333;text-align:center;border-radius:50px;font-size:1.2rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .location-link{color:var(--romantic);font-weight:bold;text-decoration:underline;}
     @media (max-width:768px){
         body{font-size:15px;}
         .header{padding:1.5rem 1rem;}
         .header h1{font-size:1.6rem;}
         .header p{font-size:1.1rem;}
-        .tab-btn{width:80%;margin:0.4rem 0;border-radius:12px;padding:0.9rem;font-size:1.25rem;}
+        .tabs{flex-direction:column;align-items:center;}
+        .tab-btn{width:85%;margin:0.4rem 0;padding:0.9rem;font-size:1.25rem;}
         .day{padding:1.4rem;border-left:8px solid var(--pink);}
         .day h2{font-size:1.45rem;}
         .big-btn{padding:1.4rem;font-size:1.3rem;}
@@ -76,6 +78,8 @@
         .save-btn,.load-btn,.clear-btn{font-size:0.95rem;padding:0.8rem;}
         .location-card{padding:1.2rem;}
         .location-card h3{font-size:1.25rem;}
+        .info-card{padding:1.4rem;}
+        .info-item{font-size:0.95rem;}
     }
 </style>
 </head>
@@ -117,7 +121,27 @@
             <div class="info-item"><span class="info-label">Confirmation Code：</span> HMRJN9C4DT</div>
             <div class="info-item"><span class="info-label">網站：</span> <a href="https://statics.teams.cdn.office.net/evergreen-assets/safelinks/2/atp-safelinks.html" target="_blank">Airbnb 連結</a></div>
         </div>
-
+<div class="info-card">
+            <h2>行程資訊網站</h2>
+            <div class="info-item">
+                <a href="https://www.bigfang.tw/blog/post/41398024#index_id29" target="_blank">小樽一日遊</a>
+            </div>
+            <div class="info-item">
+                <a href="https://hokkaido.letsgojp.com/archives/762539/#h10" target="_blank">北海道神宮完全攻略</a>
+            </div>
+            <div class="info-item">
+                <a href="https://www.gltjp.com/zh-hant/article/item/11842/" target="_blank">白色戀人公園完整指南</a>
+            </div>
+            <div class="info-item">
+                <a href="https://www.gltjp.com/zh-hant/article/item/20215/" target="_blank">札幌必去景點19選</a>
+            </div>
+            <div class="info-item">
+                <a href="https://hokkaido.letsgojp.com/archives/637281/" target="_blank">札幌美食必吃推薦</a>
+            </div>
+            <div class="info-item">
+                <a href="https://www.gltjp.com/zh-hant/article/item/20658/" target="_blank">札幌必吃美食與推薦店家</a>
+            </div>
+        </div>
         <div class="info-card">
             <h2>JR 火車時刻表（主要路線）</h2>
             <div class="info-item"><strong>新千歲機場 ↔ 札幌站（Rapid Airport 快速列車）</strong><br>
