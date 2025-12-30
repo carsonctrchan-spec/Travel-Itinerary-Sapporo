@@ -6,22 +6,25 @@
 <title>2026 札幌雪祭 7 天行程</title>
 <style>
     :root{--gold:#FFD700;--blue:#4682B4;--red:#e74c3c;--pink:#FFB6C1;--romantic:#FF69B4;}
-    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;overflow-x:hidden;}
-    /* Fluid base font size */
-    html{font-size:16px;}
-    body{font-size:clamp(15px, 2.5vw, 17px);}
-    .header{background:linear-gradient(135deg,var(--pink),var(--romantic));color:white;padding:clamp(1.2rem, 4vw, 2rem) 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
-    .header h1{font-size:clamp(1.6rem, 5vw, 2.2rem);margin:0;line-height:1.2;}
-    .header p{font-size:clamp(1.1rem, 3.5vw, 1.4rem);margin:0.5rem 0 0;line-height:1.3;}
-    .tabs{max-width:1200px;margin:1.2rem auto 0.8rem;display:flex;justify-content:center;flex-wrap:nowrap;overflow-x:auto;border-bottom:4px solid var(--pink);padding:0 1rem;-webkit-overflow-scrolling:touch;}
-    .tab-btn{background:#fff;padding:clamp(0.6rem, 2vw, 0.9rem) clamp(0.8rem, 2.5vw, 1.4rem);font-size:clamp(1rem, 2.8vw, 1.3rem);cursor:pointer;border-radius:15px 15px 0 0;margin:0 0.2rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;white-space:nowrap;flex:0 0 auto;}
+    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;font-size:16px;overflow-x:hidden;}
+    .header{background:linear-gradient(135deg,var(--pink),var(--romantic));color:white;padding:1.8rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+    .header h1{font-size:1.7rem;margin:0;line-height:1.3;}
+    .header p{font-size:1.15rem;margin:0.4rem 0 0;line-height:1.3;}
+    .tabs{max-width:1200px;margin:1.2rem auto 0.8rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--pink);padding:0 1rem;gap:0.3rem;}
+    .tab-btn{background:#fff;padding:0.7rem 0.9rem;font-size:1.05rem;cursor:pointer;border-radius:15px 15px 0 0;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;white-space:nowrap;flex:1 1 auto;text-align:center;max-width:180px;}
     .tab-btn.active{background:var(--pink);color:#333;}
     .content{max-width:1100px;margin:0 auto 3rem;padding:0 1rem;display:none;}
     .content.active{display:block;}
-    .day{background:white;padding:clamp(1.4rem, 4vw, 1.8rem);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:1.6rem;border-left:10px solid var(--pink);}
-    .day h2{font-size:clamp(1.45rem, 4vw, 1.7rem);margin:0 0 1rem;color:var(--romantic);}
-    .big-btn{background:var(--pink);color:#333;padding:1.2rem;font-size:clamp(1.3rem, 3vw, 1.5rem);width:100%;border:none;border-radius:14px;margin-top:1rem;cursor:pointer;font-weight:bold;}
+    .day{background:white;padding:1.8rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:1.6rem;border-left:10px solid var(--pink);}
+    .day h2{font-size:1.6rem;margin:0 0 1rem;color:var(--romantic);}
+    .big-btn{background:var(--pink);color:#333;padding:1.2rem;font-size:1.4rem;width:100%;border:none;border-radius:14px;margin-top:1rem;cursor:pointer;font-weight:bold;}
     .big-btn:hover{background:var(--romantic);color:white;}
+    .back-to-overview{display:block;width:90%;max-width:400px;margin:1rem auto 2rem;padding:1.1rem;background:var(--romantic);color:#333;text-align:center;border-radius:50px;font-size:1.2rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+  
+    
+    
+    
+    
     .detail-day{background:white;padding:clamp(1.4rem, 4vw, 1.8rem);border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid var(--pink);}
     .hero-img{width:100%;max-height:300px;object-fit:cover;border-radius:18px;margin:1rem 0;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
     .hero-img-top{width:100%;max-height:420px;object-fit:cover;border-radius:18px;margin:1rem 0;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
@@ -34,10 +37,16 @@
     .info-card h2{font-size:clamp(1.35rem, 4vw, 1.6rem);margin-bottom:1rem;color:var(--romantic);text-align:center;}
     .place-list h3,.location-card h3{font-size:clamp(1.25rem, 3.5vw, 1.4rem);color:var(--romantic);}
     .map-container iframe{width:100%;height:clamp(350px, 60vh, 500px);border:0;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+@media (max-width:768px){
+        .header{padding:1.4rem 1rem;}
+        .header h1{font-size:1.5rem;}
+        .header p{font-size:1.05rem;}
+        .tabs{flex-wrap:wrap;gap:0.2rem;padding:0 0.5rem;}
+        .tab-btn{padding:0.6rem 0.5rem;font-size:1rem;max-width:none;flex:1 1 18%;}
+        .back-to-overview{width:95%;font-size:1.1rem;padding:1rem;}
+    }
     @media (max-width:480px){
-        .header{padding:1.2rem 1rem;}
-        .tabs{padding:0 0.5rem;}
-        .tab-btn{padding:0.6rem 0.8rem;font-size:1rem;}
+        .tab-btn{font-size:0.95rem;padding:0.55rem 0.4rem;}
     }
 </style>
 </head>
@@ -134,7 +143,7 @@
 
 <!-- 詳細日程表 -->
 <div id="details" class="content">
-    <div onclick="openTab('overview')" class="back-to-overview">
+    <div class="back-to-overview" onclick="openTab('overview')">
         返回總覽
     </div>
     <div id="detail-content" style="max-width:1000px;margin:0 auto;"></div>
