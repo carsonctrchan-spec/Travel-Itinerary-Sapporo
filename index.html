@@ -10,8 +10,8 @@
     .header{background:linear-gradient(135deg,var(--pink),var(--romantic));color:white;padding:2rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
     .header h1{font-size:1.9rem;margin:0;}
     .header p{font-size:1.3rem;margin:0.5rem 0 0;}
-    .tabs{max-width:1200px;margin:1.5rem auto 1rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--pink);padding:0 1rem;}
-    .tab-btn{background:#fff;padding:0.9rem 1.4rem;font-size:1.3rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0.3rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;flex:1 1 120px;text-align:center;max-width:200px;}
+    .tabs{max-width:1200px;margin:1.5rem auto 1rem;display:flex;justify-content:center;flex-wrap:nowrap;overflow-x:auto;border-bottom:4px solid var(--pink);padding:0 1rem;-webkit-overflow-scrolling:touch;}
+    .tab-btn{background:#fff;padding:0.8rem 1rem;font-size:1.15rem;cursor:pointer;border-radius:15px 15px 0 0;margin:0 0.2rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;white-space:nowrap;flex:0 0 auto;}
     .tab-btn.active{background:var(--pink);color:#333;}
     .content{max-width:1100px;margin:0 auto 3rem;padding:0 1rem;display:none;}
     .content.active{display:block;}
@@ -40,7 +40,7 @@
     .map-container{margin-top:2rem;}
     .map-container iframe{width:100%;height:450px;border:0;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
     .location-card{background:white;padding:1.4rem;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,0.1);margin-bottom:1.4rem;border-left:6px solid var(--pink);}
-    .location-card h2{font-size:1.6rem;margin-bottom:1rem;color:var(--romantic);text-align:center;}
+    .location-card h3{font-size:1.35rem;margin:0 0 0.6rem;color:var(--romantic);}
     .location-card .time{font-size:0.95rem;color:#666;margin:0.4rem 0;}
     .location-card .desc{font-size:1rem;color:#555;margin:0.8rem 0;line-height:1.6;}
     .location-card a{font-weight:bold;color:var(--romantic);}
@@ -63,8 +63,8 @@
         .header{padding:1.5rem 1rem;}
         .header h1{font-size:1.6rem;}
         .header p{font-size:1.1rem;}
-        .tabs{flex-direction:column;align-items:center;padding:0;}
-        .tab-btn{width:95%;margin:0.2rem 0;padding:0.8rem;font-size:1.1rem;}
+        .tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:0.5rem;}
+        .tab-btn{padding:0.7rem 1rem;font-size:1.1rem;margin:0 0.2rem;}
         .day{padding:1.4rem;border-left:8px solid var(--pink);}
         .day h2{font-size:1.45rem;}
         .big-btn{padding:1.4rem;font-size:1.3rem;}
@@ -98,7 +98,6 @@
     <div class="tab-btn" onclick="openTab('packing')">裝備清單</div>
     <div class="tab-btn" onclick="openTab('more')">更多地點</div>
 </div>
-
 <!-- 行程資訊頁 -->
 <div id="info" class="content">
     <div style="max-width:900px;margin:0 auto;">
