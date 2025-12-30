@@ -40,7 +40,7 @@
     .map-container{margin-top:2rem;}
     .map-container iframe{width:100%;height:450px;border:0;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
     .location-card{background:white;padding:1.4rem;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,0.1);margin-bottom:1.4rem;border-left:6px solid var(--pink);}
-    .location-card h3{font-size:1.35rem;margin:0 0 0.6rem;color:var(--romantic);}
+    .location-card h2{font-size:1.6rem;margin-bottom:1rem;color:var(--romantic);text-align:center;}
     .location-card .time{font-size:0.95rem;color:#666;margin:0.4rem 0;}
     .location-card .desc{font-size:1rem;color:#555;margin:0.8rem 0;line-height:1.6;}
     .location-card a{font-weight:bold;color:var(--romantic);}
@@ -63,8 +63,8 @@
         .header{padding:1.5rem 1rem;}
         .header h1{font-size:1.6rem;}
         .header p{font-size:1.1rem;}
-        .tabs{flex-direction:column;align-items:center;}
-        .tab-btn{width:85%;margin:0.4rem 0;padding:0.9rem;font-size:1.25rem;}
+        .tabs{flex-direction:column;align-items:center;padding:0;}
+        .tab-btn{width:95%;margin:0.2rem 0;padding:0.8rem;font-size:1.1rem;}
         .day{padding:1.4rem;border-left:8px solid var(--pink);}
         .day h2{font-size:1.45rem;}
         .big-btn{padding:1.4rem;font-size:1.3rem;}
@@ -79,7 +79,7 @@
         .location-card{padding:1.2rem;}
         .location-card h3{font-size:1.25rem;}
         .info-card{padding:1.4rem;}
-        .info-card h2{font-size:1.4rem !important;} /* 手機版卡片標題明顯縮小 */
+        .info-card h2{font-size:1.4rem !important;}
         .info-item{font-size:0.95rem;}
     }
 </style>
@@ -98,6 +98,7 @@
     <div class="tab-btn" onclick="openTab('packing')">裝備清單</div>
     <div class="tab-btn" onclick="openTab('more')">更多地點</div>
 </div>
+
 <!-- 行程資訊頁 -->
 <div id="info" class="content">
     <div style="max-width:900px;margin:0 auto;">
