@@ -278,7 +278,11 @@
 <div id="more" class="content">
     <div style="max-width:900px;margin:0 auto;">
         <h2 style="text-align:center;color:var(--romantic);font-size:1.8rem;margin-bottom:1.5rem;">更多札幌推薦地點</h2>
-
+<div class="sub-tabs">
+            <div class="sub-tab-btn active" onclick="openSubTab('attractions')">景點</div>
+            <div class="sub-tab-btn" onclick="openSubTab('restaurants')">餐廳</div>
+        </div>
+       <div id="attractions" class="sub-content active">
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E7%99%BD%E8%89%B2%E6%88%80%E4%BA%BA%E5%85%AC%E5%9C%92+Sapporo" target="_blank">白色戀人公園</a></h3>
             <div class="time">開園時間：10:00–19:00</div>
@@ -369,7 +373,73 @@
             <div class="desc">北海道最大Outlet，品牌多、折扣深，購物掃貨好去處。</div>
             <a href="https://mitsui-shopping-park.com/mop/" target="_blank">官方網站</a>
         </div>
+<div id="restaurants" class="sub-content">
+            <div class="location-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E6%88%90%E5%90%89%E6%80%9D%E6%B1%97%E3%81%A0%E3%82%8B%E3%81%BE+%E6%9C%AC%E5%BA%97+Sapporo" target="_blank">成吉思汗だるま 本店</a></h3>
+                <div class="time">營業時間：11:30–23:00</div>
+                <div class="desc">札幌最老字號成吉思汗烤羊肉店，新鮮羊肉在鐵鍋上滋滋作響，肉汁香濃，超受當地人歡迎。</div>
+                <div class="price">建議價格：HK$300–500/人</div>
+                <a href="https://tabelog.com/tw/hokkaido/A0101/A010103/1000007/" target="_blank">Tabelog 連結</a>
+            </div>
 
+            <div class="location-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=Itadakimasu.+Sapporo" target="_blank">Itadakimasu.</a></h3>
+                <div class="time">營業時間：16:00–22:00</div>
+                <div class="desc">隱藏版居酒屋，專門提供北海道新鮮海鮮與創意小菜，氣氛溫馨適合小酌。</div>
+                <div class="price">建議價格：HK$400–600/人</div>
+                <a href="https://tabelog.com/en/hokkaido/A0101/A010103/1036161/" target="_blank">Tabelog 連結</a>
+            </div>
+
+            <div class="location-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%BB%91%E5%B1%8B+Sapporo" target="_blank">大黒屋</a></h3>
+                <div class="time">營業時間：16:00–23:30</div>
+                <div class="desc">薄野經典居酒屋，招牌烤雞串與海鮮燒烤超美味，氣氛熱鬧。</div>
+                <div class="price">建議價格：HK$350–550/人</div>
+                <a href="https://tabelog.com/tw/tokyo/A1301/A130103/13291185/" target="_blank">Tabelog 連結</a>
+            </div>
+
+            <div class="location-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E8%A1%86%E7%82%AD%E7%81%AB%E7%83%A4%E8%82%89%E3%82%B8%E3%83%B3%E3%82%AE%E3%82%B9%E3%82%AB%E3%83%B3+%E3%83%9B%E3%83%AB%E3%83%A2%E3%83%B3%E9%85%92%E5%A0%B4+Sapporo" target="_blank">大衆炭火焼肉ジンギスカン ホルモン酒場</a></h3>
+                <div class="time">營業時間：16:00–23:30</div>
+                <div class="desc">平價炭火烤羊肉與內臟專門店，羊肉鮮嫩多汁，適合大口吃肉。</div>
+                <div class="price">建議價格：HK$250–400/人</div>
+                <a href="https://tabelog.com/tw/hokkaido/A0101/A010101/1028121/" target="_blank">Tabelog 連結</a>
+            </div>
+
+            <div class="location-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%97%E3%82%8D%E3%81%8F%E3%81%BE+Sapporo" target="_blank">しろくま</a></h3>
+                <div class="time">營業時間：18:00–01:00</div>
+                <div class="desc">薄野隱密咖喱專門店，深夜限定，湯頭濃郁香辣，是宵夜首選。</div>
+                <div class="price">建議價格：HK$150–250/人</div>
+                <a href="https://tabelog.com/tw/hokkaido/A0101/A010103/1000800/" target="_blank">Tabelog 連結</a>
+            </div>
+
+            <div class="location-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E9%AE%A8%E8%99%95+%E5%87%9C+Sapporo" target="_blank">鮨処 凜</a></h3>
+                <div class="time">營業時間：18:00–22:00</div>
+                <div class="desc">高級壽司Omakase，師傅現場握壽司，使用北海道當季海鮮，極致新鮮。</div>
+                <div class="price">建議價格：HK$800–1,500/人</div>
+                <a href="https://tabelog.com/tw/hokkaido/A0101/A010101/1077179/" target="_blank">Tabelog 連結</a>
+            </div>
+
+            <div class="location-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%99%E3%81%97%E3%81%A9%E3%82%93%E3%81%B6%E3%82%8A+Sapporo" target="_blank">すしどんぶり</a></h3>
+                <div class="time">營業時間：11:30–22:30</div>
+                <div class="desc">平價壽司丼專門店，海鮮堆滿滿一大碗，CP值超高。</div>
+                <div class="price">建議價格：HK$200–400/人</div>
+                <a href="https://tabelog.com/tw/hokkaido/A0101/A010103/1077231/" target="_blank">Tabelog 連結</a>
+            </div>
+
+            <div class="location-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E9%AE%A8%E8%99%95+%E6%9A%81+Sapporo" target="_blank">鮨処 暁</a></h3>
+                <div class="time">營業時間：17:30–22:30</div>
+                <div class="desc">隱藏版高級壽司店，使用稀有北海道海鮮，握壽司口感極佳。</div>
+                <div class="price">建議價格：HK$700–1,200/人</div>
+                <a href="https://tabelog.com/tw/hokkaido/A0101/A010101/1081057/" target="_blank">Tabelog 連結</a>
+            </div>
+        </div>
+    </div>
+</div>
  <div class="back-to-overview" onclick="openTab('overview')">
             返回總覽
         </div>
@@ -377,12 +447,11 @@
 </div>
 
 <script>
-function openTab(tab){
-    document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
-    document.getElementById(tab).classList.add('active');
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`).classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
+function openSubTab(subtab){
+    document.querySelectorAll('.sub-content').forEach(c=>c.classList.remove('active'));
+    document.getElementById(subtab).classList.add('active');
+    document.querySelectorAll('.sub-tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
 }
 
 function showDetail(day){
