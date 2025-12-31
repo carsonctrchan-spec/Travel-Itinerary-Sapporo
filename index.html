@@ -484,22 +484,6 @@ function showDetail(day){
     document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
     openTab('details');
 }
- <script>
-function openTab(tab){
-    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-    document.getElementById(tab).classList.add('active');
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`).classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
-}
-
-function openSubTab(subtab){
-    document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
-    document.getElementById(subtab).classList.add('active');
-    document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
-}
-
 function showDetail(day){
     const details = {
     1: `<div class="detail-day">
