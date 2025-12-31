@@ -484,7 +484,7 @@ function showDetail(day){
     document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
     openTab('details');
 }
-    <script>
+ <script>
 function openTab(tab){
     document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
     document.getElementById(tab).classList.add('active');
@@ -499,6 +499,7 @@ function openSubTab(subtab){
     document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
 }
+
 function showDetail(day){
     const details = {
     1: `<div class="detail-day">
@@ -513,7 +514,7 @@ function showDetail(day){
         <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台</div>
         <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔線上購票（建議提前）</a>
         <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div>
-       
+        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
         </div>`,
 
     2: `<div class="detail-day">
@@ -532,7 +533,6 @@ function showDetail(day){
         <div class="step"><span class="time">20:00</span>　搭JR返回Airbnb</div>
         <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Station" target="_blank" class="location-link">札幌 → 小樽路線</a></div>
-
         <div class="place-list">
             <h3>咖啡店（堺町通商店街附近推薦）</h3>
             <ul>
@@ -549,12 +549,13 @@ function showDetail(day){
                 <li><a href="https://www.google.com/maps/search/?api=1&query=%E7%A1%9D%E5%AD%90%E3%81%A8%E9%9B%91%E8%B2%A8%E3%81%AE%E3%81%8A%E5%BA%97+%E3%82%86%E3%81%9A%E5%B7%A5%E6%88%BF+Otaru" target="_blank" class="location-link">硝子と雑貨のお店 ゆず工房</a></li>
             </ul>
         </div>
-
         <div class="map-container">
             <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1B4UsqKi94CEqa9RnnvxqZo_gEzJ57dc&ehbc=2E312F" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;text-align:center;">Day 2 小樽浪漫地圖（粉紅標記所有行程點、咖啡店與商店，可縮放點擊查看詳情♡）</p>
-       
+        </div>
+        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
         </div>`,
+
     3: `<div class="detail-day">
         <div class="weather-box"><strong>2月1日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，多雲轉晴</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 60-80 cm，溫泉區雪景優美（來源：Jozankei官網）</div>
@@ -565,7 +566,9 @@ function showDetail(day){
         <div class="step"><span class="time">18:30 – </span>　溫泉旅館懷石料理</div>
         <a href="https://www.jozankei.jp/en/" target="_blank" class="ticket-link">定山溪官方旅遊網（英文）</a>
         <a href="https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/" target="_blank" class="ticket-link">Klook 巴士＋溫泉套票</a>
-        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div></div>`,
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div>
+        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
+        </div>`,
 
     4: `<div class="detail-day">
         <div class="weather-box"><strong>2月2日天氣預測（歷史平均）：</strong> 高溫 -2°C / 低溫 -8°C，晴間多雲，完美夜景日</div>
@@ -576,7 +579,9 @@ function showDetail(day){
         <div class="step"><span class="time">19:00 – 21:30</span>　藻岩山纜車＋Mini纜車</div>
         <a href="https://mt-moiwa.jp/" target="_blank" class="ticket-link">藻岩山纜車官方（英文）＋線上套票</a>
         <a href="https://www.klook.com/zh-HK/activity/99611-mt-moiwa-ropeway/" target="_blank" class="ticket-link">Klook 藻岩山纜車票（常有折扣）</a>
-        <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div></div>`,
+        <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div>
+        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
+        </div>`,
 
     5: `<div class="detail-day">
         <div class="weather-box"><strong>2月3日天氣預測（歷史平均）：</strong> 高溫 -1°C / 低溫 -10°C，輕雪，適合滑雪</div>
@@ -588,7 +593,9 @@ function showDetail(day){
         <div class="step"><span class="time">17:30 – 22:30</span>　狸小路逛街＋居酒屋</div>
         <a href="https://www.bankei.co.jp/home-english/" target="_blank" class="ticket-link">盤溪滑雪場官網＋雪況</a>
         <a href="https://www.bankei.co.jp/rental-en/" target="_blank" class="ticket-link">線上購票＋租雪具</a>
-        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">路線</a></div></div>`,
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">路線</a></div>
+        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
+        </div>`,
 
     6: `<div class="detail-day">
         <div class="weather-box"><strong>2月4日天氣預測（歷史平均）：</strong> 高溫 -3°C / 低溫 -9°C，雪花紛飛，雪祭開幕！</div>
@@ -599,8 +606,9 @@ function showDetail(day){
         <div class="step"><span class="time">19:00 – </span>　<span class="meal">蟹本家 或 蟹吃到飽</span></div>
         <a href="https://www.snowfes.com/en/" target="_blank" class="ticket-link">2026雪祭官方網站（英文）</a>
         <a href="https://www.klook.com/zh-HK/activity/12748-okurayama-viewing-point-sapporo/" target="_blank" class="ticket-link">大倉山夜間點燈雪雕（超推！）</a>
-        <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園地圖</a></div></div>`,
-
+        <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園地圖</a></div>
+        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
+        </div>`,
     7: `<div class="detail-day">
         <div class="weather-box"><strong>2月5日天氣預測（歷史平均）：</strong> 高溫 -4°C / 低溫 -10°C，多雲</div>
         <div class="snow-box"><strong>即時雪況：</strong> 市區積雪 70 cm，機場雪清潔良好</div>
@@ -613,20 +621,13 @@ function showDetail(day){
         <div class="step"><span class="time">15:20</span>　HX691 起飛 → 20:40 抵達香港</div>
         <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方</a>
         <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
-        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div></div>`
+        <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div>
+        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
+        </div>`
 };
 
-    document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
+    document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p><div class="back-to-overview" onclick="openTab(\'overview\')">返回總覽</div>';
     openTab('details');
-}
-    function panTo(placeName) {
-    const iframe = document.getElementById('otaru-map');
-    if (iframe) {
-        // 透過 postMessage 嘗試與嵌入地圖溝通（部分支援）
-        iframe.contentWindow.postMessage({type: 'search', query: placeName}, '*');
-        // 同時滾動到地圖區域
-        document.querySelector('.map-container').scrollIntoView({behavior: 'smooth', block: 'center'});
-    }
 }
 
 // 裝備清單儲存功能
