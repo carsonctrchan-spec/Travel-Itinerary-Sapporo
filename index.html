@@ -498,7 +498,6 @@ function showDetail(day){
             <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台</div>
             <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔線上購票（建議提前）</a>
             <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div>
-            <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
             </div>`,
 
         2: `<div class="detail-day">
@@ -537,7 +536,6 @@ function showDetail(day){
                 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1B4UsqKi94CEqa9RnnvxqZo_gEzJ57dc&ehbc=2E312F" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;text-align:center;">Day 2 小樽浪漫地圖（粉紅標記所有行程點、咖啡店與商店，可縮放點擊查看詳情♡）</p>
             </div>
-            <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
             </div>`,
 
     3: `<div class="detail-day">
@@ -552,7 +550,6 @@ function showDetail(day){
         <a href="https://www.jozankei.jp/en/" target="_blank" class="ticket-link">定山溪官方旅遊網（英文）</a>
         <a href="https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/" target="_blank" class="ticket-link">Klook 巴士＋溫泉套票</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div>
-        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
         </div>`,
 
     4:`<div class="detail-day">
@@ -566,7 +563,6 @@ function showDetail(day){
         <a href="https://mt-moiwa.jp/" target="_blank" class="ticket-link">藻岩山纜車官方（英文）＋線上套票</a>
         <a href="https://www.klook.com/zh-HK/activity/99611-mt-moiwa-ropeway/" target="_blank" class="ticket-link">Klook 藻岩山纜車票（常有折扣）</a>
         <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div>
-        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
         </div>`,
 
     5: `<div class="detail-day">
@@ -581,7 +577,6 @@ function showDetail(day){
         <a href="https://www.bankei.co.jp/home-english/" target="_blank" class="ticket-link">盤溪滑雪場官網＋雪況</a>
         <a href="https://www.bankei.co.jp/rental-en/" target="_blank" class="ticket-link">線上購票＋租雪具</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">路線</a></div>
-        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
         </div>`,
 
     6: `<div class="detail-day">
@@ -595,7 +590,6 @@ function showDetail(day){
         <a href="https://www.snowfes.com/en/" target="_blank" class="ticket-link">2026雪祭官方網站（英文）</a>
         <a href="https://www.klook.com/zh-HK/activity/12748-okurayama-viewing-point-sapporo/" target="_blank" class="ticket-link">大倉山夜間點燈雪雕（超推！）</a>
         <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園地圖</a></div>
-        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
         </div>`,
     7:`<div class="detail-day">
             <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 7　掃貨＋返程</h2>
@@ -611,7 +605,6 @@ function showDetail(day){
         <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方</a>
         <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
         <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div>
-        <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
         </div>`
 };
 
@@ -619,7 +612,7 @@ function showDetail(day){
     openTab('details');
 }
 
-// 裝備清單儲存功能
+// 裝備清單儲存功能保持不變
 const checkboxes = document.querySelectorAll('.pack-item');
 const saveBtn = document.getElementById('savePacking');
 const loadBtn = document.getElementById('loadPackingBtn');
