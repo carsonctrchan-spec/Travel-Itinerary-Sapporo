@@ -5,50 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026 札幌雪祭 7 天行程</title>
 
-<!-- Firebase SDK (compat version - works perfectly in plain HTML) -->
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 
 <style>
-:root{--gold:#FFD700;--blue:#4682B4;--red:#e74c3c;--pink:#FFB6C1;--romantic:#FF69B4;}
-        body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;font-size:16px;overflow-x:hidden;}
+    :root {
+        --gold: #FFD700;
+        --blue: #4682B4;
+        --red: #e74c3c;
+        --pink: #FFB6C1;
+        --romantic: #FF69B4;
+    }
+    body {
+        margin: 0;
+        font-family: "Playfair Display", serif;
+        background: #FFFFF0;
+        color: #333;
+        line-height: 1.7;
+        font-size: 16px;
+        overflow-x: hidden;
+    }
     .header {
         background: linear-gradient(135deg, var(--pink), var(--romantic));
         color: white;
-        padding: 2rem 1rem;
+        padding: 2.5rem 1rem;
         text-align: center;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    .header h1 { font-size: 1.9rem; margin: 0; }
-    .header p { font-size: 1.3rem; margin: 0.5rem 0 0; }
+    .header h1 { font-size: 2.2rem; margin: 0 0 0.5rem; }
+    .header p { font-size: 1.4rem; margin: 0; }
     .tabs {
         max-width: 100%;
-        margin: 1.5rem auto 1rem;
+        margin: 2rem auto 1.5rem;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         border-bottom: 4px solid var(--pink);
         padding: 0 1rem;
-        gap: 0.5rem;
+        gap: 0.6rem;
     }
     .tab-btn {
         background: #fff;
-        padding: 0.9rem 1.2rem;
-        font-size: 1.25rem;
+        padding: 1rem 1.4rem;
+        font-size: 1.3rem;
         cursor: pointer;
         border-radius: 15px 15px 0 0;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         font-weight: bold;
-        flex: 1 1 140px;
-        max-width: 180px;
+        flex: 1 1 150px;
+        max-width: 200px;
         text-align: center;
     }
     .tab-btn.active { background: var(--pink); color: #333; }
     .content {
         max-width: 1100px;
-        margin: 0 auto 3rem;
-        padding: 0 1rem;
+        margin: 0 auto 4rem;
+        padding: 0 1.5rem;
         display: none;
     }
     .content.active { display: block; }
@@ -177,11 +191,41 @@
         box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         cursor: pointer;
     }
-   .admin-section {display:none; margin:2rem auto; padding:1.5rem; background:#fff0f8; border-radius:12px; max-width:800px; text-align:center;}
-    </style>
+  .admin-section {
+        display: none;
+        margin: 3rem auto;
+        padding: 2rem;
+        background: #fff0f8;
+        border-radius: 16px;
+        max-width: 900px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .admin-form {
+        margin-top: 1.5rem;
+    }
+    .admin-form input, .admin-form textarea {
+        width: 100%;
+        padding: 0.8rem;
+        margin: 0.6rem 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+    .admin-form button {
+        background: var(--pink);
+        color: white;
+        border: none;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+    .back-top { display: none; } /* 預設隱藏置頂，只在總覽顯示 */
+    #overview .back-top { display: block; } /* 只在總覽顯示置頂 */
+</style>
 </head>
 <body>
-
 <div class="header">
     <h1>2026 札幌雪祭 7 天行程</h1>
     <p>1月30日 – 2月5日　｜　雪場 + 小樽運河 + 雪祭</p>
@@ -195,10 +239,10 @@
     <div class="tab-btn" onclick="openTab('more')">更多地點</div>
 </div>
 
-<!-- 行程資訊頁 (static) -->
+<!-- 行程資訊 (格式優化) -->
 <div id="info" class="content">
-    <div style="max-width:900px;margin:0 auto;">
-        <img src="https://static.gltjp.com/glt/data/article/21000/20215/20230530_012727_96baf0af_w1920.webp" class="hero-img-top" alt="札幌雪祭大雪雕">
+    <div style="max-width:950px;margin:0 auto;">
+        <h2 style="text-align:center;color:var(--romantic);margin:2rem 0 1.5rem;font-size:2rem;">行程基本資訊</h2>        <img src="https://static.gltjp.com/glt/data/article/21000/20215/20230530_012727_96baf0af_w1920.webp" class="hero-img-top" alt="札幌雪祭大雪雕">
         
         <div class="info-card">
             <h2>航班資訊</h2>
@@ -571,66 +615,65 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// 啟用離線支援
-db.enablePersistence().catch(err => console.warn("Persistence error:", err));
-
-// 2. 登入狀態監聽
+// 登入狀態：顯示編輯按鈕
 firebase.auth().onAuthStateChanged(user => {
-  const admin = document.getElementById('admin-section');
-  if (user) {
-    admin.style.display = 'block';
-    document.getElementById('user-email').textContent = user.email || '未知';
-  } else {
-    admin.style.display = 'none';
-  }
+  document.body.classList.toggle('admin-logged-in', !!user);
+  document.getElementById('admin-section').style.display = user ? 'block' : 'none';
+  if (user) document.getElementById('user-email').textContent = user.email;
 });
 
-// 3. 載入函數
-async function loadOverview() {
+// 開啟編輯表單
+function editDay(day, currentTitle, currentSubtitle) {
+  const form = document.getElementById(`edit-form-${day}`);
+  form.style.display = form.style.display === 'block' ? 'none' : 'block';
+  document.getElementById(`edit-title-${day}`).value = currentTitle;
+  document.getElementById(`edit-subtitle-${day}`).value = currentSubtitle;
+}
+
+// 儲存到 Firestore 並更新畫面
+async function saveDay(day) {
+  const title = document.getElementById(`edit-title-${day}`).value.trim();
+  const subtitle = document.getElementById(`edit-subtitle-${day}`).value.trim();
+
+  if (!title) {
+    alert("標題不能空白！");
+    return;
+  }
+
   try {
-    const snap = await db.collection("itineraries").orderBy("dayNumber").get();
-    let html = '';
-    snap.forEach(doc => {
-      const d = doc.data();
-      html += `<div class="day">
-        <h2>${d.dateTitle}</h2>
-        ${d.subtitle ? `<p style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">${d.subtitle}</p>` : ''}
-        <button class="big-btn" onclick="showDetail(${d.dayNumber})">查看詳細時間軸</button>
-      </div>`;
-    });
-    document.getElementById('overview-content').innerHTML = html || '<p>暫無行程</p>';
+    await db.collection("itineraries").doc(`day${day}`).set({
+      dayNumber: day,
+      dateTitle: title,
+      subtitle: subtitle,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+
+    alert("已更新！");
+
+    // 更新畫面（不用重載整個頁面）
+    const dayBox = document.querySelector(`.day[data-day="${day}"] h2`);
+    dayBox.textContent = title;
+    const subtitleP = dayBox.parentElement.querySelector('p');
+    if (subtitle) {
+      if (!subtitleP) {
+        const p = document.createElement('p');
+        p.style = "color:#8B4513;margin:1rem 0;font-size:1.1rem;";
+        p.textContent = subtitle;
+        dayBox.after(p);
+      } else {
+        subtitleP.textContent = subtitle;
+      }
+    } else if (subtitleP) {
+      subtitleP.remove();
+    }
+
+    // 關閉表單
+    document.getElementById(`edit-form-${day}`).style.display = 'none';
   } catch (e) {
-    console.error("Overview error:", e);
-    document.getElementById('overview-content').innerHTML = '<p style="color:red">載入失敗</p>';
+    console.error("Save error:", e);
+    alert("更新失敗，請檢查網路");
   }
 }
-
-async function loadAttractions() {
-  // 同樣邏輯，載入景點
-  // 略，與你之前版本相同
-}
-
-async function loadRestaurants() {
-  // 同樣邏輯，載入餐廳
-  // 略
-}
-
-// 4. 分頁與詳細日程（關鍵修正）
-function openTab(tab) {
-  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-  document.getElementById(tab).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`)?.classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-function openSubTab(subtab) {
-  document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
-  document.getElementById(subtab).classList.add('active');
-  document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`)?.classList.add('active');
-}
-
 function showDetail(day) {
   const details = {
   1: `<div class="detail-day">
