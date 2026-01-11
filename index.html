@@ -1,12 +1,4 @@
-Here is the complete, fully working HTML script with everything fixed and restored:
-
-Full original CSS formatting (cards with shadows, pink borders, proper spacing, responsive layout)
-行程資訊 tab now shows all info cards correctly (flights, accommodation, etc.)
-更多地點 tab shows the 餐廳 section immediately (with all your original restaurants + the 5 new ones you requested)
-No duplicates, no broken JS, no blank sections
-Tested structure — copy and paste this entire code into a new .html file
-
-HTML<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
@@ -37,14 +29,8 @@ HTML<!DOCTYPE html>
         text-align: center;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    .header h1 {
-        font-size: 2.2rem;
-        margin: 0 0 0.5rem;
-    }
-    .header p {
-        font-size: 1.4rem;
-        margin: 0;
-    }
+    .header h1 { font-size: 2.2rem; margin: 0 0 0.5rem; }
+    .header p { font-size: 1.4rem; margin: 0; }
     .tabs {
         max-width: 100%;
         margin: 2rem auto 1.5rem;
@@ -67,19 +53,14 @@ HTML<!DOCTYPE html>
         max-width: 200px;
         text-align: center;
     }
-    .tab-btn.active {
-        background: var(--pink);
-        color: #333;
-    }
+    .tab-btn.active { background: var(--pink); color: #333; }
     .content {
         max-width: 1100px;
         margin: 0 auto 4rem;
         padding: 0 1.5rem;
         display: none;
     }
-    .content.active {
-        display: block;
-    }
+    .content.active { display: block; }
     .sub-tabs {
         margin: 1.5rem 0 1rem;
         display: flex;
@@ -100,15 +81,81 @@ HTML<!DOCTYPE html>
         max-width: 200px;
         text-align: center;
     }
-    .sub-tab-btn.active {
+    .sub-tab-btn.active { background: var(--pink); color: #333; }
+    .sub-content { display: none; }
+    .sub-content.active { display: block; }
+    .day {
+        background: white;
+        padding: 1.8rem 2.5rem 1.8rem 1.8rem;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        margin-bottom: 1.6rem;
+        border-left: 10px solid var(--pink);
+        position: relative;
+    }
+    .day h2 {
+        font-size: 1.6rem;
+        margin: 0 0 1rem;
+        color: var(--romantic);
+    }
+    .big-btn {
         background: var(--pink);
         color: #333;
+        padding: 1.2rem;
+        font-size: 1.4rem;
+        width: 100%;
+        border: none;
+        border-radius: 14px;
+        margin-top: 1rem;
+        cursor: pointer;
+        font-weight: bold;
     }
-    .sub-content {
-        display: none;
+    .big-btn:hover { background: var(--romantic); color: white; }
+    .detail-day {
+        background: white;
+        padding: 1.8rem;
+        border-radius: 20px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        margin: 1.5rem auto;
+        border: 1px solid var(--pink);
     }
-    .sub-content.active {
+    .hero-img, .hero-img-top {
+        width: 100%;
+        max-height: 350px; /* 限制圖片最大高度，避免過大 */
+        object-fit: cover;
+        border-radius: 18px;
+        margin: 1rem 0;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .hero-img-top { max-height: 400px; } /* 行程資訊圖片稍大一點但仍受控 */
+    .weather-box, .snow-box {
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        border-left: 5px solid var(--pink);
+        font-size: 0.95rem;
+    }
+    .weather-box { background: #ffebee; }
+    .snow-box { background: #fff0f8; border-left-color: var(--romantic); }
+    .step {
+        margin: 1.2rem 0;
+        padding: 1.2rem;
+        background: #fff0f8;
+        border-left: 6px solid var(--pink);
+        border-radius: 10px;
+        font-size: 1rem;
+    }
+    .time { color: var(--romantic); font-weight: bold; font-size: 1.05rem; }
+    .meal { font-weight: bold; color: var(--romantic); }
+    .ticket-link {
         display: block;
+        background: var(--romantic);
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        border-radius: 12px;
+        font-weight: bold;
+        margin: 1rem 0;
     }
     .info-card {
         background: white;
@@ -161,6 +208,52 @@ HTML<!DOCTYPE html>
         font-weight: bold;
         margin-top: 0.4rem;
     }
+    .packing-list {
+        max-width: 800px;
+        margin: 2rem auto;
+    }
+    .packing-list h2 {
+        font-size: 1.6rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .packing-category {
+        margin-top: 2rem;
+    }
+    .packing-category h3 {
+        font-size: 1.4rem;
+        color: var(--pink);
+        margin-bottom: 0.7rem;
+        border-bottom: 2px solid var(--romantic);
+        padding-bottom: 0.4rem;
+    }
+    .packing-list li {
+        margin: 1rem 0;
+        font-size: 1.2rem;
+    }
+    .packing-list input[type="checkbox"] {
+        transform: scale(1.7);
+        margin-right: 14px;
+        vertical-align: middle;
+    }
+    .btn-group {
+        text-align: center;
+        margin: 1.5rem 0;
+    }
+    .save-btn, .load-btn, .clear-btn {
+        padding: 0.8rem 1.6rem;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 0.5rem;
+        font-weight: bold;
+        width: 90%;
+        max-width: 300px;
+    }
+    .save-btn { background: var(--pink); color: white; }
+    .load-btn { background: var(--romantic); color: #333; }
+    .clear-btn { background: var(--red); color: white; }
     .back-to-overview, .back-top {
         display: block;
         width: 90%;
@@ -174,14 +267,8 @@ HTML<!DOCTYPE html>
         box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         cursor: pointer;
     }
-    .back-top {
-        background: var(--pink);
-        color: white;
-    }
-    .back-to-overview {
-        background: var(--romantic);
-        color: #333;
-    }
+    .back-top { background: var(--pink); color: white; }
+    .back-to-overview { background: var(--romantic); color: #333; }
     @media (max-width: 768px) {
         body { font-size: 15px; }
         .header { padding: 1.5rem 1rem; }
@@ -189,6 +276,7 @@ HTML<!DOCTYPE html>
         .tab-btn { font-size: 1.15rem; padding: 0.8rem 1rem; }
         .info-card { padding: 1.4rem; }
         .location-card { padding: 1.2rem; }
+        .hero-img, .hero-img-top { max-height: 250px; }
     }
 </style>
 </head>
@@ -206,7 +294,6 @@ HTML<!DOCTYPE html>
     <div class="tab-btn" onclick="openTab('packing')">裝備清單</div>
     <div class="tab-btn" onclick="openTab('more')">更多地點</div>
 </div>
-
 <!-- 行程資訊 - 完整卡片 -->
 <div id="info" class="content">
     <div style="max-width:950px;margin:0 auto;">
