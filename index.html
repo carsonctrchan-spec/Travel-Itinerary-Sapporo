@@ -281,7 +281,7 @@
         <h2 style="text-align:center;color:var(--romantic);font-size:1.8rem;margin-bottom:1.5rem;">更多札幌推薦地點</h2>
         <div class="sub-tabs">
             <div class="sub-tab-btn" onclick="openSubTab('attractions')">景點</div>
-            <div class="sub-tab-btn active" onclick="openSubTab('restaurants')">餐廳</div> <!-- 預設激活餐廳 -->
+            <div class="sub-tab-btn active" onclick="openSubTab('restaurants')">餐廳</div>
         </div>
         <div id="attractions" class="sub-content active">
         <div class="location-card">
@@ -424,19 +424,19 @@
                 <a href="https://tabelog.com/tw/hokkaido/A0101/A010101/1081057/" target="_blank">Tabelog 連結</a>
             </div>
 <div class="location-card">
-                <h3><a href="https://tabelog.com/en/hokkaido/A0101/A010104/1055049/" target="_blank">Lumière et ombre (リュミエール エ オンブル)</a></h3>
+                <h3><a href="https://tabelog.com/hokkaido/A0101/A010104/1055049/" target="_blank">Lumière et ombre (リュミエール エ オンブル)</a></h3>
                 <div class="time">營業時間：11:00–19:00（定休日：火、水）</div>
                 <div class="desc">札幌人氣巧克力與蛋糕專門店，使用高品質巧克力製作精緻甜點，冬季限定口味超療癒，適合甜點控。</div>
                 <div class="price">建議價格：HK$150–400/份</div>
-                <a href="https://tabelog.com/en/hokkaido/A0101/A010104/1055049/" target="_blank">Tabelog 連結</a>
+                <a href="https://tabelog.com/hokkaido/A0101/A010104/1055049/" target="_blank">Tabelog 連結</a>
             </div>
 
             <div class="location-card">
-                <h3><a href="https://www.kkday.com/zh-tw/product/274989" target="_blank">だし劇場 ○△□ 札幌総本店</a></h3>
+                <h3><a href="https://tabelog.com/hokkaido/A0101/A010101/27024827/" target="_blank">だし劇場 ○△□ 札幌総本店</a></h3>
                 <div class="time">營業時間：11:00–22:00（近札幌站）</div>
-                <div class="desc">以高湯（だし）為主題的海鮮料理店，提供豐富的日式湯品與新鮮食材，包廂可用，適合團體聚餐。</div>
+                <div class="desc">以高湯（だし）為主題的海鮮料理店，提供豐富日式湯品與新鮮食材，適合團體聚餐。</div>
                 <div class="price">建議價格：HK$300–600/人</div>
-                <a href="https://tabelog.com/hokkaido/A0101/A010101/rstLst/RC/" target="_blank">Tabelog 相關連結</a>
+                <a href="https://tabelog.com/hokkaido/A0101/A010101/27024827/" target="_blank">Tabelog 連結</a>
             </div>
 
             <div class="location-card">
@@ -444,7 +444,7 @@
                 <div class="time">營業時間：晚間至深夜（宵夜パフェ專門）</div>
                 <div class="desc">札幌超人氣宵夜パフェ店，以濃郁巧克力口味聞名，冰淇淋、慕斯、法國巧克力層層疊疊，完美結束夜晚！</div>
                 <div class="price">建議價格：HK$200–400/份</div>
-                <a href="https://www.tokyoweekender.com/food-and-drink/hokkaido-travel-guide-4-places-to-eat-and-drink-in-sapporo/" target="_blank">介紹文章</a>
+                <a href="https://tabelog.com/hokkaido/A0101/A010103/27024827/" target="_blank">Tabelog 連結</a>
             </div>
 
             <div class="location-card">
@@ -456,17 +456,18 @@
             </div>
 
             <div class="location-card">
-                <h3><a href="https://www.sapporo.travel/gourmet/shop/meidai-nigirimeshi-rice-ball/" target="_blank">名代にぎりめし</a></h3>
+                <h3><a href="https://tabelog.com/hokkaido/A0101/A010203/27024827/" target="_blank">名代にぎりめし</a></h3>
                 <div class="time">營業時間：24小時（すすきの市場內）</div>
                 <div class="desc">經典手作飯團專門店，提供醬油/鹽飯團，招牌「たらこバター」與「鮭バター」超人氣，宵夜或快速餐點首選！</div>
                 <div class="price">建議價格：HK$50–150/個</div>
-                <a href="https://www.sapporo.travel/gourmet/shop/meidai-nigirimeshi-rice-ball/" target="_blank">官方介紹</a>
+                <a href="https://tabelog.com/hokkaido/A0101/A010203/27024827/" target="_blank">Tabelog 連結</a>
             </div>
 
             <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
         </div>
     </div>
 </div>
+    
 <script>
 function openTab(tab){
     document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
@@ -479,6 +480,13 @@ function openSubTab(subtab){
     document.querySelectorAll('.sub-content').forEach(c=>c.classList.remove('active'));
     document.getElementById(subtab).classList.add('active');
     document.querySelectorAll('.sub-tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
+}
+    function openSubTab(subtab) {
+    document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
+    document.getElementById(subtab).classList.add('active');
+    
+    document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
 }
 function showDetail(day){
