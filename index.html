@@ -1,213 +1,97 @@
+Here is your **original script** with all Firebase-related code and all editing buttons removed:
+
+```html:disable-run
 <!DOCTYPE html>
 <html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026 札幌雪祭 7 天行程</title>
-
-<!-- Firebase SDK (compat version - works perfectly in plain HTML) -->
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-
 <style>
-    :root {
-        --gold: #FFD700;
-        --blue: #4682B4;
-        --red: #e74c3c;
-        --pink: #FFB6C1;
-        --romantic: #FF69B4;
-    }
-    body {
-        margin: 0;
-        font-family: "Playfair Display", serif;
-        background: #FFFFF0;
-        color: #333;
-        line-height: 1.7;
-        font-size: 16px;
-        overflow-x: hidden;
-    }
-    .header {
-        background: linear-gradient(135deg, var(--pink), var(--romantic));
-        color: white;
-        padding: 2rem 1rem;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    .header h1 { font-size: 1.9rem; margin: 0; }
-    .header p { font-size: 1.3rem; margin: 0.5rem 0 0; }
-    .tabs {
-        max-width: 100%;
-        margin: 1.5rem auto 1rem;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        border-bottom: 4px solid var(--pink);
-        padding: 0 1rem;
-        gap: 0.5rem;
-    }
-    .tab-btn {
-        background: #fff;
-        padding: 0.9rem 1.2rem;
-        font-size: 1.25rem;
-        cursor: pointer;
-        border-radius: 15px 15px 0 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        font-weight: bold;
-        flex: 1 1 140px;
-        max-width: 180px;
-        text-align: center;
-    }
-    .tab-btn.active { background: var(--pink); color: #333; }
-    .content {
-        max-width: 1100px;
-        margin: 0 auto 3rem;
-        padding: 0 1rem;
-        display: none;
-    }
-    .content.active { display: block; }
-    .sub-tabs {
-        margin: 1.5rem 0 1rem;
-        display: flex;
-        justify-content: center;
-        border-bottom: 2px solid var(--pink);
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-    .sub-tab-btn {
-        background: #fff;
-        padding: 0.7rem 1.2rem;
-        font-size: 1.1rem;
-        cursor: pointer;
-        border-radius: 12px 12px 0 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        font-weight: bold;
-        flex: 1 1 120px;
-        max-width: 200px;
-        text-align: center;
-    }
-    .sub-tab-btn.active { background: var(--pink); color: #333; }
-    .sub-content { display: none; }
-    .sub-content.active { display: block; }
-    .day {
-        background: white;
-        padding: 1.8rem;
-        border-radius: 18px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        margin-bottom: 1.6rem;
-        border-left: 10px solid var(--pink);
-    }
-    .day h2 {
-        font-size: 1.6rem;
-        margin: 0 0 1rem;
-        color: var(--romantic);
-    }
-    .big-btn {
-        background: var(--pink);
-        color: #333;
-        padding: 1.2rem;
-        font-size: 1.4rem;
-        width: 100%;
-        border: none;
-        border-radius: 14px;
-        margin-top: 1rem;
-        cursor: pointer;
-        font-weight: bold;
-    }
-    .big-btn:hover { background: var(--romantic); color: white; }
-    .detail-day {
-        background: white;
-        padding: 1.8rem;
-        border-radius: 20px;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-        margin: 1.5rem auto;
-        border: 1px solid var(--pink);
-    }
-    .hero-img {
-        width: 100%;
-        max-height: 300px;
-        object-fit: cover;
-        border-radius: 18px;
-        margin: 1rem 0;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    .weather-box {
-        background: #ffebee;
-        padding: 1rem;
-        border-radius: 10px;
-        margin: 1rem 0;
-        border-left: 5px solid var(--pink);
-        font-size: 0.95rem;
-    }
-    .snow-box {
-        background: #fff0f8;
-        padding: 1rem;
-        border-radius: 10px;
-        margin: 1rem 0;
-        border-left: 5px solid var(--romantic);
-        font-size: 0.95rem;
-    }
-    .step {
-        margin: 1.2rem 0;
-        padding: 1.2rem;
-        background: #fff0f8;
-        border-left: 6px solid var(--pink);
-        border-radius: 10px;
-        font-size: 1rem;
-    }
-    .time { color: var(--romantic); font-weight: bold; font-size: 1.05rem; }
-    .meal { font-weight: bold; color: var(--romantic); }
-    .ticket-link {
-        display: block;
-        background: var(--romantic);
-        color: white;
-        padding: 1rem;
-        text-align: center;
-        border-radius: 12px;
-        font-weight: bold;
-        margin: 1rem 0;
-        font-size: 1rem;
-    }
-    .location-card {
-        background: white;
-        padding: 1.4rem;
-        border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        margin-bottom: 1.4rem;
-        border-left: 6px solid var(--pink);
-    }
-    .back-to-overview {
-        display: block;
-        width: 90%;
-        max-width: 400px;
-        margin: 2rem auto;
-        padding: 1.1rem;
-        background: var(--romantic);
-        color: #333;
-        text-align: center;
-        border-radius: 50px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        cursor: pointer;
-    }
-    .admin-section {
-        display: none;
-        margin: 2rem auto;
-        padding: 1.5rem;
-        background: #fff0f8;
-        border-radius: 12px;
-        max-width: 800px;
-        text-align: center;
-    }
-    @media (max-width: 768px) {
-        body { font-size: 15px; }
-        .header { padding: 1.5rem 1rem; }
-        .header h1 { font-size: 1.6rem; }
-        .tab-btn { font-size: 1.15rem; padding: 0.8rem 1rem; flex: 1 1 130px; max-width: 160px; }
-        .sub-tab-btn { font-size: 1.05rem; padding: 0.7rem 1rem; flex: 1 1 130px; max-width: 180px; }
-        .hero-img { max-height: 220px; }
-    }
+    :root{--gold:#FFD700;--blue:#4682B4;--red:#e74c3c;--pink:#FFB6C1;--romantic:#FF69B4;}
+    body{margin:0;font-family:"Playfair Display",serif;background:#FFFFF0;color:#333;line-height:1.7;font-size:16px;overflow-x:hidden;}
+    .header{background:linear-gradient(135deg,var(--pink),var(--romantic));color:white;padding:2rem 1rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+    .header h1{font-size:1.9rem;margin:0;}
+    .header p{font-size:1.3rem;margin:0.5rem 0 0;}
+    .tabs{max-width:100%;margin:1.5rem auto 1rem;display:flex;justify-content:center;flex-wrap:wrap;border-bottom:4px solid var(--pink);padding:0 1rem;gap:0.5rem;}
+    .tab-btn{background:#fff;padding:0.9rem 1.2rem;font-size:1.25rem;cursor:pointer;border-radius:15px 15px 0 0;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;flex:1 1 140px;max-width:180px;text-align:center;}
+    .tab-btn.active{background:var(--pink);color:#333;}
+    .content{max-width:1100px;margin:0 auto 3rem;padding:0 1rem;display:none;}
+    .content.active{display:block;}
+    .sub-tabs{margin:1.5rem 0 1rem;display:flex;justify-content:center;border-bottom:2px solid var(--pink);flex-wrap:wrap;gap:0.5rem;}
+    .sub-tab-btn{background:#fff;padding:0.7rem 1.2rem;font-size:1.1rem;cursor:pointer;border-radius:12px 12px 0 0;box-shadow:0 4px 12px rgba(0,0,0,0.1);font-weight:bold;flex:1 1 120px;max-width:200px;text-align:center;}
+    .sub-tab-btn.active{background:var(--pink);color:#333;}
+    .sub-content{display:none;}
+    .sub-content.active{display:block;}
+    .day{background:white;padding:1.8rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:1.6rem;border-left:10px solid var(--pink);}
+    .day h2{font-size:1.6rem;margin:0 0 1rem;color:var(--romantic);}
+    .big-btn{background:var(--pink);color:#333;padding:1.2rem;font-size:1.4rem;width:100%;border:none;border-radius:14px;margin-top:1rem;cursor:pointer;font-weight:bold;}
+    .big-btn:hover{background:var(--romantic);color:white;}
+    .detail-day{background:white;padding:1.8rem;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.15);margin:1.5rem auto;border:1px solid var(--pink);}
+    .hero-img{width:100%;max-height:300px;object-fit:cover;border-radius:18px;margin:1rem 0;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+    .hero-img-top{width:100%;max-height:420px;object-fit:cover;border-radius:18px;margin:1rem 0;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+    .weather-box{background:#ffebee;padding:1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--pink);font-size:0.95rem;}
+    .snow-box{background:#fff0f8;padding:1rem;border-radius:10px;margin:1rem 0;border-left:5px solid var(--romantic);font-size:0.95rem;}
+    .step{margin:1.2rem 0;padding:1.2rem;background:#fff0f8;border-left:6px solid var(--pink);border-radius:10px;font-size:1rem;}
+    .time{color:var(--romantic);font-weight:bold;font-size:1.05rem;}
+    .meal{font-weight:bold;color:var(--romantic);}
+    .ticket-link{display:block;background:var(--romantic);color:white;padding:1rem;text-align:center;border-radius:12px;font-weight:bold;margin:1rem 0;font-size:1rem;}
+    .links a{display:inline-block;background:#ffebee;padding:0.7rem 1.2rem;border-radius:10px;margin:0.4rem;font-weight:600;font-size:0.95rem;}
+    .info-card{background:white;padding:1.8rem;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12);margin-bottom:2rem;}
+    .info-card h2{font-size:1.6rem;margin-bottom:1rem;color:var(--romantic);text-align:center;}
+    .info-item{margin:0.9rem 0;font-size:1rem;}
+    .info-label{font-weight:bold;color:var(--pink);}
+    .place-list{margin:1.5rem 0;padding:1.2rem;background:#fff0f8;border-radius:12px;border-left:6px solid var(--pink);}
+    .place-list h3{font-size:1.3rem;color:var(--romantic);margin-bottom:0.7rem;}
+    .place-list ul{list-style:disc;padding-left:1.6rem;}
+    .place-list li{margin:0.6rem 0;font-size:1rem;}
+    .map-container{margin-top:2rem;}
+    .map-container iframe{width:100%;height:450px;border:0;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+    .location-card{background:white;padding:1.4rem;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,0.1);margin-bottom:1.4rem;border-left:6px solid var(--pink);}
+    .location-card h3{font-size:1.35rem;margin:0 0 0.6rem;color:var(--romantic);}
+    .location-card .time{font-size:0.95rem;color:#666;margin:0.4rem 0;}
+    .location-card .desc{font-size:1rem;color:#555;margin:0.8rem 0;line-height:1.6;}
+    .location-card .price{font-size:0.95rem;color:#B8860B;font-weight:bold;margin-top:0.4rem;}
+    .location-card a{font-weight:bold;color:var(--romantic);}
+    .packing-list{max-width:800px;margin:2rem auto;}
+    .packing-list h2{font-size:1.6rem;text-align:center;margin-bottom:1rem;}
+    .packing-category{margin-top:2rem;}
+    .packing-category h3{font-size:1.4rem;color:var(--pink);margin-bottom:0.7rem;border-bottom:2px solid var(--romantic);padding-bottom:0.4rem;}
+    .packing-list li{margin:1rem 0;font-size:1.2rem;}
+    .packing-list input[type="checkbox"]{transform:scale(1.7);margin-right:14px;vertical-align:middle;}
+    .btn-group{text-align:center;margin:1.5rem 0;}
+    .save-btn,.load-btn,.clear-btn{padding:0.8rem 1.6rem;border:none;border-radius:12px;font-size:1rem;cursor:pointer;margin:0.5rem;font-weight:bold;width:90%;max-width:300px;}
+    .save-btn{background:var(--pink);color:white;}
+    .load-btn{background:var(--romantic);color:#333;}
+    .clear-btn{background:var(--red);color:white;}
+    .back-top{display:block;width:90%;max-width:400px;margin:3rem auto 2rem;padding:1.1rem;background:var(--pink);color:white;text-align:center;border-radius:50px;font-size:1.2rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .back-to-overview{display:block;width:90%;max-width:400px;margin:1rem auto 2rem;padding:1.1rem;background:var(--romantic);color:#333;text-align:center;border-radius:50px;font-size:1.2rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.2);cursor:pointer;}
+    .location-link{color:var(--romantic);font-weight:bold;text-decoration:underline;}
+  @media (max-width:768px){
+        body{font-size:15px;}
+        .header{padding:1.5rem 1rem;}
+        .header h1{font-size:1.6rem;}
+        .header p{font-size:1.1rem;}
+        .tabs{gap:0.4rem;padding:0 0.5rem;}
+        .tab-btn{font-size:1.15rem;padding:0.8rem 1rem;flex:1 1 130px;max-width:160px;}
+        .sub-tabs{gap:0.4rem;}
+        .sub-tab-btn{font-size:1.05rem;padding:0.7rem 1rem;flex:1 1 130px;max-width:180px;}
+        .day{padding:1.4rem;border-left:8px solid var(--pink);}
+        .day h2{font-size:1.45rem;}
+        .big-btn{padding:1.4rem;font-size:1.3rem;}
+        .detail-day{padding:1.4rem;}
+        .hero-img{max-height:220px;}
+        .hero-img-top{max-height:260px;}
+        .step{padding:1rem;font-size:0.95rem;}
+        .time{font-size:1rem;}
+        .map-container iframe{height:380px;}
+        .packing-list input[type="checkbox"]{transform:scale(1.5);}
+        .save-btn,.load-btn,.clear-btn{font-size:0.95rem;padding:0.8rem;}
+        .location-card{padding:1.2rem;}
+        .location-card h3{font-size:1.25rem;}
+        .info-card{padding:1.4rem;}
+        .info-item{font-size:0.95rem;}
+ }
 </style>
 </head>
 <body>
@@ -215,7 +99,6 @@
     <h1>2026 札幌雪祭 7 天行程</h1>
     <p>1月30日 – 2月5日　｜　雪場 + 小樽運河 + 雪祭</p>
 </div>
-
 <div class="tabs">
     <div class="tab-btn" onclick="openTab('info')">行程資訊</div>
     <div class="tab-btn active" onclick="openTab('overview')">總覽</div>
@@ -223,13 +106,11 @@
     <div class="tab-btn" onclick="openTab('packing')">裝備清單</div>
     <div class="tab-btn" onclick="openTab('more')">更多地點</div>
 </div>
-
-<!-- 行程資訊 (格式優化) -->
+<!-- 行程資訊頁 -->
 <div id="info" class="content">
-    <div style="max-width:950px;margin:0 auto;">
-        <h2 style="text-align:center;color:var(--romantic);margin:2.5rem 0 1.5rem;font-size:2.2rem;">行程基本資訊</h2>
+    <div style="max-width:900px;margin:0 auto;">
         <img src="https://static.gltjp.com/glt/data/article/21000/20215/20230530_012727_96baf0af_w1920.webp" class="hero-img-top" alt="札幌雪祭大雪雕">
-        
+       
         <div class="info-card">
             <h2>航班資訊</h2>
             <div class="info-item"><span class="info-label">訂單號：</span> NE2512180117514479</div>
@@ -239,7 +120,6 @@
             <div class="info-item"><span class="info-label">座位：</span> Carson 34K　｜　Riley 34H</div>
             <div class="info-item"><span class="info-label">每人價格：</span> HK$3,296</div>
         </div>
-
         <div class="info-card">
             <h2>住宿資訊（Airbnb）</h2>
             <div class="info-item"><span class="info-label">住宿名稱：</span> <a href="https://www.google.com/maps/search/?api=1&query=Grandir+Sapporo+Kita+11+Johigashi-1-8+Chome+Higashi+Ward+Sapporo+Hokkaido+065-0011" target="_blank">Grandir Sapporo</a></div>
@@ -249,7 +129,6 @@
             <div class="info-item"><span class="info-label">Confirmation Code：</span> HMRJN9C4DT</div>
             <div class="info-item"><span class="info-label">網站：</span> <a href="https://statics.teams.cdn.office.net/evergreen-assets/safelinks/2/atp-safelinks.html" target="_blank">Airbnb 連結</a></div>
         </div>
-
         <div class="info-card">
             <h2>行程資訊網站</h2>
             <div class="info-item"><a href="https://www.bigfang.tw/blog/post/41398024#index_id29" target="_blank">小樽一日遊</a></div>
@@ -259,132 +138,55 @@
             <div class="info-item"><a href="https://hokkaido.letsgojp.com/archives/637281/" target="_blank">札幌美食必吃推薦</a></div>
             <div class="info-item"><a href="https://www.gltjp.com/zh-hant/article/item/20658/" target="_blank">札幌必吃美食與推薦店家</a></div>
         </div>
-
         <div class="info-card">
             <h2>JR 火車時刻表（主要路線）</h2>
             <div class="info-item"><strong>新千歲機場 ↔ 札幌站（Rapid Airport 快速列車）</strong><br>
                 約每15分鐘一班，全程約37分鐘，成人單程 ¥1,150<br>
-                <a href="https://www.jrhokkaido.co.jp/global/english/train/airport.html" target="_blank">官方時刻表（英文）</a> ｜ 
-                <a href="https://www.hyperdia.com/" target="_blank">Hyperdia 查詢</a> ｜ 
+                <a href="https://www.jrhokkaido.co.jp/global/english/train/airport.html" target="_blank">官方時刻表（英文）</a> ｜
+                <a href="https://www.hyperdia.com/" target="_blank">Hyperdia 查詢</a> ｜
                 <a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+Station" target="_blank">路線圖</a>
             </div>
             <div class="info-item"><strong>札幌站 ↔ 小樽站（快速列車）</strong><br>
                 約每15-30分鐘一班，全程約32-35分鐘，成人單程 ¥750<br>
-                <a href="https://www.jrhokkaido.co.jp/global/english/train/" target="_blank">JR北海道官方</a> ｜ 
+                <a href="https://www.jrhokkaido.co.jp/global/english/train/" target="_blank">JR北海道官方</a> ｜
                 <a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Station" target="_blank">路線圖</a>
             </div>
             <div class="info-item"><strong>推薦 App：</strong> Japan Travel by NAVITIME / Google Maps / Hyperdia（可即時查詢延誤）</div>
         </div>
-
         <div class="info-card">
             <h2>保險資訊</h2>
             <div class="info-item"><span class="info-label">保險公司：</span> Zurich</div>
             <div class="info-item"><span class="info-label">每人保費：</span> HK$238</div>
         </div>
-
         <div class="back-to-overview" onclick="openTab('overview')">
             返回總覽
         </div>
     </div>
 </div>
-
-<!-- 總覽：靜態預設 + 可編輯 -->
+<!-- 總覽 -->
 <div id="overview" class="content active">
-    <div style="max-width:900px;margin:0 auto;" id="overview-content">
-        <!-- Day 1 -->
-        <div class="day" data-day="1">
-            <h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2>
-            <button class="big-btn" onclick="showDetail(1)">查看詳細時間軸</button>
-            <button class="edit-btn" onclick="toggleEdit(1)">編輯</button>
-            <div class="edit-form" id="edit-form-1">
-                <input type="text" id="edit-title-1" value="1月30日 (五) Day 1　抵達＋電視塔夜景" placeholder="標題">
-                <input type="text" id="edit-subtitle-1" value="" placeholder="副標題（可選）">
-                <button onclick="saveDay(1)">儲存</button>
-            </div>
-        </div>
-
-        <!-- Day 2 -->
-        <div class="day" data-day="2">
-            <h2>1月31日 (六) Day 2　小樽運河&天狗山展望台浪漫一日</h2>
-            <p class="subtitle" style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">下午茶：LeTAO本店　｜　晚餐：世壺屋</p>
-            <button class="big-btn" onclick="showDetail(2)">查看詳細時間軸</button>
-            <button class="edit-btn" onclick="toggleEdit(2)">編輯</button>
-            <div class="edit-form" id="edit-form-2">
-                <input type="text" id="edit-title-2" value="1月31日 (六) Day 2　小樽運河&天狗山展望台浪漫一日" placeholder="標題">
-                <input type="text" id="edit-subtitle-2" value="下午茶：LeTAO本店　｜　晚餐：世壺屋" placeholder="副標題（可選）">
-                <button onclick="saveDay(2)">儲存</button>
-            </div>
-        </div>
-
-        <!-- Day 3 -->
-        <div class="day" data-day="3">
-            <h2>2月1日 (日) Day 3　定山溪溫泉放空</h2>
-            <button class="big-btn" onclick="showDetail(3)">查看詳細時間軸</button>
-            <button class="edit-btn" onclick="toggleEdit(3)">編輯</button>
-            <div class="edit-form" id="edit-form-3">
-                <input type="text" id="edit-title-3" value="2月1日 (日) Day 3　定山溪溫泉放空" placeholder="標題">
-                <input type="text" id="edit-subtitle-3" value="" placeholder="副標題（可選）">
-                <button onclick="saveDay(3)">儲存</button>
-            </div>
-        </div>
-
-        <!-- Day 4 -->
-        <div class="day" data-day="4">
-            <h2>2月2日 (一) Day 4　藻岩山滑雪場＋藻岩山夜景</h2>
-            <button class="big-btn" onclick="showDetail(4)">查看詳細時間軸</button>
-            <button class="edit-btn" onclick="toggleEdit(4)">編輯</button>
-            <div class="edit-form" id="edit-form-4">
-                <input type="text" id="edit-title-4" value="2月2日 (一) Day 4　藻岩山滑雪場＋藻岩山夜景" placeholder="標題">
-                <input type="text" id="edit-subtitle-4" value="" placeholder="副標題（可選）">
-                <button onclick="saveDay(4)">儲存</button>
-            </div>
-        </div>
-
-        <!-- Day 5 -->
-        <div class="day" data-day="5">
-            <h2>2月3日 (二) Day 5　盤溪滑雪場＋狸小路夜景</h2>
-            <button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button>
-            <button class="edit-btn" onclick="toggleEdit(5)">編輯</button>
-            <div class="edit-form" id="edit-form-5">
-                <input type="text" id="edit-title-5" value="2月3日 (二) Day 5　盤溪滑雪場＋狸小路夜景" placeholder="標題">
-                <input type="text" id="edit-subtitle-5" value="" placeholder="副標題（可選）">
-                <button onclick="saveDay(5)">儲存</button>
-            </div>
-        </div>
-
-        <!-- Day 6 -->
-        <div class="day" data-day="6" style="border-left:16px solid var(--red);">
-            <h2>2月4日 (三) Day 6　雪祭開幕日狂歡！</h2>
-            <button class="big-btn" style="background:var(--red);color:white;" onclick="showDetail(6)">立即查看</button>
-            <button class="edit-btn" onclick="toggleEdit(6)">編輯</button>
-            <div class="edit-form" id="edit-form-6">
-                <input type="text" id="edit-title-6" value="2月4日 (三) Day 6　雪祭開幕日狂歡！" placeholder="標題">
-                <input type="text" id="edit-subtitle-6" value="" placeholder="副標題（可選）">
-                <button onclick="saveDay(6)">儲存</button>
-            </div>
-        </div>
-
-        <!-- Day 7 -->
-        <div class="day" data-day="7">
-            <h2>2月5日 (四) Day 7　掃貨＋返程</h2>
-            <button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button>
-            <button class="edit-btn" onclick="toggleEdit(7)">編輯</button>
-            <div class="edit-form" id="edit-form-7">
-                <input type="text" id="edit-title-7" value="2月5日 (四) Day 7　掃貨＋返程" placeholder="標題">
-                <input type="text" id="edit-subtitle-7" value="" placeholder="副標題（可選）">
-                <button onclick="saveDay(7)">儲存</button>
-            </div>
-        </div>
-
-        <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-top">置頂</div>
+    <div style="max-width:900px;margin:0 auto;">
+        <div class="day"><h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2><button class="big-btn" onclick="showDetail(1)">查看詳細時間軸</button></div>
+        <div class="day"><h2>1月31日 (六) Day 2　小樽運河&天狗山展望台浪漫一日</h2>
+            <p style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">下午茶：LeTAO本店　｜　晚餐：世壺屋</p>
+            <button class="big-btn" onclick="showDetail(2)">查看詳細時間軸</button></div>
+        <div class="day"><h2>2月1日 (日) Day 3　定山溪溫泉放空</h2><button class="big-btn" onclick="showDetail(3)">查看詳細時間軸</button></div>
+        <div class="day"><h2>2月2日 (一) Day 4　藻岩山滑雪場＋藻岩山夜景</h2><button class="big-btn" onclick="showDetail(4)">查看詳細時間軸</button></div>
+        <div class="day"><h2>2月3日 (二) Day 5　盤溪滑雪場＋狸小路夜景</h2><button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button></div>
+        <div class="day" style="border-left:16px solid var(--red);"><h2>2月4日 (三) Day 6　雪祭開幕日狂歡！</h2><button class="big-btn" style="background:var(--red);color:white;" onclick="showDetail(6)">立即查看</button></div>
+        <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button></div>
+    </div>
+    <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-top">
+        置頂
     </div>
 </div>
 <!-- 詳細日程表 -->
 <div id="details" class="content">
     <div id="detail-content" style="max-width:1000px;margin:0 auto;"></div>
-    <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
+    <div class="back-to-overview" onclick="openTab('overview')">
+        返回總覽
+    </div>
 </div>
-
 <!-- 裝備清單 -->
 <div id="packing" class="content packing-list">
     <h2>北海道1月底-2月初 裝備清單（極寒+滑雪）</h2>
@@ -394,7 +196,6 @@
         <button id="clearPacking" class="clear-btn">取消全部勾選（保留備份）</button>
         <p style="font-size:0.95rem;color:#666;margin-top:0.8rem;">儲存後關閉瀏覽器仍會保留，下次自動載入</p>
     </div>
-
     <div class="packing-category">
         <h3>必需品</h3>
         <ul>
@@ -406,7 +207,6 @@
             <li><input type="checkbox" class="pack-item"> Passport</li>
         </ul>
     </div>
-
     <div class="packing-category">
         <h3>隨身裝備</h3>
         <ul>
@@ -422,7 +222,6 @@
             <li><input type="checkbox" class="pack-item"> 暖暖包</li>
         </ul>
     </div>
-
     <div class="packing-category">
         <h3>藥</h3>
         <ul>
@@ -431,7 +230,6 @@
             <li><input type="checkbox" class="pack-item"> Pain relief pills</li>
         </ul>
     </div>
-
     <div class="packing-category">
         <h3>廁所用品</h3>
         <ul>
@@ -451,7 +249,6 @@
             <li><input type="checkbox" class="pack-item"> Hair straightener</li>
         </ul>
     </div>
-
     <div class="packing-category">
         <h3>衣服</h3>
         <ul>
@@ -477,12 +274,10 @@
             <li><input type="checkbox" class="pack-item"> 雪鏡</li>
         </ul>
     </div>
-
     <div class="back-to-overview" onclick="openTab('overview')">
         返回總覽
     </div>
 </div>
-
 <!-- 更多地點 -->
 <div id="more" class="content">
     <div style="max-width:900px;margin:0 auto;">
@@ -498,305 +293,203 @@
             <div class="desc">著名巧克力工廠主題樂園，可參觀生產線、品嚐現烤白色戀人餅乾，冬季有浪漫燈飾，是情侶必去甜蜜景點。</div>
             <a href="https://www.shiroikoibitopark.jp/zh-hant/" target="_blank">官方網站</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E8%8E%AB%E5%9F%83%E4%BE%86%E6%B2%BC%E5%85%AC%E5%9C%92+Sapporo" target="_blank">莫埃來沼公園</a></h3>
             <div class="time">開園時間：07:00–22:00</div>
             <div class="desc">藝術家磯崎新設計的超大公園，玻璃金字塔、莫埃來山、噴泉等裝置藝術，冬季雪景如童話世界，適合散步拍照。</div>
             <a href="https://moerenumapark.jp/tw/" target="_blank">官方網站</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E5%A5%A7%E8%8A%9D%E5%95%86%E5%BA%97+Sapporo" target="_blank">奥芝商店</a></h3>
             <div class="time">營業時間：11:00–15:00 & 17:00–22:00</div>
             <div class="desc">札幌超人氣蝦湯咖喱專門店，湯頭濃郁鮮美，蝦子超大，排隊名店，強烈建議提前到或避開尖峰。</div>
             <a href="https://tabelog.com/tw/hokkaido/A0101/A010101/1041930/" target="_blank">Tabelog 頁面</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E5%A0%B4%E5%A4%96%E5%B8%82%E5%A0%B4+Sapporo" target="_blank">場外市場</a></h3>
             <div class="time">多數店舖約 06:00–15:00</div>
             <div class="desc">札幌最大海鮮批發市場，新鮮蟹、海膽、鮭魚卵丼超豐盛，早晨來吃海鮮丼最划算。</div>
             <a href="https://www.sapporo.travel/zh-tw/spot/feature/sapporo-nijo-market-curb-market/" target="_blank">旅遊資訊</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E7%8B%B8%E5%B0%8F%E8%B7%AF%E5%95%86%E5%BA%97%E8%A1%97+Sapporo" target="_blank">狸小路商店街</a></h3>
             <div class="time">多數店舖 10:00–21:00</div>
             <div class="desc">札幌最古老商店街，全長近1公里，有藥妝、服飾、餐廳、電玩，晚上燈光浪漫，購物掃貨首選。</div>
             <a href="https://www.gltjp.com/zh-hant/article/item/20464/" target="_blank">介紹文章</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E6%9C%97%E5%B7%9E%E6%B4%8B%E7%A5%9E%E5%AE%AE" target="_blank">北海道神宮</a></h3>
             <div class="time">開門時間：07:00–16:00（冬季）</div>
             <div class="desc">北海道總鎮守，冬季雪中參拜超有氛圍，可抽籤祈福，旁邊圓山公園梅花季也很美。</div>
             <a href="https://hokkaido.letsgojp.com/archives/762539/" target="_blank">介紹</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E6%9C%AD%E5%B9%8C%E5%95%A4%E9%85%92%E5%8D%9A%E7%89%A9%E9%A4%A8" target="_blank">札幌啤酒博物館</a></h3>
             <div class="time">營業時間：11:00–18:30</div>
             <div class="desc">日本唯一啤酒博物館，可了解啤酒歷史，付費試飲經典札幌啤酒，旁邊啤酒園可大啖成吉思汗羊肉。</div>
             <a href="https://www.sapporobeer.jp/english/brewery/s_museum/zh-tw/" target="_blank">官方網站</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E8%96%84%E9%87%8E+Sapporo" target="_blank">薄野街（Susukino）</a></h3>
             <div class="time">夜晚熱鬧</div>
             <div class="desc">札幌最大娛樂區，居酒屋、拉麵横丁、夜景霓虹，晚上逛街吃宵夜超熱鬧。</div>
             <a href="https://www.gltjp.com/zh-hant/directory/item/12754/" target="_blank">介紹</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E8%97%BB%E5%B2%A9%E5%B1%B1%E5%B1%95%E6%9C%9B%E5%8F%B0" target="_blank">藻岩山展望台</a></h3>
             <div class="time">營業時間：11:00–22:00</div>
             <div class="desc">日本新三大夜景之一，纜車上山俯瞰札幌全景，冬季雪夜超浪漫。</div>
             <a href="https://www.sapporo.travel/zh-tw/night-view-guide/spot/moiwayama/" target="_blank">介紹</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=AOAO+SAPPORO" target="_blank">AOAO SAPPORO</a></h3>
             <div class="time">營業時間：10:00–22:00</div>
             <div class="desc">2023年開幕的水族館，位於市中心大樓內，企鵝、水母超療癒，適合下雨天或晚上前往。</div>
             <a href="https://aoao-sapporo.blue/en/" target="_blank">官方網站</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%89%E8%A7%92%E5%B8%82%E5%A0%B4+Otaru" target="_blank">三角市場</a></h3>
             <div class="time">營業時間：06:00–17:00</div>
             <div class="desc">小樽車站旁超新鮮海鮮市場，早晨吃海鮮丼最正宗。</div>
             <a href="https://hk.wamazing.com/media/article/a-3661/" target="_blank">介紹</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E4%BD%99%E5%B8%82%E8%92%B8%E9%A4%BE%E6%89%80" target="_blank">余市蒸餾所</a></h3>
             <div class="time">營業時間：09:30–14:30</div>
             <div class="desc">日本威士忌發源地，可免費參觀蒸餾過程並試飲，冬季雪中酒香特別迷人。</div>
             <a href="https://www.nikka.com/know/yoichi/" target="_blank">官方網站</a>
         </div>
-
         <div class="location-card">
             <h3><a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%89%E4%BA%95OUTLET+Sapporo" target="_blank">三井OUTLET</a></h3>
             <div class="time">營業時間：10:00–20:00</div>
             <div class="desc">北海道最大Outlet，品牌多、折扣深，購物掃貨好去處。</div>
             <a href="https://mitsui-shopping-park.com/mop/" target="_blank">官方網站</a>
         </div>
-              <div class="back-to-overview" onclick="openTab('overview')">
-                返回總覽
-            </div>
-        </div>
-        <p style="text-align:center;color:#666;">載入景點中...</p>
-        </div>
-        <div id="restaurants" class="sub-content">
-            <div class="location-card">
-                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E6%88%90%E5%90%89%E6%80%9D%E6%B1%97%E3%81%A0%E3%82%8B%E3%81%BE+%E6%9C%AC%E5%BA%97+Sapporo" target="_blank">成吉思汗だるま 本店</a></h3>
-                <div class="time">營業時間：11:30–23:00</div>
-                <div class="desc">札幌最老字號成吉思汗烤羊肉店，新鮮羊肉在鐵鍋上滋滋作響，肉汁香濃，超受當地人歡迎。</div>
-                <div class="price">建議價格：HK$300–500/人</div>
-                <a href="https://tabelog.com/tw/hokkaido/A0101/A010103/1000007/" target="_blank">Tabelog 連結</a>
-            </div>
-            <div class="location-card">
-                <h3><a href="https://www.google.com/maps/search/?api=1&query=Itadakimasu.+Sapporo" target="_blank">Itadakimasu.</a></h3>
-                <div class="time">營業時間：16:00–22:00</div>
-                <div class="desc">隱藏版居酒屋，專門提供北海道新鮮海鮮與創意小菜，氣氛溫馨適合小酌。</div>
-                <div class="price">建議價格：HK$400–600/人</div>
-                <a href="https://tabelog.com/en/hokkaido/A0101/A010103/1036161/" target="_blank">Tabelog 連結</a>
-            </div>
-            <div class="location-card">
-                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%BB%91%E5%B1%8B+Sapporo" target="_blank">大黒屋</a></h3>
-                <div class="time">營業時間：16:00–23:30</div>
-                <div class="desc">薄野經典居酒屋，招牌烤雞串與海鮮燒烤超美味，氣氛熱鬧。</div>
-                <div class="price">建議價格：HK$350–550/人</div>
-                <a href="https://tabelog.com/tw/tokyo/A1301/A130103/13291185/" target="_blank">Tabelog 連結</a>
-            </div>
-            <div class="location-card">
-                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E8%A1%86%E7%82%AD%E7%81%AB%E7%83%A4%E8%82%89%E3%82%B8%E3%83%B3%E3%82%AE%E3%82%B9%E3%82%AB%E3%83%B3+%E3%83%9B%E3%83%AB%E3%83%A2%E3%83%B3%E9%85%92%E5%A0%B4+Sapporo" target="_blank">大衆炭火焼肉ジンギスカン ホルモン酒場</a></h3>
-                <div class="time">營業時間：16:00–23:30</div>
-                <div class="desc">平價炭火烤羊肉與內臟專門店，羊肉鮮嫩多汁，適合大口吃肉。</div>
-                <div class="price">建議價格：HK$250–400/人</div>
-                <a href="https://tabelog.com/tw/hokkaido/A0101/A010101/1028121/" target="_blank">Tabelog 連結</a>
-            </div>
-            <div class="location-card">
-                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%97%E3%82%8D%E3%81%8F%E3%81%BE+Sapporo" target="_blank">しろくま</a></h3>
-                <div class="time">營業時間：18:00–01:00</div>
-                <div class="desc">薄野隱密咖喱專門店，深夜限定，湯頭濃郁香辣，是宵夜首選。</div>
-                <div class="price">建議價格：HK$150–250/人</div>
-                <a href="https://tabelog.com/tw/hokkaido/A0101/A010103/1000800/" target="_blank">Tabelog 連結</a>
-            </div>
-            <div class="location-card">
-                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E9%AE%A8%E8%99%95+%E5%87%9C+Sapporo" target="_blank">鮨処 凜</a></h3>
-                <div class="time">營業時間：18:00–22:00</div>
-                <div class="desc">高級壽司Omakase，師傅現場握壽司，使用北海道當季海鮮，極致新鮮。</div>
-                <div class="price">建議價格：HK$800–1,500/人</div>
-                <a href="https://tabelog.com/tw/hokkaido/A0101/A010101/1077179/" target="_blank">Tabelog 連結</a>
-            </div>
-            <div class="location-card">
-                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E3%81%99%E3%81%97%E3%81%A9%E3%82%93%E3%81%B6%E3%82%8A+Sapporo" target="_blank">すしどんぶり</a></h3>
-                <div class="time">營業時間：11:30–22:30</div>
-                <div class="desc">平價壽司丼專門店，海鮮堆滿滿一大碗，CP值超高。</div>
-                <div class="price">建議價格：HK$200–400/人</div>
-                <a href="https://tabelog.com/tw/hokkaido/A0101/A010103/1077231/" target="_blank">Tabelog 連結</a>
-            </div>
-            <div class="location-card">
-                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E9%AE%A8%E8%99%95+%E6%9A%81+Sapporo" target="_blank">鮨処 暁</a></h3>
-                <div class="time">營業時間：17:30–22:30</div>
-                <div class="desc">隱藏版高級壽司店，使用稀有北海道海鮮，握壽司口感極佳。</div>
-                <div class="price">建議價格：HK$700–1,200/人</div>
-                <a href="https://tabelog.com/tw/hokkaido/A0101/A010101/1081057/" target="_blank">Tabelog 連結</a>
-            </div>
-  <div class="back-to-overview" onclick="openTab('overview')">
-                返回總覽
-            </div>
-<p style="text-align:center;color:#666;">載入餐廳中...</p>
+        <div class="back-to-overview" onclick="openTab('overview')">
+            返回總覽
         </div>
     </div>
 </div>
-    <!-- 管理員面板 -->
-<div id="admin-section" class="admin-section">
-    <h2>管理員專區</h2>
-    <p>已登入： <span id="user-email">---</span></p>
-    <button onclick="firebase.auth().signOut()">登出</button>
-</div>
 <script>
-// === 所有 JavaScript 集中在這裡 ===
-
-// 1. Firebase 初始化
-const firebaseConfig = {
-  apiKey: "AIzaSyDw5defPn2jhlbfrsSdyl7mnXyN2UAg4II",
-  authDomain: "travel-6f14d.firebaseapp.com",
-  projectId: "travel-6f14d",
-  storageBucket: "travel-6f14d.firebasestorage.app",
-  messagingSenderId: "951369938502",
-  appId: "1:951369938502:web:9f0dfc1fadd5ad9b03bc47"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-function openTab(tab) {
-  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-  document.getElementById(tab).classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`)?.classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
+function openTab(tab){
+    document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+    document.getElementById(tab).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
 }
-// === 修正後的單一 showDetail 函數（格式完整 + 所有天） ===
-function showDetail(day) {
-  document.getElementById('detail-content').innerHTML = '<p style="text-align:center;padding:3rem;color:#999;">載入詳細日程中...</p>';
+function openSubTab(subtab){
+    document.querySelectorAll('.sub-content').forEach(c=>c.classList.remove('active'));
+    document.getElementById(subtab).classList.add('active');
+    document.querySelectorAll('.sub-tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
+}
+function showDetail(day){
+    const details = {
+        1: `<div class="detail-day">
+            <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 1　抵達＋電視塔夜景</h2>
+            <div class="weather-box"><strong>1月30日天氣預報（長期平均）：</strong> 高溫 -4°C / 低溫 -11°C，多雲轉輕雪，降雪機率高</div>
+            <div class="snow-box"><strong>即時雪況預測：</strong> 市區積雪深度約 50-70 cm，適合夜景觀賞（基於歷史長期平均，2026年實際天氣請靠近日期再查詢即時預報）</div>
+            <img src="https://www.japanholiday.net/wp-content/uploads/2023/12/tv-tower1.jpg" class="hero-img" alt="電視塔">
+            <div class="step"><span class="time">14:20</span>　抵達新千歲機場（取行李、海關約1小時）</div>
+            <div class="step"><span class="time">15:30 – 16:30</span>　JR快速Airport → 札幌站</div>
+            <div class="step"><span class="time">17:00</span>　酒店Check-in + 稍作休息</div>
+            <div class="step"><span class="time">19:00 – 20:30</span>　<span class="meal">晚餐：湯咖喱 Garaku</span></div>
+            <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台</div>
+            <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔線上購票（建議提前）</a>
+            <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div>
+            </div>`,
 
-  // 從 Firestore 讀取（未來可擴充），目前用靜態預設
-  const details = {
-    1: `<div class="detail-day">
-      <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 1　抵達＋電視塔夜景</h2>
-      <div class="weather-box"><strong>1月30日天氣預報（長期平均）：</strong> 高溫 -4°C / 低溫 -11°C，多雲轉輕雪，降雪機率高</div>
-      <div class="snow-box"><strong>即時雪況預測：</strong> 市區積雪深度約 50-70 cm，適合夜景觀賞（基於歷史長期平均，2026年實際天氣請靠近日期再查詢即時預報）</div>
-      <img src="https://www.japanholiday.net/wp-content/uploads/2023/12/tv-tower1.jpg" class="hero-img" alt="電視塔">
-      <div class="step"><span class="time">14:20</span>　抵達新千歲機場（取行李、海關約1小時）</div>
-      <div class="step"><span class="time">15:30 – 16:30</span>　JR快速Airport → 札幌站</div>
-      <div class="step"><span class="time">17:00</span>　酒店Check-in + 稍作休息</div>
-      <div class="step"><span class="time">19:00 – 20:30</span>　<span class="meal">晚餐：湯咖喱 Garaku</span></div>
-      <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台</div>
-      <a href="https://www.tv-tower.co.jp/en/" target="_blank" class="ticket-link">電視塔線上購票（建議提前）</a>
-      <div class="links"><a href="https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower" target="_blank" class="location-link">Google Maps 路線</a></div>
-    </div>`,
+        2: `<div class="detail-day">
+            <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 2　小樽運河&天狗山展望台浪漫一日</h2>
+            <div class="weather-box"><strong>1月31日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -10°C，輕雪為主</div>
+            <div class="snow-box"><strong>即時雪況預測：</strong> 小樽運河積雪約 50 cm，浪漫雪景（基於歷史長期平均，2026年實際天氣請靠近日期再查詢即時預報）</div>
+            <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
+            <div class="step"><span class="time">10:00</span>　從Airbnb出發前往小樽（JR快速，約35分鐘）</div>
+            <div class="step"><span class="time">10:45</span>　抵達後參觀船見阪（經典陡坡雪景）</div>
+            <div class="step"><span class="time">11:00</span>　三角市場 用午餐（新鮮海鮮丼或壽司）</div>
+            <div class="step"><span class="time">12:00</span>　前往堺町通商店街 自由逛街</div>
+            <div class="step"><span class="time">13:30</span>　LeTAO本店（雙層起司蛋糕 + 買手信）</div>
+            <div class="step"><span class="time">14:30</span>　搭纜車上天狗山展望台（俯瞰小樽全景）</div>
+            <div class="step"><span class="time">17:30</span>　下山返回小樽運河 散步</div>
+            <div class="step"><span class="time">18:30</span>　<span class="meal">晚餐：小樽世壺屋（高級懷石，需預約）</span></div>
+            <div class="step"><span class="time">20:00</span>　搭JR返回Airbnb</div>
+            <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
+            <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Station" target="_blank" class="location-link">札幌 → 小樽路線</a></div>
+            </div>`,
 
-    2: `<div class="detail-day">
-      <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 2　小樽運河&天狗山展望台浪漫一日</h2>
-      <div class="weather-box"><strong>1月31日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -10°C，輕雪為主</div>
-      <div class="snow-box"><strong>即時雪況預測：</strong> 小樽運河積雪約 50 cm，浪漫雪景（基於歷史長期平均）</div>
-      <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
-      <div class="step"><span class="time">10:00</span>　從Airbnb出發前往小樽（JR快速，約35分鐘）</div>
-      <div class="step"><span class="time">10:45</span>　抵達後參觀船見阪（經典陡坡雪景）</div>
-      <div class="step"><span class="time">11:00</span>　三角市場 用午餐（新鮮海鮮丼或壽司）</div>
-      <div class="step"><span class="time">12:00</span>　前往堺町通商店街 自由逛街</div>
-      <div class="step"><span class="time">13:30</span>　LeTAO本店（雙層起司蛋糕 + 買手信）</div>
-      <div class="step"><span class="time">14:30</span>　搭纜車上天狗山展望台（俯瞰小樽全景）</div>
-      <div class="step"><span class="time">17:30</span>　下山返回小樽運河 散步</div>
-      <div class="step"><span class="time">18:30</span>　<span class="meal">晚餐：小樽世壺屋（高級懷石，需預約）</span></div>
-      <div class="step"><span class="time">20:00</span>　搭JR返回Airbnb</div>
-      <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
-      <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Station" target="_blank" class="location-link">札幌 → 小樽路線</a></div>
-      <!-- 地圖等其他內容 -->
-    </div>`,
+        3: `<div class="detail-day">
+            <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 3　定山溪溫泉放空</h2>
+            <div class="weather-box"><strong>2月1日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -9°C，多雲偶雪</div>
+            <div class="snow-box"><strong>即時雪況預測：</strong> 溫泉區雪景優美（基於歷史長期平均）</div>
+            <img src="https://img.bobblog.tw/webp/2019/Hokkaido/travel/hoheikyo-hot-springs/hoheikyo-hot-springs04.jpg.webp" class="hero-img" alt="定山溪溫泉">
+            <div class="step"><span class="time">09:30 – 10:30</span>　札幌站搭高速巴士（60分鐘）</div>
+            <div class="step"><span class="time">11:00 – 18:00</span>　泡湯＋足湯街＋散步</div>
+            <div class="step"><span class="time">18:30</span>　溫泉旅館懷石料理</div>
+            <a href="https://www.jozankei.jp/en/" target="_blank" class="ticket-link">定山溪官方旅遊網（英文）</a>
+            <a href="https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/" target="_blank" class="ticket-link">Klook 巴士＋溫泉套票</a>
+            <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div>
+            </div>`,
 
-    3: `<div class="detail-day">
-      <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 3　定山溪溫泉放空</h2>
-      <div class="weather-box"><strong>2月1日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -9°C，多雲偶雪</div>
-      <div class="snow-box"><strong>即時雪況預測：</strong> 溫泉區雪景優美（基於歷史長期平均）</div>
-      <img src="https://img.bobblog.tw/webp/2019/Hokkaido/travel/hoheikyo-hot-springs/hoheikyo-hot-springs04.jpg.webp" class="hero-img" alt="定山溪溫泉">
-      <div class="step"><span class="time">09:30 – 10:30</span>　札幌站搭高速巴士（60分鐘）</div>
-      <div class="step"><span class="time">11:00 – 18:00</span>　泡湯＋足湯街＋散步</div>
-      <div class="step"><span class="time">18:30</span>　<span class="meal">晚餐：溫泉旅館懷石料理</span></div>
-      <a href="https://www.jozankei.jp/en/" target="_blank" class="ticket-link">定山溪官方旅遊網（英文）</a>
-      <a href="https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/" target="_blank" class="ticket-link">Klook 巴士＋溫泉套票</a>
-      <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen" target="_blank" class="location-link">路線</a></div>
-    </div>`,
+        4: `<div class="detail-day">
+            <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 4　藻岩山滑雪場＋藻岩山夜景</h2>
+            <div class="weather-box"><strong>2月2日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -9°C，晴間多雲</div>
+            <div class="snow-box"><strong>即時雪況預測：</strong> 藻岩山滑雪場積雪深度充足，適合初學者與夜滑（基於歷史長期平均）</div>
+            <img src="https://resources.matcha-jp.com/resize/720x2000/2018/06/02-55560.webp" class="hero-img" alt="藻岩山夜景">
+            <div class="step"><span class="time">09:00 – 16:00</span>　藻岩山滑雪場（市中心最近的滑雪場，適合半天玩）</div>
+            <div class="step"><span class="time">19:00 – 21:30</span>　藻岩山纜車＋Mini纜車賞百萬夜景</div>
+            <a href="https://sapporo-moiwa.jp/zh-TW/" target="_blank" class="ticket-link">藻岩山滑雪場官方網站（中文）</a>
+            <a href="https://mt-moiwa.jp/" target="_blank" class="ticket-link">藻岩山纜車官方（英文）＋線上套票</a>
+            <a href="https://www.klook.com/zh-HK/activity/99611-mt-moiwa-ropeway/" target="_blank" class="ticket-link">Klook 藻岩山纜車票（常有折扣）</a>
+            <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div>
+            </div>`,
 
-    4: `<div class="detail-day">
-      <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 4　藻岩山滑雪場＋藻岩山夜景</h2>
-      <div class="weather-box"><strong>2月2日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -9°C，晴間多雲</div>
-      <div class="snow-box"><strong>即時雪況預測：</strong> 藻岩山滑雪場積雪深度充足，適合初學者與夜滑（基於歷史長期平均）</div>
-      <img src="https://resources.matcha-jp.com/resize/720x2000/2018/06/02-55560.webp" class="hero-img" alt="藻岩山夜景">
-      <div class="step"><span class="time">09:00 – 16:00</span>　藻岩山滑雪場（市中心最近的滑雪場，適合半天玩）</div>
-      <div class="step"><span class="time">19:00 – 21:30</span>　藻岩山纜車＋Mini纜車賞百萬夜景</div>
-      <a href="https://sapporo-moiwa.jp/zh-TW/" target="_blank" class="ticket-link">藻岩山滑雪場官方網站（中文）</a>
-      <a href="https://mt-moiwa.jp/" target="_blank" class="ticket-link">藻岩山纜車官方（英文）＋線上套票</a>
-      <a href="https://www.klook.com/zh-HK/activity/99611-mt-moiwa-ropeway/" target="_blank" class="ticket-link">Klook 藻岩山纜車票（常有折扣）</a>
-      <div class="links"><a href="https://www.google.com/maps/place/Mount+Moiwa+Ropeway" target="_blank" class="location-link">藻岩山路線</a></div>
-    </div>`,
+        5: `<div class="detail-day">
+            <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 5　盤溪滑雪場＋狸小路夜景</h2>
+            <div class="weather-box"><strong>2月3日天氣預報（長期平均）：</strong> 高溫 -2°C / 低溫 -9°C，輕雪</div>
+            <div class="snow-box"><strong>即時雪況預測：</strong> 粉雪良好（基於歷史長期平均）</div>
+            <img src="https://www.skiing-hokkaido.com/img/bankei/map_bg02.jpg" class="hero-img" alt="盤溪滑雪場">
+            <div class="step"><span class="time">08:30 – 09:15</span>　札幌站免費接駁巴士</div>
+            <div class="step"><span class="time">10:00 – 16:00+</span>　租雪具＋滑雪（夜滑至20:00）</div>
+            <div class="step"><span class="time">17:30 – 22:30</span>　狸小路逛街＋居酒屋</div>
+            <a href="https://www.bankei.co.jp/home-english/" target="_blank" class="ticket-link">盤溪滑雪場官網＋雪況</a>
+            <a href="https://www.bankei.co.jp/rental-en/" target="_blank" class="ticket-link">線上購票＋租雪具</a>
+            <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">路線</a></div>
+            </div>`,
 
-    5: `<div class="detail-day">
-      <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 5　盤溪滑雪場＋狸小路夜景</h2>
-      <div class="weather-box"><strong>2月3日天氣預報（長期平均）：</strong> 高溫 -2°C / 低溫 -9°C，輕雪</div>
-      <div class="snow-box"><strong>即時雪況預測：</strong> 粉雪良好（基於歷史長期平均）</div>
-      <img src="https://www.skiing-hokkaido.com/img/bankei/map_bg02.jpg" class="hero-img" alt="盤溪滑雪場">
-      <div class="step"><span class="time">08:30 – 09:15</span>　札幌站免費接駁巴士</div>
-      <div class="step"><span class="time">10:00 – 16:00+</span>　租雪具＋滑雪（夜滑至20:00）</div>
-      <div class="step"><span class="time">17:30 – 22:30</span>　狸小路逛街＋居酒屋</div>
-      <a href="https://www.bankei.co.jp/home-english/" target="_blank" class="ticket-link">盤溪滑雪場官網＋雪況</a>
-      <a href="https://www.bankei.co.jp/rental-en/" target="_blank" class="ticket-link">線上購票＋租雪具</a>
-      <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area" target="_blank" class="location-link">路線</a></div>
-    </div>`,
+        6: `<div class="detail-day">
+            <h2 style="font-size:1.8rem;text-align:center;color:var(--red);margin-bottom:1rem;">Day 6　雪祭開幕日狂歡！</h2>
+            <div class="weather-box"><strong>2月4日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -9°C，雪花紛飛</div>
+            <div class="snow-box"><strong>即時雪況預測：</strong> 大通公園積雪 80 cm+，雪雕完美（基於歷史長期平均）</div>
+            <img src="https://www.snowfes.com/assets/img/top/main_visual_pc.jpg" class="hero-img" alt="札幌雪祭">
+            <div class="step"><span class="time">10:00 – 22:00</span>　大通公園＋薄野會場＋Tsudome</div>
+            <div class="step"><span class="time">19:00</span>　<span class="meal">晚餐：蟹本家 或 蟹吃到飽</span></div>
+            <a href="https://www.snowfes.com/en/" target="_blank" class="ticket-link">2026雪祭官方網站（英文）</a>
+            <a href="https://www.klook.com/zh-HK/activity/12748-okurayama-viewing-point-sapporo/" target="_blank" class="ticket-link">大倉山夜間點燈雪雕（超推！）</a>
+            <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園地圖</a></div>
+            </div>`,
 
-    6: `<div class="detail-day">
-      <h2 style="font-size:1.8rem;text-align:center;color:var(--red);margin-bottom:1rem;">Day 6　雪祭開幕日狂歡！</h2>
-      <div class="weather-box"><strong>2月4日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -9°C，雪花紛飛</div>
-      <div class="snow-box"><strong>即時雪況預測：</strong> 大通公園積雪 80 cm+，雪雕完美（基於歷史長期平均）</div>
-      <img src="https://www.snowfes.com/assets/img/top/main_visual_pc.jpg" class="hero-img" alt="札幌雪祭">
-      <div class="step"><span class="time">10:00 – 22:00</span>　大通公園＋薄野會場＋Tsudome</div>
-      <div class="step"><span class="time">19:00</span>　<span class="meal">晚餐：蟹本家 或 蟹吃到飽</span></div>
-      <a href="https://www.snowfes.com/en/" target="_blank" class="ticket-link">2026雪祭官方網站（英文）</a>
-      <a href="https://www.klook.com/zh-HK/activity/12748-okurayama-viewing-point-sapporo/" target="_blank" class="ticket-link">大倉山夜間點燈雪雕（超推！）</a>
-      <div class="links"><a href="https://www.google.com/maps/place/Odori+Park" target="_blank" class="location-link">大通公園地圖</a></div>
-    </div>`,
+        7: `<div class="detail-day">
+            <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 7　掃貨＋返程</h2>
+            <div class="weather-box"><strong>2月5日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -10°C，多雲</div>
+            <div class="snow-box"><strong>即時雪況預測：</strong> 市區積雪 70 cm（基於歷史長期平均）</div>
+            <img src="https://www.bring-you.info/imgs/2023/11/daimaru-shinsaibashi-2.jpg" class="hero-img" alt="大丸百貨購物">
+            <div class="step"><span class="time">09:00 – 11:00</span>　JR Tower、Stellar Place、大丸百貨最後購物</div>
+            <div class="step"><span class="time">11:00 – 12:00</span>　札幌站 → 新千歲機場（JR快速Airport）</div>
+            <div class="step"><span class="time">12:00 – 14:00</span>　<span class="meal">機場午餐（拉麵道場或其他）</span></div>
+            <div class="step"><span class="time">13:00 前</span>　建議抵達機場辦理登機（國際航班提前2小時）</div>
+            <div class="step"><span class="time">15:20</span>　HX691 起飛 → 20:40 抵達香港</div>
+            <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方</a>
+            <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
+            <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div>
+            </div>`
+    };
 
-    7: `<div class="detail-day">
-      <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 7　掃貨＋返程</h2>
-      <div class="weather-box"><strong>2月5日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -10°C，多雲</div>
-      <div class="snow-box"><strong>即時雪況預測：</strong> 市區積雪 70 cm（基於歷史長期平均）</div>
-      <img src="https://www.bring-you.info/imgs/2023/11/daimaru-shinsaibashi-2.jpg" class="hero-img" alt="大丸百貨購物">
-      <div class="step"><span class="time">09:00 – 11:00</span>　JR Tower、Stellar Place、大丸百貨最後購物</div>
-      <div class="step"><span class="time">11:00 – 12:00</span>　札幌站 → 新千歲機場（JR快速Airport）</div>
-      <div class="step"><span class="time">12:00 – 14:00</span>　<span class="meal">機場午餐（拉麵道場或其他）</span></div>
-      <div class="step"><span class="time">13:00 前</span>　建議抵達機場辦理登機（國際航班提前2小時）</div>
-      <div class="step"><span class="time">15:20</span>　HX691 起飛 → 20:40 抵達香港</div>
-      <a href="https://www.new-chitose-airport.jp/en/" target="_blank" class="ticket-link">新千歲機場官方</a>
-      <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
-      <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div>
-    </div>`
-  };
-
-  document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
-  openTab('details');
+    document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
+    openTab('details');
 }
 
-// === 頁面載入時自動執行 ===
-document.addEventListener('DOMContentLoaded', () => {
-    loadOverview();
-    loadAttractions();
-    loadRestaurants();
-});
-// === 裝備清單儲存功能 ===
+// 裝備清單功能
 const checkboxes = document.querySelectorAll('.pack-item');
 const saveBtn = document.getElementById('savePacking');
 const loadBtn = document.getElementById('loadPackingBtn');
