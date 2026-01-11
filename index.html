@@ -479,16 +479,12 @@ function openTab(tab){
     document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`).classList.add('active');
     window.scrollTo({top:0,behavior:'smooth'});
 }
-function openSubTab(subtab){
-    document.querySelectorAll('.sub-content').forEach(c=>c.classList.remove('active'));
-    document.getElementById(subtab).classList.add('active');
-    document.querySelectorAll('.sub-tab-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
-}
-    function openSubTab(subtab) {
+function openSubTab(subtab) {
+    // 隱藏所有子內容
     document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
+    // 顯示選中的
     document.getElementById(subtab).classList.add('active');
-    
+    // 更新按鈕樣式
     document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
 }
