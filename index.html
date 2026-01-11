@@ -85,13 +85,17 @@
     .sub-content.active { display: block; }
     .day {
         background: white;
-        padding: 1.8rem;
+        padding: 1.8rem 2.5rem 1.8rem 1.8rem;
         border-radius: 18px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         margin-bottom: 1.6rem;
         border-left: 10px solid var(--pink);
     }
-    .day h2 { font-size: 1.6rem; margin: 0 0 1rem; color: var(--romantic); }
+    .day h2 {
+        font-size: 1.6rem;
+        margin: 0 0 1rem;
+        color: var(--romantic);
+    }
     .big-btn {
         background: var(--pink);
         color: #333;
@@ -104,7 +108,6 @@
         cursor: pointer;
         font-weight: bold;
     }
-    .big-btn:hover { background: var(--romantic); color: white; }
     .detail-day {
         background: white;
         padding: 1.8rem;
@@ -129,7 +132,7 @@
         border-left: 5px solid var(--pink);
         font-size: 0.95rem;
     }
-    .weather-box { background: #ffebee; border-left-color: var(--pink); }
+    .weather-box { background: #ffebee; }
     .snow-box { background: #fff0f8; border-left-color: var(--romantic); }
     .step {
         margin: 1.2rem 0;
@@ -150,7 +153,6 @@
         border-radius: 12px;
         font-weight: bold;
         margin: 1rem 0;
-        font-size: 1rem;
     }
     .location-card {
         background: white;
@@ -164,6 +166,37 @@
     .location-card .time { font-size: 0.95rem; color: #666; margin: 0.4rem 0; }
     .location-card .desc { font-size: 1rem; color: #555; margin: 0.8rem 0; line-height: 1.6; }
     .location-card .price { font-size: 0.95rem; color: #B8860B; font-weight: bold; margin-top: 0.4rem; }
+    .info-card {
+        background: white;
+        padding: 1.8rem;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        margin-bottom: 2rem;
+    }
+    .info-card h2 { font-size: 1.6rem; margin-bottom: 1rem; color: var(--romantic); text-align: center; }
+    .info-item { margin: 0.9rem 0; font-size: 1rem; }
+    .info-label { font-weight: bold; color: var(--pink); }
+    .packing-list { max-width: 800px; margin: 2rem auto; }
+    .packing-list h2 { font-size: 1.6rem; text-align: center; margin-bottom: 1rem; }
+    .packing-category { margin-top: 2rem; }
+    .packing-category h3 { font-size: 1.4rem; color: var(--pink); margin-bottom: 0.7rem; border-bottom: 2px solid var(--romantic); padding-bottom: 0.4rem; }
+    .packing-list li { margin: 1rem 0; font-size: 1.2rem; }
+    .packing-list input[type="checkbox"] { transform: scale(1.7); margin-right: 14px; vertical-align: middle; }
+    .btn-group { text-align: center; margin: 1.5rem 0; }
+    .save-btn, .load-btn, .clear-btn {
+        padding: 0.8rem 1.6rem;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 0.5rem;
+        font-weight: bold;
+        width: 90%;
+        max-width: 300px;
+    }
+    .save-btn { background: var(--pink); color: white; }
+    .load-btn { background: var(--romantic); color: #333; }
+    .clear-btn { background: var(--red); color: white; }
     .back-to-overview, .back-top {
         display: block;
         width: 90%;
@@ -207,9 +240,9 @@
 </div>
 <!-- 行程資訊頁 -->
 <div id="info" class="content">
-    <div style="max-width:900px;margin:0 auto;">
-        <img src="https://static.gltjp.com/glt/data/article/21000/20215/20230530_012727_96baf0af_w1920.webp" class="hero-img-top" alt="札幌雪祭大雪雕">
-       
+    <div style="max-width:950px;margin:0 auto;">
+        <h2 style="text-align:center;color:var(--romantic);margin:2.5rem 0 1.5rem;font-size:2.2rem;">行程基本資訊</h2>
+        <img src="https://static.gltjp.com/glt/data/article/21000/20215/20230530_012727_96baf0af_w1920.webp" class="hero-img-top" alt="札幌雪祭大雪雕">       
         <div class="info-card">
             <h2>航班資訊</h2>
             <div class="info-item"><span class="info-label">訂單號：</span> NE2512180117514479</div>
@@ -275,9 +308,7 @@
         <div class="day" style="border-left:16px solid var(--red);"><h2>2月4日 (三) Day 6　雪祭開幕日狂歡！</h2><button class="big-btn" style="background:var(--red);color:white;" onclick="showDetail(6)">立即查看</button></div>
         <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button></div>
     </div>
-    <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-top">
-        置頂
-    </div>
+<div class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">置頂</div>
 </div>
 <!-- 詳細日程表 -->
 <div id="details" class="content">
@@ -381,7 +412,6 @@
 <div id="more" class="content">
     <div style="max-width:900px;margin:0 auto;">
         <h2 style="text-align:center;color:var(--romantic);font-size:1.8rem;margin-bottom:1.5rem;">更多札幌推薦地點</h2>
-
         <div class="sub-tabs">
             <div class="sub-tab-btn" onclick="openSubTab('attractions')">景點</div>
             <div class="sub-tab-btn active" onclick="openSubTab('restaurants')">餐廳</div>
@@ -528,7 +558,15 @@
                 <div class="price">建議價格：HK$700–1,200/人</div>
                 <a href="https://tabelog.com/tw/hokkaido/A0101/A010101/1081057/" target="_blank">Tabelog 連結</a>
             </div>
- <div class="location-card">
+<div class="location-card">
+                <h3><a href="https://www.google.com/maps/search/?api=1&query=%E6%88%90%E5%90%89%E6%80%9D%E6%B1%97%E3%81%A0%E3%82%8B%E3%81%BE+%E6%9C%AC%E5%BA%97+Sapporo" target="_blank">成吉思汗だるま 本店</a></h3>
+                <div class="time">營業時間：11:30–23:00</div>
+                <div class="desc">札幌最老字號成吉思汗烤羊肉店，新鮮羊肉在鐵鍋上滋滋作響，肉汁香濃，超受當地人歡迎。</div>
+                <div class="price">建議價格：HK$300–500/人</div>
+                <a href="https://tabelog.com/tw/hokkaido/A0101/A010103/1000007/" target="_blank">Tabelog 連結</a>
+            </div>
+
+            <div class="location-card">
                 <h3><a href="https://tabelog.com/hokkaido/A0101/A010104/1055049/" target="_blank">Lumière et ombre</a></h3>
                 <div class="time">營業時間：11:00–19:00（定休日：火、水）</div>
                 <div class="desc">札幌人氣巧克力與蛋糕專門店，使用高品質巧克力製作精緻甜點，冬季限定口味超療癒。</div>
@@ -539,31 +577,31 @@
             <div class="location-card">
                 <h3><a href="https://tabelog.com/hokkaido/A0101/A010101/1066838/" target="_blank">だし劇場 ○△□ 札幌総本店</a></h3>
                 <div class="time">營業時間：11:00–22:00</div>
-                <div class="desc">近札幌站的高湯專門店，可自選配料煮成專屬湯底，海鮮超新鮮！</div>
+                <div class="desc">以高湯（だし）為主題的海鮮料理店，提供豐富日式湯品與新鮮食材。</div>
                 <div class="price">建議價格：HK$300–600/人</div>
                 <a href="https://tabelog.com/hokkaido/A0101/A010101/1066838/" target="_blank">Tabelog</a>
             </div>
 
             <div class="location-card">
                 <h3><a href="http://pf-sasaki.com/" target="_blank">Parfait, Coffee, Liquor, Sasaki</a></h3>
-                <div class="time">營業時間：晚間至深夜</div>
-                <div class="desc">札幌超人氣宵夜パフェ店，濃郁巧克力＋酒香，完美結束夜晚！</div>
+                <div class="time">晚間至深夜</div>
+                <div class="desc">札幌超人氣宵夜パフェ店，以濃郁巧克力口味聞名。</div>
                 <div class="price">建議價格：HK$250–450</div>
                 <a href="https://tabelog.com/hokkaido/A0101/A010103/1052773/" target="_blank">Tabelog</a>
             </div>
 
             <div class="location-card">
                 <h3><a href="https://www.instagram.com/cafe_unjour/" target="_blank">cafe_unjour</a></h3>
-                <div class="time">營業時間：約10:00–18:00</div>
-                <div class="desc">隱藏版文青咖啡廳，手沖咖啡＋手工甜點，氛圍極佳。</div>
+                <div class="time">約10:00–18:00</div>
+                <div class="desc">隱藏版文青咖啡廳，手沖咖啡＋手工甜點。</div>
                 <div class="price">建議價格：HK$120–350</div>
                 <a href="https://www.instagram.com/cafe_unjour/" target="_blank">Instagram</a>
             </div>
 
             <div class="location-card">
                 <h3><a href="https://tabelog.com/hokkaido/A0101/A010203/1000087/" target="_blank">名代にぎりめし</a></h3>
-                <div class="time">營業時間：24小時</div>
-                <div class="desc">すすきの傳奇飯團店，現握超大份量，たらこバター必吃！</div>
+                <div class="time">24小時</div>
+                <div class="desc">經典手作飯團專門店，たらこバター與鮭バター必吃。</div>
                 <div class="price">建議價格：HK$80–200/個</div>
                 <a href="https://tabelog.com/hokkaido/A0101/A010203/1000087/" target="_blank">Tabelog</a>
             </div>
@@ -577,18 +615,15 @@
 function openTab(tab) {
     document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
     document.getElementById(tab).classList.add('active');
-    
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     const btn = document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`);
     if (btn) btn.classList.add('active');
-    
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function openSubTab(subtab) {
     document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
     document.getElementById(subtab).classList.add('active');
-    
     document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
     const btn = document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`);
     if (btn) btn.classList.add('active');
@@ -727,6 +762,9 @@ if (saveBtn) saveBtn.addEventListener('click', savePacking);
 if (loadBtn) loadBtn.addEventListener('click', loadPacking);
 if (clearBtn) clearBtn.addEventListener('click', clearScreenOnly);
 loadPacking();
+window.addEventListener('load', function() {
+    openSubTab('restaurants');
+});
 </script>
 </body>
 </html>
