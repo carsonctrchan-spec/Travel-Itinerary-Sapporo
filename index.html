@@ -613,59 +613,227 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// === 切換編輯表單 ===
-function toggleEdit(day) {
-  const form = document.getElementById(`edit-form-${day}`);
-  form.style.display = form.style.display === 'block' ? 'none' : 'block';
+// 分頁切換
+function openTab(tab) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`)?.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// === 儲存到 Firestore 並即時更新畫面 ===
-async function saveDay(day) {
-  const titleInput = document.getElementById(`edit-title-${day}`);
-  const subtitleInput = document.getElementById(`edit-subtitle-${day}`);
+// 顯示詳細日程表（完整格式 + 編輯區域）
+function showDetail(day) {
+  document.getElementById('detail-content').innerHTML = '<p style="text-align:center;padding:3rem;color:#999;">載入詳細日程中...</p>';
 
-  const newTitle = titleInput.value.trim();
-  const newSubtitle = subtitleInput.value.trim();
+  // 從 Firestore 抓取（若無則用預設）
+  db.collection("detailed_days").doc(`day${day}`).get().then(doc => {
+    let data = doc.exists ? doc.data() : null;
+
+    // 預設內容（恢復完整格式）
+    const defaults = {
+      1: {
+        title: "Day 1　抵達＋電視塔夜景",
+        weather: "1月30日天氣預報（長期平均）：高溫 -4°C / 低溫 -11°C，多雲轉輕雪，降雪機率高",
+        snow: "市區積雪深度約 50-70 cm，適合夜景觀賞（基於歷史長期平均，2026年實際天氣請靠近日期再查詢即時預報）",
+        img: "https://www.japanholiday.net/wp-content/uploads/2023/12/tv-tower1.jpg",
+        steps: [
+          "14:20　抵達新千歲機場（取行李、海關約1小時）",
+          "15:30 – 16:30　JR快速Airport → 札幌站",
+          "17:00　酒店Check-in + 稍作休息",
+          "19:00 – 20:30　<span class=\"meal\">晚餐：湯咖喱 Garaku</span>",
+          "20:30 – 22:00　札幌電視塔觀景台"
+        ],
+        ticketLink: "https://www.tv-tower.co.jp/en/",
+        ticketText: "電視塔線上購票（建議提前）",
+        mapLink: "https://www.google.com/maps/dir/New+Chitose+Airport/Sapporo+TV+Tower"
+      },
+      // Day 2 完整恢復
+      2: {
+        title: "Day 2　小樽運河&天狗山展望台浪漫一日",
+        weather: "1月31日天氣預報（長期平均）：高溫 -3°C / 低溫 -10°C，輕雪為主",
+        snow: "小樽運河積雪約 50 cm，浪漫雪景（基於歷史長期平均）",
+        img: "https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80",
+        steps: [
+          "10:00　從Airbnb出發前往小樽（JR快速，約35分鐘）",
+          "10:45　抵達後參觀船見阪（經典陡坡雪景）",
+          "11:00　三角市場 用午餐（新鮮海鮮丼或壽司）",
+          "12:00　前往堺町通商店街 自由逛街",
+          "13:30　LeTAO本店（雙層起司蛋糕 + 買手信）",
+          "14:30　搭纜車上天狗山展望台（俯瞰小樽全景）",
+          "17:30　下山返回小樽運河 散步",
+          "18:30　<span class=\"meal\">晚餐：小樽世壺屋（高級懷石，需預約）</span>",
+          "20:00　搭JR返回Airbnb"
+        ],
+        ticketLink: "https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/",
+        ticketText: "世壺屋預約（強烈建議提前1個月）",
+        mapLink: "https://www.google.com/maps/dir/Sapporo+Station/Otaru+Station",
+        mapEmbed: "https://www.google.com/maps/d/u/0/embed?mid=1B4UsqKi94CEqa9RnnvxqZo_gEzJ57dc&ehbc=2E312F"
+      }
+3: {
+    title: "Day 3　定山溪溫泉放空",
+    weather: "2月1日天氣預報（長期平均）：高溫 -3°C / 低溫 -9°C，多雲偶雪",
+    snow: "溫泉區雪景優美，泡湯超療癒（基於歷史長期平均，2026年實際天氣請靠近日期再查詢即時預報）",
+    img: "https://img.bobblog.tw/webp/2019/Hokkaido/travel/hoheikyo-hot-springs/hoheikyo-hot-springs04.jpg.webp",
+    steps: [
+      "09:30 – 10:30　札幌站搭高速巴士前往定山溪（約60分鐘）",
+      "11:00　抵達後Check-in溫泉旅館或日歸溫泉",
+      "11:30 – 18:00　自由泡湯＋足湯街散步＋雪中溫泉小鎮漫步",
+      "18:30　<span class=\"meal\">晚餐：溫泉旅館懷石料理（推薦預約）</span>",
+      "20:00　返回札幌（巴士約60分鐘）或繼續住宿"
+    ],
+    ticketLink: "https://www.klook.com/zh-HK/activity/12748-jozankei-oncen-day-pass-sapporo/",
+    ticketText: "Klook 巴士＋溫泉套票（強推！）",
+    extraLink: "https://www.jozankei.jp/en/",
+    extraText: "定山溪官方旅遊網（英文）",
+    mapLink: "https://www.google.com/maps/dir/Sapporo+Station/Jozankei+Onsen"
+  },
+
+  // ──────────────────────────────────────────────
+  // Day 4 – 藻岩山滑雪場＋藻岩山夜景 (already updated by you earlier)
+  4: {
+    title: "Day 4　藻岩山滑雪場＋藻岩山夜景",
+    weather: "2月2日天氣預報（長期平均）：高溫 -3°C / 低溫 -9°C，晴間多雲",
+    snow: "藻岩山滑雪場積雪深度充足，適合初學者與夜滑（基於歷史長期平均）",
+    img: "https://resources.matcha-jp.com/resize/720x2000/2018/06/02-55560.webp",
+    steps: [
+      "09:00 – 16:00　藻岩山滑雪場（市中心最近的滑雪場，適合半天玩）",
+      "19:00 – 21:30　藻岩山纜車＋Mini纜車賞百萬夜景"
+    ],
+    ticketLinks: [
+      { text: "藻岩山滑雪場官方網站（中文）", url: "https://sapporo-moiwa.jp/zh-TW/" },
+      { text: "藻岩山纜車官方（英文）＋線上套票", url: "https://mt-moiwa.jp/" },
+      { text: "Klook 藻岩山纜車票（常有折扣）", url: "https://www.klook.com/zh-HK/activity/99611-mt-moiwa-ropeway/" }
+    ],
+    mapLink: "https://www.google.com/maps/place/Mount+Moiwa+Ropeway"
+  },
+
+  // ──────────────────────────────────────────────
+  // Day 5 – 盤溪滑雪場＋狸小路夜景
+  5: {
+    title: "Day 5　盤溪滑雪場＋狸小路夜景",
+    weather: "2月3日天氣預報（長期平均）：高溫 -2°C / 低溫 -9°C，輕雪",
+    snow: "粉雪良好，夜滑超讚（基於歷史長期平均）",
+    img: "https://www.skiing-hokkaido.com/img/bankei/map_bg02.jpg",
+    steps: [
+      "08:30 – 09:15　札幌站搭免費接駁巴士前往盤溪滑雪場",
+      "10:00 – 16:00+　租雪具＋滑雪（可延長夜滑至20:00）",
+      "17:30 – 22:30　返回市區，狸小路逛街＋居酒屋吃宵夜"
+    ],
+    ticketLinks: [
+      { text: "盤溪滑雪場官網＋即時雪況", url: "https://www.bankei.co.jp/home-english/" },
+      { text: "線上購票＋租雪具", url: "https://www.bankei.co.jp/rental-en/" }
+    ],
+    mapLink: "https://www.google.com/maps/dir/Sapporo+Station/Sapporo+Bankei+Ski+Area"
+  },
+
+  // ──────────────────────────────────────────────
+  // Day 6 – 雪祭開幕日狂歡！
+  6: {
+    title: "Day 6　雪祭開幕日狂歡！",
+    weather: "2月4日天氣預報（長期平均）：高溫 -3°C / 低溫 -9°C，雪花紛飛",
+    snow: "大通公園積雪 80 cm+，雪雕完美（基於歷史長期平均）",
+    img: "https://www.snowfes.com/assets/img/top/main_visual_pc.jpg", // 雪祭官方圖片（可換）
+    steps: [
+      "10:00 – 22:00　大通公園＋薄野會場＋Tsudome 三會場自由遊",
+      "19:00　<span class=\"meal\">晚餐：蟹本家 或 蟹吃到飽（強推開幕日！）</span>",
+      "晚上　欣賞雪雕點燈＋大倉山夜間點燈雪雕（超美）"
+    ],
+    ticketLinks: [
+      { text: "2026札幌雪祭官方網站（英文）", url: "https://www.snowfes.com/en/" },
+      { text: "大倉山夜間點燈雪雕（Klook）", url: "https://www.klook.com/zh-HK/activity/12748-okurayama-viewing-point-sapporo/" }
+    ],
+    mapLink: "https://www.google.com/maps/place/Odori+Park"
+  },
+
+  // ──────────────────────────────────────────────
+  // Day 7 – 掃貨＋返程
+  7: {
+    title: "Day 7　掃貨＋返程",
+    weather: "2月5日天氣預報（長期平均）：高溫 -3°C / 低溫 -10°C，多雲",
+    snow: "市區積雪 70 cm（基於歷史長期平均）",
+    img: "https://www.bring-you.info/imgs/2023/11/daimaru-shinsaibashi-2.jpg",
+    steps: [
+      "09:00 – 11:00　JR Tower、Stellar Place、大丸百貨最後掃貨",
+      "11:00 – 12:00　札幌站 → 新千歲機場（JR快速Airport）",
+      "12:00 – 14:00　<span class=\"meal\">機場午餐（拉麵道場或其他）</span>",
+      "13:00 前　建議抵達機場辦理登機（國際航班提前2小時）",
+      "15:20　HX691 起飛 → 20:40 抵達香港"
+    ],
+    ticketLinks: [
+      { text: "新千歲機場官方網站", url: "https://www.new-chitose-airport.jp/en/" },
+      { text: "機場商店地圖＋優惠券", url: "https://www.new-chitose-airport.jp/en/shop/" }
+    ],
+    mapLink: "https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport"
+  }
+};
+          const content = data || defaults[day] || {title: `Day ${day} 內容建設中...`, steps: []};
+
+    let stepsHtml = content.steps.map(step => `<div class="step">${step}</div>`).join('');
+
+    let html = `
+      <div class="detail-day">
+        <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">${content.title}</h2>
+        ${content.weather ? `<div class="weather-box"><strong>${content.weather}</strong></div>` : ''}
+        ${content.snow ? `<div class="snow-box"><strong>即時雪況預測：</strong> ${content.snow}</div>` : ''}
+        ${content.img ? `<img src="${content.img}" class="hero-img" alt="Day ${day}">` : ''}
+        ${stepsHtml}
+        ${content.ticketLink ? `<a href="${content.ticketLink}" target="_blank" class="ticket-link">${content.ticketText}</a>` : ''}
+        ${content.mapLink ? `<div class="links"><a href="${content.mapLink}" target="_blank" class="location-link">Google Maps 路線</a></div>` : ''}
+        ${content.mapEmbed ? `
+          <div class="map-container">
+            <iframe src="${content.mapEmbed}" allowfullscreen="" loading="lazy"></iframe>
+            <p style="font-size:0.9rem;color:#666;margin-top:0.5rem;text-align:center;">地圖（可縮放查看詳情）</p>
+          </div>
+        ` : ''}
+
+        <!-- 編輯區域 -->
+        <div class="edit-section">
+          <h3>編輯此日詳細日程</h3>
+          <input type="text" id="edit-title-${day}" value="${content.title}" placeholder="修改大標題">
+          <textarea id="edit-steps-${day}" rows="12" placeholder="每行一個步驟，例如：19:00 – 20:30　晚餐：湯咖喱 Garaku">${content.steps.join('\n')}</textarea>
+          <button onclick="saveDetail(${day})">儲存更新</button>
+          <p style="font-size:0.9rem;color:#666;margin-top:1rem;">修改後點擊儲存，頁面會即時更新</p>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('detail-content').innerHTML = html;
+  }).catch(err => {
+    console.error(err);
+    document.getElementById('detail-content').innerHTML = '<p style="text-align:center;padding:3rem;color:#e74c3c;">載入失敗</p>';
+  });
+
+  openTab('details');
+}
+
+// 儲存詳細日程
+async function saveDetail(day) {
+  const newTitle = document.getElementById(`edit-title-${day}`).value.trim();
+  const stepsText = document.getElementById(`edit-steps-${day}`).value.trim();
 
   if (!newTitle) {
     alert("標題不能空白！");
     return;
   }
 
+  const newSteps = stepsText.split('\n').map(s => s.trim()).filter(s => s);
+
   try {
-    await db.collection("itineraries").doc(`day${day}`).set({
-      dayNumber: parseInt(day),
-      dateTitle: newTitle,
-      subtitle: newSubtitle,
+    await db.collection("detailed_days").doc(`day${day}`).set({
+      title: newTitle,
+      steps: newSteps,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     }, { merge: true });
 
-    alert("已更新！");
-
-    // 即時更新畫面
-    const dayBox = document.querySelector(`.day[data-day="${day}"]`);
-    dayBox.querySelector('h2').textContent = newTitle;
-
-    let subtitleP = dayBox.querySelector('.subtitle');
-    if (newSubtitle) {
-      if (!subtitleP) {
-        subtitleP = document.createElement('p');
-        subtitleP.className = 'subtitle';
-        subtitleP.style = "color:#8B4513;margin:1rem 0;font-size:1.1rem;";
-        dayBox.querySelector('h2').after(subtitleP);
-      }
-      subtitleP.textContent = newSubtitle;
-    } else if (subtitleP) {
-      subtitleP.remove();
-    }
-
-    // 關閉表單
-    document.getElementById(`edit-form-${day}`).style.display = 'none';
+    alert("詳細日程已更新！");
+    showDetail(day); // 重新渲染
   } catch (e) {
-    console.error("儲存失敗:", e);
-    alert("更新失敗，請檢查網路連線");
+    console.error("Save error:", e);
+    alert("儲存失敗，請檢查網路");
   }
 }
+          
 function openTab(tab) {
   document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
   document.getElementById(tab).classList.add('active');
