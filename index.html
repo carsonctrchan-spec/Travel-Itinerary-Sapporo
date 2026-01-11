@@ -8,7 +8,6 @@
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 
 <style>
     :root {
@@ -66,32 +65,10 @@
         display: none;
     }
     .content.active { display: block; }
-    .sub-tabs {
-        margin: 1.5rem 0 1rem;
-        display: flex;
-        justify-content: center;
-        border-bottom: 2px solid var(--pink);
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-    .sub-tab-btn {
-        background: #fff;
-        padding: 0.7rem 1.2rem;
-        font-size: 1.1rem;
-        cursor: pointer;
-        border-radius: 12px 12px 0 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        font-weight: bold;
-        flex: 1 1 120px;
-        max-width: 200px;
-        text-align: center;
-    }
-    .sub-tab-btn.active { background: var(--pink); color: #333; }
-    .sub-content { display: none; }
-    .sub-content.active { display: block; }
     .day {
+        position: relative;
         background: white;
-        padding: 1.8rem;
+        padding: 1.8rem 2.5rem 1.8rem 1.8rem;
         border-radius: 18px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         margin-bottom: 1.6rem;
@@ -102,79 +79,43 @@
         margin: 0 0 1rem;
         color: var(--romantic);
     }
-    .big-btn {
-        background: var(--pink);
+    .edit-btn {
+        position: absolute;
+        top: 1.2rem;
+        right: 1.2rem;
+        background: #FFD700;
         color: #333;
-        padding: 1.2rem;
-        font-size: 1.4rem;
-        width: 100%;
         border: none;
-        border-radius: 14px;
-        margin-top: 1rem;
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
         cursor: pointer;
+        font-size: 0.95rem;
         font-weight: bold;
     }
-    .big-btn:hover { background: var(--romantic); color: white; }
-    .detail-day {
-        background: white;
-        padding: 1.8rem;
-        border-radius: 20px;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-        margin: 1.5rem auto;
-        border: 1px solid var(--pink);
-    }
-    .hero-img {
-        width: 100%;
-        max-height: 300px;
-        object-fit: cover;
-        border-radius: 18px;
-        margin: 1rem 0;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    .weather-box {
-        background: #ffebee;
-        padding: 1rem;
-        border-radius: 10px;
-        margin: 1rem 0;
-        border-left: 5px solid var(--pink);
-        font-size: 0.95rem;
-    }
-    .snow-box {
-        background: #fff0f8;
-        padding: 1rem;
-        border-radius: 10px;
-        margin: 1rem 0;
-        border-left: 5px solid var(--romantic);
-        font-size: 0.95rem;
-    }
-    .step {
-        margin: 1.2rem 0;
+    .edit-form {
+        display: none;
+        margin-top: 1.5rem;
         padding: 1.2rem;
         background: #fff0f8;
-        border-left: 6px solid var(--pink);
-        border-radius: 10px;
-        font-size: 1rem;
-    }
-    .time { color: var(--romantic); font-weight: bold; font-size: 1.05rem; }
-    .meal { font-weight: bold; color: var(--romantic); }
-    .ticket-link {
-        display: block;
-        background: var(--romantic);
-        color: white;
-        padding: 1rem;
-        text-align: center;
         border-radius: 12px;
-        font-weight: bold;
-        margin: 1rem 0;
+    }
+    .edit-form input, .edit-form textarea {
+        width: 100%;
+        padding: 0.8rem;
+        margin: 0.6rem 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
         font-size: 1rem;
     }
-    .location-card {
-        background: white;
-        padding: 1.4rem;
-        border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        margin-bottom: 1.4rem;
-        border-left: 6px solid var(--pink);
+    .edit-form button {
+        background: var(--pink);
+        color: white;
+        border: none;
+        padding: 0.9rem 1.3rem;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 0.8rem;
     }
     .back-to-overview {
         display: block;
@@ -191,38 +132,21 @@
         box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         cursor: pointer;
     }
-  .admin-section {
-        display: none;
-        margin: 3rem auto;
-        padding: 2rem;
-        background: #fff0f8;
-        border-radius: 16px;
-        max-width: 900px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    }
-    .admin-form {
-        margin-top: 1.5rem;
-    }
-    .admin-form input, .admin-form textarea {
-        width: 100%;
-        padding: 0.8rem;
-        margin: 0.6rem 0;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 1rem;
-    }
-    .admin-form button {
+    .back-top {
+        display: block;
+        width: 90%;
+        max-width: 400px;
+        margin: 3rem auto 2rem;
+        padding: 1.1rem;
         background: var(--pink);
         color: white;
-        border: none;
-        padding: 1rem;
-        font-size: 1.1rem;
-        border-radius: 10px;
+        text-align: center;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         cursor: pointer;
-        margin-top: 1rem;
-    }
-    .back-top { display: none; } /* 預設隱藏置頂，只在總覽顯示 */
-    #overview .back-top { display: block; } /* 只在總覽顯示置頂 */
+    .content:not(#overview) .back-top { display: none; }
 </style>
 </head>
 <body>
@@ -242,7 +166,8 @@
 <!-- 行程資訊 (格式優化) -->
 <div id="info" class="content">
     <div style="max-width:950px;margin:0 auto;">
-        <h2 style="text-align:center;color:var(--romantic);margin:2rem 0 1.5rem;font-size:2rem;">行程基本資訊</h2>        <img src="https://static.gltjp.com/glt/data/article/21000/20215/20230530_012727_96baf0af_w1920.webp" class="hero-img-top" alt="札幌雪祭大雪雕">
+        <h2 style="text-align:center;color:var(--romantic);margin:2.5rem 0 1.5rem;font-size:2.2rem;">行程基本資訊</h2>
+        <img src="https://static.gltjp.com/glt/data/article/21000/20215/20230530_012727_96baf0af_w1920.webp" class="hero-img-top" alt="札幌雪祭大雪雕">
         
         <div class="info-card">
             <h2>航班資訊</h2>
@@ -302,24 +227,97 @@
     </div>
 </div>
 
-<!-- 總覽 -->
+<!-- 總覽：靜態預設 + 可編輯 -->
 <div id="overview" class="content active">
     <div style="max-width:900px;margin:0 auto;" id="overview-content">
-        <div class="day"><h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2><button class="big-btn" onclick="showDetail(1)">查看詳細時間軸</button></div>
-        <div class="day"><h2>1月31日 (六) Day 2　小樽運河&天狗山展望台浪漫一日</h2>
-            <p style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">下午茶：LeTAO本店　｜　晚餐：世壺屋</p>
-            <button class="big-btn" onclick="showDetail(2)">查看詳細時間軸</button></div>
-        <div class="day"><h2>2月1日 (日) Day 3　定山溪溫泉放空</h2><button class="big-btn" onclick="showDetail(3)">查看詳細時間軸</button></div>
-        <div class="day"><h2>2月2日 (一) Day 4　藻岩山滑雪場＋藻岩山夜景</h2><button class="big-btn" onclick="showDetail(4)">查看詳細時間軸</button></div>
-        <div class="day"><h2>2月3日 (二) Day 5　盤溪滑雪場＋狸小路夜景</h2><button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button></div>
-        <div class="day" style="border-left:16px solid var(--red);"><h2>2月4日 (三) Day 6　雪祭開幕日狂歡！</h2><button class="big-btn" style="background:var(--red);color:white;" onclick="showDetail(6)">立即查看</button></div>
-        <div class="day"><h2>2月5日 (四) Day 7　掃貨＋返程</h2><button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button></div>
-    </div>
-<p style="text-align:center;color:#666;">載入行程中...</p>
-    </div>
-    <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-top">置頂</div>
-</div>
+        <!-- Day 1 -->
+        <div class="day" data-day="1">
+            <h2>1月30日 (五) Day 1　抵達＋電視塔夜景</h2>
+            <button class="big-btn" onclick="showDetail(1)">查看詳細時間軸</button>
+            <button class="edit-btn" onclick="toggleEdit(1)">編輯</button>
+            <div class="edit-form" id="edit-form-1">
+                <input type="text" id="edit-title-1" value="1月30日 (五) Day 1　抵達＋電視塔夜景" placeholder="標題">
+                <input type="text" id="edit-subtitle-1" value="" placeholder="副標題（可選）">
+                <button onclick="saveDay(1)">儲存</button>
+            </div>
+        </div>
 
+        <!-- Day 2 -->
+        <div class="day" data-day="2">
+            <h2>1月31日 (六) Day 2　小樽運河&天狗山展望台浪漫一日</h2>
+            <p class="subtitle" style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">下午茶：LeTAO本店　｜　晚餐：世壺屋</p>
+            <button class="big-btn" onclick="showDetail(2)">查看詳細時間軸</button>
+            <button class="edit-btn" onclick="toggleEdit(2)">編輯</button>
+            <div class="edit-form" id="edit-form-2">
+                <input type="text" id="edit-title-2" value="1月31日 (六) Day 2　小樽運河&天狗山展望台浪漫一日" placeholder="標題">
+                <input type="text" id="edit-subtitle-2" value="下午茶：LeTAO本店　｜　晚餐：世壺屋" placeholder="副標題（可選）">
+                <button onclick="saveDay(2)">儲存</button>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day" data-day="3">
+            <h2>2月1日 (日) Day 3　定山溪溫泉放空</h2>
+            <button class="big-btn" onclick="showDetail(3)">查看詳細時間軸</button>
+            <button class="edit-btn" onclick="toggleEdit(3)">編輯</button>
+            <div class="edit-form" id="edit-form-3">
+                <input type="text" id="edit-title-3" value="2月1日 (日) Day 3　定山溪溫泉放空" placeholder="標題">
+                <input type="text" id="edit-subtitle-3" value="" placeholder="副標題（可選）">
+                <button onclick="saveDay(3)">儲存</button>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day" data-day="4">
+            <h2>2月2日 (一) Day 4　藻岩山滑雪場＋藻岩山夜景</h2>
+            <button class="big-btn" onclick="showDetail(4)">查看詳細時間軸</button>
+            <button class="edit-btn" onclick="toggleEdit(4)">編輯</button>
+            <div class="edit-form" id="edit-form-4">
+                <input type="text" id="edit-title-4" value="2月2日 (一) Day 4　藻岩山滑雪場＋藻岩山夜景" placeholder="標題">
+                <input type="text" id="edit-subtitle-4" value="" placeholder="副標題（可選）">
+                <button onclick="saveDay(4)">儲存</button>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day" data-day="5">
+            <h2>2月3日 (二) Day 5　盤溪滑雪場＋狸小路夜景</h2>
+            <button class="big-btn" onclick="showDetail(5)">查看詳細時間軸</button>
+            <button class="edit-btn" onclick="toggleEdit(5)">編輯</button>
+            <div class="edit-form" id="edit-form-5">
+                <input type="text" id="edit-title-5" value="2月3日 (二) Day 5　盤溪滑雪場＋狸小路夜景" placeholder="標題">
+                <input type="text" id="edit-subtitle-5" value="" placeholder="副標題（可選）">
+                <button onclick="saveDay(5)">儲存</button>
+            </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="day" data-day="6" style="border-left:16px solid var(--red);">
+            <h2>2月4日 (三) Day 6　雪祭開幕日狂歡！</h2>
+            <button class="big-btn" style="background:var(--red);color:white;" onclick="showDetail(6)">立即查看</button>
+            <button class="edit-btn" onclick="toggleEdit(6)">編輯</button>
+            <div class="edit-form" id="edit-form-6">
+                <input type="text" id="edit-title-6" value="2月4日 (三) Day 6　雪祭開幕日狂歡！" placeholder="標題">
+                <input type="text" id="edit-subtitle-6" value="" placeholder="副標題（可選）">
+                <button onclick="saveDay(6)">儲存</button>
+            </div>
+        </div>
+
+        <!-- Day 7 -->
+        <div class="day" data-day="7">
+            <h2>2月5日 (四) Day 7　掃貨＋返程</h2>
+            <button class="big-btn" onclick="showDetail(7)">查看詳細時間軸</button>
+            <button class="edit-btn" onclick="toggleEdit(7)">編輯</button>
+            <div class="edit-form" id="edit-form-7">
+                <input type="text" id="edit-title-7" value="2月5日 (四) Day 7　掃貨＋返程" placeholder="標題">
+                <input type="text" id="edit-subtitle-7" value="" placeholder="副標題（可選）">
+                <button onclick="saveDay(7)">儲存</button>
+            </div>
+        </div>
+
+        <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-top">置頂</div>
+    </div>
+</div>
 <!-- 詳細日程表 -->
 <div id="details" class="content">
     <div id="detail-content" style="max-width:1000px;margin:0 auto;"></div>
@@ -615,54 +613,48 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// 登入狀態：顯示編輯按鈕
-firebase.auth().onAuthStateChanged(user => {
-  document.body.classList.toggle('admin-logged-in', !!user);
-  document.getElementById('admin-section').style.display = user ? 'block' : 'none';
-  if (user) document.getElementById('user-email').textContent = user.email;
-});
-
-// 開啟編輯表單
-function editDay(day, currentTitle, currentSubtitle) {
+// === 切換編輯表單 ===
+function toggleEdit(day) {
   const form = document.getElementById(`edit-form-${day}`);
   form.style.display = form.style.display === 'block' ? 'none' : 'block';
-  document.getElementById(`edit-title-${day}`).value = currentTitle;
-  document.getElementById(`edit-subtitle-${day}`).value = currentSubtitle;
 }
 
-// 儲存到 Firestore 並更新畫面
+// === 儲存到 Firestore 並即時更新畫面 ===
 async function saveDay(day) {
-  const title = document.getElementById(`edit-title-${day}`).value.trim();
-  const subtitle = document.getElementById(`edit-subtitle-${day}`).value.trim();
+  const titleInput = document.getElementById(`edit-title-${day}`);
+  const subtitleInput = document.getElementById(`edit-subtitle-${day}`);
 
-  if (!title) {
+  const newTitle = titleInput.value.trim();
+  const newSubtitle = subtitleInput.value.trim();
+
+  if (!newTitle) {
     alert("標題不能空白！");
     return;
   }
 
   try {
     await db.collection("itineraries").doc(`day${day}`).set({
-      dayNumber: day,
-      dateTitle: title,
-      subtitle: subtitle,
+      dayNumber: parseInt(day),
+      dateTitle: newTitle,
+      subtitle: newSubtitle,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     }, { merge: true });
 
     alert("已更新！");
 
-    // 更新畫面（不用重載整個頁面）
-    const dayBox = document.querySelector(`.day[data-day="${day}"] h2`);
-    dayBox.textContent = title;
-    const subtitleP = dayBox.parentElement.querySelector('p');
-    if (subtitle) {
+    // 即時更新畫面
+    const dayBox = document.querySelector(`.day[data-day="${day}"]`);
+    dayBox.querySelector('h2').textContent = newTitle;
+
+    let subtitleP = dayBox.querySelector('.subtitle');
+    if (newSubtitle) {
       if (!subtitleP) {
-        const p = document.createElement('p');
-        p.style = "color:#8B4513;margin:1rem 0;font-size:1.1rem;";
-        p.textContent = subtitle;
-        dayBox.after(p);
-      } else {
-        subtitleP.textContent = subtitle;
+        subtitleP = document.createElement('p');
+        subtitleP.className = 'subtitle';
+        subtitleP.style = "color:#8B4513;margin:1rem 0;font-size:1.1rem;";
+        dayBox.querySelector('h2').after(subtitleP);
       }
+      subtitleP.textContent = newSubtitle;
     } else if (subtitleP) {
       subtitleP.remove();
     }
@@ -670,10 +662,18 @@ async function saveDay(day) {
     // 關閉表單
     document.getElementById(`edit-form-${day}`).style.display = 'none';
   } catch (e) {
-    console.error("Save error:", e);
-    alert("更新失敗，請檢查網路");
+    console.error("儲存失敗:", e);
+    alert("更新失敗，請檢查網路連線");
   }
 }
+function openTab(tab) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`)?.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
 function showDetail(day) {
   const details = {
   1: `<div class="detail-day">
