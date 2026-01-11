@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026 札幌雪祭 7 天行程</title>
 
-<!-- Firebase SDK -->
+<!-- Firebase SDK (compat version - works perfectly in plain HTML) -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 
 <style>
     :root {
@@ -29,46 +30,68 @@
     .header {
         background: linear-gradient(135deg, var(--pink), var(--romantic));
         color: white;
-        padding: 2.5rem 1rem;
+        padding: 2rem 1rem;
         text-align: center;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    .header h1 { font-size: 2.2rem; margin: 0 0 0.5rem; }
-    .header p { font-size: 1.4rem; margin: 0; }
+    .header h1 { font-size: 1.9rem; margin: 0; }
+    .header p { font-size: 1.3rem; margin: 0.5rem 0 0; }
     .tabs {
         max-width: 100%;
-        margin: 2rem auto 1.5rem;
+        margin: 1.5rem auto 1rem;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         border-bottom: 4px solid var(--pink);
         padding: 0 1rem;
-        gap: 0.6rem;
+        gap: 0.5rem;
     }
     .tab-btn {
         background: #fff;
-        padding: 1rem 1.4rem;
-        font-size: 1.3rem;
+        padding: 0.9rem 1.2rem;
+        font-size: 1.25rem;
         cursor: pointer;
         border-radius: 15px 15px 0 0;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         font-weight: bold;
-        flex: 1 1 150px;
-        max-width: 200px;
+        flex: 1 1 140px;
+        max-width: 180px;
         text-align: center;
     }
     .tab-btn.active { background: var(--pink); color: #333; }
     .content {
         max-width: 1100px;
-        margin: 0 auto 4rem;
-        padding: 0 1.5rem;
+        margin: 0 auto 3rem;
+        padding: 0 1rem;
         display: none;
     }
     .content.active { display: block; }
+    .sub-tabs {
+        margin: 1.5rem 0 1rem;
+        display: flex;
+        justify-content: center;
+        border-bottom: 2px solid var(--pink);
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .sub-tab-btn {
+        background: #fff;
+        padding: 0.7rem 1.2rem;
+        font-size: 1.1rem;
+        cursor: pointer;
+        border-radius: 12px 12px 0 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        font-weight: bold;
+        flex: 1 1 120px;
+        max-width: 200px;
+        text-align: center;
+    }
+    .sub-tab-btn.active { background: var(--pink); color: #333; }
+    .sub-content { display: none; }
+    .sub-content.active { display: block; }
     .day {
-        position: relative;
         background: white;
-        padding: 1.8rem 2.5rem 1.8rem 1.8rem;
+        padding: 1.8rem;
         border-radius: 18px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         margin-bottom: 1.6rem;
@@ -79,43 +102,79 @@
         margin: 0 0 1rem;
         color: var(--romantic);
     }
-    .edit-btn {
-        position: absolute;
-        top: 1.2rem;
-        right: 1.2rem;
-        background: #FFD700;
+    .big-btn {
+        background: var(--pink);
         color: #333;
+        padding: 1.2rem;
+        font-size: 1.4rem;
+        width: 100%;
         border: none;
-        padding: 0.6rem 1rem;
-        border-radius: 8px;
+        border-radius: 14px;
+        margin-top: 1rem;
         cursor: pointer;
-        font-size: 0.95rem;
         font-weight: bold;
     }
-    .edit-form {
-        display: none;
-        margin-top: 1.5rem;
+    .big-btn:hover { background: var(--romantic); color: white; }
+    .detail-day {
+        background: white;
+        padding: 1.8rem;
+        border-radius: 20px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        margin: 1.5rem auto;
+        border: 1px solid var(--pink);
+    }
+    .hero-img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 18px;
+        margin: 1rem 0;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .weather-box {
+        background: #ffebee;
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        border-left: 5px solid var(--pink);
+        font-size: 0.95rem;
+    }
+    .snow-box {
+        background: #fff0f8;
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        border-left: 5px solid var(--romantic);
+        font-size: 0.95rem;
+    }
+    .step {
+        margin: 1.2rem 0;
         padding: 1.2rem;
         background: #fff0f8;
-        border-radius: 12px;
-    }
-    .edit-form input, .edit-form textarea {
-        width: 100%;
-        padding: 0.8rem;
-        margin: 0.6rem 0;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 1rem;
-    }
-    .edit-form button {
-        background: var(--pink);
-        color: white;
-        border: none;
-        padding: 0.9rem 1.3rem;
+        border-left: 6px solid var(--pink);
         border-radius: 10px;
-        cursor: pointer;
         font-size: 1rem;
-        margin-top: 0.8rem;
+    }
+    .time { color: var(--romantic); font-weight: bold; font-size: 1.05rem; }
+    .meal { font-weight: bold; color: var(--romantic); }
+    .ticket-link {
+        display: block;
+        background: var(--romantic);
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        border-radius: 12px;
+        font-weight: bold;
+        margin: 1rem 0;
+        font-size: 1rem;
+    }
+    .location-card {
+        background: white;
+        padding: 1.4rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        margin-bottom: 1.4rem;
+        border-left: 6px solid var(--pink);
     }
     .back-to-overview {
         display: block;
@@ -132,21 +191,23 @@
         box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         cursor: pointer;
     }
-    .back-top {
-        display: block;
-        width: 90%;
-        max-width: 400px;
-        margin: 3rem auto 2rem;
-        padding: 1.1rem;
-        background: var(--pink);
-        color: white;
+    .admin-section {
+        display: none;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background: #fff0f8;
+        border-radius: 12px;
+        max-width: 800px;
         text-align: center;
-        border-radius: 50px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        cursor: pointer;
-    .content:not(#overview) .back-top { display: none; }
+    }
+    @media (max-width: 768px) {
+        body { font-size: 15px; }
+        .header { padding: 1.5rem 1rem; }
+        .header h1 { font-size: 1.6rem; }
+        .tab-btn { font-size: 1.15rem; padding: 0.8rem 1rem; flex: 1 1 130px; max-width: 160px; }
+        .sub-tab-btn { font-size: 1.05rem; padding: 0.7rem 1rem; flex: 1 1 130px; max-width: 180px; }
+        .hero-img { max-height: 220px; }
+    }
 </style>
 </head>
 <body>
@@ -613,10 +674,118 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// === 修正後的單一 showDetail 函數（格式完整 + 所有天） ===
-function showDetail(day) {
-  document.getElementById('detail-content').innerHTML = '<p style="text-align:center;padding:3rem;color:#999;">載入詳細日程中...</p>';
+// 啟用離線支援
+db.enablePersistence().catch(err => {
+  console.warn("Persistence error:", err);
+});
 
+// === 登入狀態監聽 ===
+firebase.auth().onAuthStateChanged(user => {
+  const adminSection = document.getElementById('admin-section');
+  if (user) {
+    adminSection.style.display = 'block';
+    document.getElementById('user-email').textContent = user.email;
+  } else {
+    adminSection.style.display = 'none';
+  }
+});
+
+// === 載入總覽行程 ===
+async function loadOverview() {
+  try {
+    const snapshot = await db.collection("itineraries")
+      .orderBy("dayNumber")
+      .get();
+    let html = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      html += `
+        <div class="day">
+          <h2>${data.dateTitle}</h2>
+          ${data.subtitle ? `<p style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">${data.subtitle}</p>` : ''}
+          <button class="big-btn" onclick="showDetail(${data.dayNumber})">查看詳細時間軸</button>
+        </div>
+      `;
+    });
+    document.getElementById('overview-content').innerHTML = 
+      html || '<p style="text-align:center;color:#e74c3c;">暫無行程資料</p>';
+  } catch (error) {
+    console.error("Overview loading error:", error);
+    document.getElementById('overview-content').innerHTML = 
+      '<p style="text-align:center;color:#e74c3c;">載入失敗，請檢查網路或 Firebase 設定</p>';
+  }
+}
+
+// === 載入景點 ===
+async function loadAttractions() {
+  try {
+    const snapshot = await db.collection("attractions")
+      .orderBy("order")
+      .get();
+    let html = '';
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      html += `
+        <div class="location-card">
+          <h3><a href="${d.googleMaps || '#'}" target="_blank">${d.name}</a></h3>
+          <div class="time">${d.time || ''}</div>
+          <div class="desc">${d.desc}</div>
+          ${d.link ? `<a href="${d.link}" target="_blank">官方網站</a>` : ''}
+        </div>
+      `;
+    });
+    document.getElementById('attractions').innerHTML = 
+      html || '<p style="text-align:center;color:#666;">暫無景點資料</p>';
+  } catch (error) {
+    console.error("Attractions error:", error);
+  }
+}
+
+// === 載入餐廳 ===
+async function loadRestaurants() {
+  try {
+    const snapshot = await db.collection("restaurants")
+      .orderBy("order")
+      .get();
+    let html = '';
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      html += `
+        <div class="location-card">
+          <h3><a href="${d.googleMaps || '#'}" target="_blank">${d.name}</a></h3>
+          <div class="time">營業時間：${d.time}</div>
+          <div class="desc">${d.desc}</div>
+          <div class="price">建議價格：${d.price}</div>
+          <a href="${d.tabelogLink || '#'}" target="_blank">Tabelog 連結</a>
+        </div>
+      `;
+    });
+    document.getElementById('restaurants').innerHTML = 
+      html || '<p style="text-align:center;color:#666;">暫無餐廳資料</p>';
+  } catch (error) {
+    console.error("Restaurants error:", error);
+  }
+}
+
+// === 分頁與子分頁切換 ===
+function openTab(tab){
+    document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+    document.getElementById(tab).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function openSubTab(subtab){
+    document.querySelectorAll('.sub-content').forEach(c=>c.classList.remove('active'));
+    document.getElementById(subtab).classList.add('active');
+    document.querySelectorAll('.sub-tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
+}
+
+// === 詳細日程表 (目前靜態，可未來改成從 Firestore 載入) ===
+function showDetail(day){
+    const details = {
   // 從 Firestore 讀取（未來可擴充），目前用靜態預設
   const details = {
     1: `<div class="detail-day">
@@ -717,19 +886,19 @@ function showDetail(day) {
       <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
       <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div>
     </div>`
-  };
+};
 
-  document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
-  openTab('details');
+    document.getElementById('detail-content').innerHTML = 
+        details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
+    openTab('details');
 }
 
 // === 頁面載入時自動執行 ===
 document.addEventListener('DOMContentLoaded', () => {
-  loadOverview();
-  loadAttractions();
-  loadRestaurants();
+    loadOverview();
+    loadAttractions();
+    loadRestaurants();
 });
-    
 // === 裝備清單儲存功能 ===
 const checkboxes = document.querySelectorAll('.pack-item');
 const saveBtn = document.getElementById('savePacking');
