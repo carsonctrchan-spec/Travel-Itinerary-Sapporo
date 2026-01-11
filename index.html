@@ -673,119 +673,17 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
-// 啟用離線支援
-db.enablePersistence().catch(err => {
-  console.warn("Persistence error:", err);
-});
-
-// === 登入狀態監聽 ===
-firebase.auth().onAuthStateChanged(user => {
-  const adminSection = document.getElementById('admin-section');
-  if (user) {
-    adminSection.style.display = 'block';
-    document.getElementById('user-email').textContent = user.email;
-  } else {
-    adminSection.style.display = 'none';
-  }
-});
-
-// === 載入總覽行程 ===
-async function loadOverview() {
-  try {
-    const snapshot = await db.collection("itineraries")
-      .orderBy("dayNumber")
-      .get();
-    let html = '';
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      html += `
-        <div class="day">
-          <h2>${data.dateTitle}</h2>
-          ${data.subtitle ? `<p style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">${data.subtitle}</p>` : ''}
-          <button class="big-btn" onclick="showDetail(${data.dayNumber})">查看詳細時間軸</button>
-        </div>
-      `;
-    });
-    document.getElementById('overview-content').innerHTML = 
-      html || '<p style="text-align:center;color:#e74c3c;">暫無行程資料</p>';
-  } catch (error) {
-    console.error("Overview loading error:", error);
-    document.getElementById('overview-content').innerHTML = 
-      '<p style="text-align:center;color:#e74c3c;">載入失敗，請檢查網路或 Firebase 設定</p>';
-  }
+function openTab(tab) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`)?.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
 }
+// === 修正後的單一 showDetail 函數（格式完整 + 所有天） ===
+function showDetail(day) {
+  document.getElementById('detail-content').innerHTML = '<p style="text-align:center;padding:3rem;color:#999;">載入詳細日程中...</p>';
 
-// === 載入景點 ===
-async function loadAttractions() {
-  try {
-    const snapshot = await db.collection("attractions")
-      .orderBy("order")
-      .get();
-    let html = '';
-    snapshot.forEach(doc => {
-      const d = doc.data();
-      html += `
-        <div class="location-card">
-          <h3><a href="${d.googleMaps || '#'}" target="_blank">${d.name}</a></h3>
-          <div class="time">${d.time || ''}</div>
-          <div class="desc">${d.desc}</div>
-          ${d.link ? `<a href="${d.link}" target="_blank">官方網站</a>` : ''}
-        </div>
-      `;
-    });
-    document.getElementById('attractions').innerHTML = 
-      html || '<p style="text-align:center;color:#666;">暫無景點資料</p>';
-  } catch (error) {
-    console.error("Attractions error:", error);
-  }
-}
-
-// === 載入餐廳 ===
-async function loadRestaurants() {
-  try {
-    const snapshot = await db.collection("restaurants")
-      .orderBy("order")
-      .get();
-    let html = '';
-    snapshot.forEach(doc => {
-      const d = doc.data();
-      html += `
-        <div class="location-card">
-          <h3><a href="${d.googleMaps || '#'}" target="_blank">${d.name}</a></h3>
-          <div class="time">營業時間：${d.time}</div>
-          <div class="desc">${d.desc}</div>
-          <div class="price">建議價格：${d.price}</div>
-          <a href="${d.tabelogLink || '#'}" target="_blank">Tabelog 連結</a>
-        </div>
-      `;
-    });
-    document.getElementById('restaurants').innerHTML = 
-      html || '<p style="text-align:center;color:#666;">暫無餐廳資料</p>';
-  } catch (error) {
-    console.error("Restaurants error:", error);
-  }
-}
-
-// === 分頁與子分頁切換 ===
-function openTab(tab){
-    document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
-    document.getElementById(tab).classList.add('active');
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelector(`.tab-btn[onclick="openTab('${tab}')"]`).classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function openSubTab(subtab){
-    document.querySelectorAll('.sub-content').forEach(c=>c.classList.remove('active'));
-    document.getElementById(subtab).classList.add('active');
-    document.querySelectorAll('.sub-tab-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelector(`.sub-tab-btn[onclick="openSubTab('${subtab}')"]`).classList.add('active');
-}
-
-// === 詳細日程表 (目前靜態，可未來改成從 Firestore 載入) ===
-function showDetail(day){
-    const details = {
   // 從 Firestore 讀取（未來可擴充），目前用靜態預設
   const details = {
     1: `<div class="detail-day">
@@ -886,11 +784,10 @@ function showDetail(day){
       <a href="https://www.new-chitose-airport.jp/en/shop/" target="_blank" class="ticket-link">機場商店地圖＋優惠券</a>
       <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/New+Chitose+Airport" target="_blank" class="location-link">機場路線</a></div>
     </div>`
-};
+  };
 
-    document.getElementById('detail-content').innerHTML = 
-        details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
-    openTab('details');
+  document.getElementById('detail-content').innerHTML = details[day] || '<p style="text-align:center;padding:2rem;color:#999;">此日內容建設中...</p>';
+  openTab('details');
 }
 
 // === 頁面載入時自動執行 ===
