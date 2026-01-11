@@ -283,8 +283,15 @@ Here is your **original script** with all Firebase-related code and all editing 
     <div style="max-width:900px;margin:0 auto;">
         <h2 style="text-align:center;color:var(--romantic);font-size:1.8rem;margin-bottom:1.5rem;">更多札幌推薦地點</h2>
         <div class="sub-tabs">
-            <div class="sub-tab-btn active" onclick="openSubTab('attractions')">景點</div>
-            <div class="sub-tab-btn" onclick="openSubTab('restaurants')">餐廳</div>
+            <div class="sub-tab-btn" onclick="openSubTab('attractions')">景點</div>
+            <div class="sub-tab-btn active" onclick="openSubTab('restaurants')">餐廳</div> <!-- 預設激活餐廳 -->
+        </div>
+
+        <!-- 景點 (隱藏預設) -->
+        <div id="attractions" class="sub-content">
+            <!-- 你的原有景點內容... 可以保留或留空 -->
+            <p style="text-align:center;color:#666;">景點內容（可自行添加）</p>
+            <div class="back-to-overview" onclick="openTab('overview')">返回總覽</div>
         </div>
         <div id="attractions" class="sub-content active">
         <div class="location-card">
@@ -369,7 +376,7 @@ Here is your **original script** with all Firebase-related code and all editing 
             返回總覽
         </div>
             <!-- 餐廳 - fully restored -->
-        <div id="restaurants" class="sub-content">
+    <div id="restaurants" class="sub-content">
             <div class="location-card">
                 <h3><a href="https://www.google.com/maps/search/?api=1&query=%E6%88%90%E5%90%89%E6%80%9D%E6%B1%97%E3%81%A0%E3%82%8B%E3%81%BE+%E6%9C%AC%E5%BA%97+Sapporo" target="_blank">成吉思汗だるま 本店</a></h3>
                 <div class="time">營業時間：11:30–23:00</div>
