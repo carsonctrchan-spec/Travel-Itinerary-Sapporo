@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-HK">
+    <!-- Firebase App (core) + Firestore -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -464,6 +467,126 @@
 </div>
 
 <script>
+    // === Firebase Initialization ===
+const firebaseConfig = {
+  apiKey: "AIzaSyDw5defPn2jhlbfrsSdyl7mnXyN2UAg4II",
+  authDomain: "travel-6f14d.firebaseapp.com",
+  projectId: "travel-6f14d",
+  storageBucket: "travel-6f14d.firebasestorage.app",
+  messagingSenderId: "951369938502",
+  appId: "1:951369938502:web:9f0dfc1fadd5ad9b03bc47",
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Optional: Enable offline persistence (good for mobile)
+db.enablePersistence().catch(err => {
+  if (err.code === 'failed-precondition') {
+    console.warn("Multiple tabs open, persistence can only be enabled in one tab");
+  } else if (err.code === 'unimplemented') {
+    console.warn("Browser doesn't support persistence");
+  }
+});
+    // Load Overview / Itineraries
+async function loadOverview() {
+  try {
+    const snapshot = await db.collection("itineraries")
+      .orderBy("dayNumber")
+      .get();
+
+    let html = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      html += `
+        <div class="day">
+          <h2>${data.dateTitle}</h2>
+          ${data.subtitle ? `<p style="color:#8B4513;margin:1rem 0;font-size:1.1rem;">${data.subtitle}</p>` : ''}
+          <button class="big-btn" onclick="showDetail(${data.dayNumber})">查看詳細時間軸</button>
+        </div>
+      `;
+    });
+
+    document.querySelector('#overview > div[style*="max-width:900px"]').innerHTML = html;
+  } catch (error) {
+    console.error("Overview loading error:", error);
+    document.querySelector('#overview > div[style*="max-width:900px"]').innerHTML = 
+      '<p style="text-align:center;color:#e74c3c;">無法載入行程，請稍後再試</p>';
+  }
+}
+<!-- Admin section - only visible after login -->
+<div id="admin-section" style="display:none; margin-top:3rem; padding:1.5rem; background:#fff0f8; border-radius:12px;">
+  <h2>管理員專區</h2>
+  <button onclick="firebase.auth().signOut()">登出</button>
+  <!-- You can add simple forms here later -->
+</div>
+    firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    document.getElementById('admin-section').style.display = 'block';
+    console.log("已登入管理員:", user.email);
+  } else {
+    document.getElementById('admin-section').style.display = 'none';
+  }
+});
+// Load Attractions (景點)
+async function loadAttractions() {
+  try {
+    const snapshot = await db.collection("attractions")
+      .orderBy("order")
+      .get();
+
+    let html = '';
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      html += `
+        <div class="location-card">
+          <h3><a href="${d.googleMaps || '#'}" target="_blank">${d.name}</a></h3>
+          <div class="time">${d.openingHours}</div>
+          <div class="desc">${d.description}</div>
+          ${d.officialLink ? `<a href="${d.officialLink}" target="_blank">官方網站</a>` : ''}
+        </div>
+      `;
+    });
+
+    document.getElementById('attractions').innerHTML = html;
+  } catch (error) {
+    console.error("Attractions error:", error);
+  }
+}
+
+// Load Restaurants (餐廳)
+async function loadRestaurants() {
+  try {
+    const snapshot = await db.collection("restaurants")
+      .orderBy("order")
+      .get();
+
+    let html = '';
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      html += `
+        <div class="location-card">
+          <h3><a href="${d.googleMaps || '#'}" target="_blank">${d.name}</a></h3>
+          <div class="time">營業時間：${d.openingHours}</div>
+          <div class="desc">${d.description}</div>
+          <div class="price">建議價格：${d.priceRange}</div>
+          <a href="${d.tabelogLink}" target="_blank">Tabelog 連結</a>
+        </div>
+      `;
+    });
+
+    document.getElementById('restaurants').innerHTML = html;
+  } catch (error) {
+    console.error("Restaurants error:", error);
+  }
+}
+
+// Run loading when page is ready
+document.addEventListener('DOMContentLoaded', () => {
+  loadOverview();
+  loadAttractions();
+  loadRestaurants();
+});
 function openTab(tab){
     document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
     document.getElementById(tab).classList.add('active');
