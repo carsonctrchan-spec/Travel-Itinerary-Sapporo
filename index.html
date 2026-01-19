@@ -686,32 +686,46 @@ function openSubTab(subtab) {
 }
 function showDetail(day){
     const details = {
-      1: `<div class="detail-day">
-            <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 1　抵達＋電視塔夜景</h2>
-            
-            <div class="step"><span class="time">14:20</span>　抵達新千歲機場（取行李、海關約1小時）</div>
-            <div class="step"><span class="time">15:30 – 16:30</span>　JR快速Airport → 札幌站（約37分鐘）</div>
-            
-            <div class="step"><span class="time">16:45 – 17:15</span>　<strong>新加入：靴の名取川（Natori River Shoe Store）</strong><br>
-            札幌站附近（步行5–10分鐘），專賣冬季保暖防雪靴<br>
-            預計停留30分鐘，建議買好鞋子再去住宿（很多旅客抵達當天就會來買）</div>
-            
-            <div class="step"><span class="time">17:30</span>　酒店Check-in + 稍作休息</div>
-            
-            <div class="step"><span class="time">20:00</span>　晚餐（兩種選擇，任選其一）</div>
-            <div style="margin-left:2rem;">
-                1. <strong><a href="https://tabelog.com/hokkaido/A0101/A010103/1000008/" target="_blank">カリーサボイ (Curry Savoy)</a></strong><br>
-                經典濃郁湯咖喱，份量大，受當地人喜愛<br>
-                Tabelog 高評價（通常 3.7+）
-                
-                <br><br>2. <strong><a href="https://tabelog.com/hokkaido/A0101/A010101/1041930/" target="_blank">スープカリー 奥芝商店</a></strong><br>
-                超人氣蝦湯咖喱，蝦子超大，湯頭濃厚（常排隊）<br>
-                札幌湯咖喱代表店之一
-            </div>
-            
-            <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台（夜景最佳時間）</div>
-            
-            </div>`,
+     1: `<div class="detail-day">
+    <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 1　抵達＋電視塔夜景</h2>
+
+    <div class="step"><span class="time">14:20</span>　抵達新千歲機場（取行李、海關約1小時）</div>
+    
+    <div class="step"><span class="time">15:30 – 16:30</span>　JR快速Airport → 札幌站（約37分鐘）</div>
+    
+    <div class="step"><span class="time">16:45 – 17:15</span>　<strong>靴の名取川（Natori River Shoe Store）</strong><br>
+    札幌站附近（步行5–10分鐘），專賣冬季保暖防雪靴<br>
+    預計停留30分鐘，建議買好鞋子再去住宿</div>
+    
+    <div class="step"><span class="time">17:30</span>　酒店Check-in + 稍作休息</div>
+
+    <!-- 新增：Day 1 地點地圖 -->
+    <div style="margin:1.5rem 0; text-align:center;">
+        <strong>Day 1 札幌站周邊地點導覽地圖</strong>（含機場路線、鞋店、住宿、電視塔等）<br>
+        <iframe 
+            src="https://www.google.com/maps/d/u/0/embed?mid=17Lf-jcx4xoL1hhn6TW-W8WUChDXXk8k&ehbc=2E312F&ll=43.06607415786282%2C141.35283489999998&z=15"
+            width="100%" 
+            height="450" 
+            style="border:0;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.15);"
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+    <div class="step"><span class="time">20:00</span>　晚餐（兩種選擇，任選其一）</div>
+    <div style="margin-left:2rem; margin-bottom:1.5rem;">
+        1. <strong><a href="https://tabelog.com/hokkaido/A0101/A010103/1000008/" target="_blank">カリーサボイ (Curry Savoy)</a></strong><br>
+        經典濃郁湯咖喱，份量大，受當地人喜愛<br>
+        Tabelog 高評價（通常 3.7+）
+        
+        <br><br>2. <strong><a href="https://tabelog.com/hokkaido/A0101/A010101/1041930/" target="_blank">スープカリー 奥芝商店</a></strong><br>
+        超人氣蝦湯咖喱，蝦子超大，湯頭濃厚（常排隊）<br>
+        札幌湯咖喱代表店之一
+    </div>
+
+    <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台（夜景最佳時間）</div>
+</div>`,
 
         2: `<div class="detail-day">
             <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 2　小樽運河&天狗山展望台浪漫一日</h2>
