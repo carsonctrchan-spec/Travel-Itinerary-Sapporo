@@ -686,64 +686,78 @@ function openSubTab(subtab) {
 }
 function showDetail(day){
     const details = {
-     1: `<div class="detail-day">
-    <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 1　抵達＋電視塔夜景</h2>
+    1: `<div class="detail-day">
+        <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 1　抵達＋電視塔夜景</h2>
 
-    <div class="step"><span class="time">14:20</span>　抵達新千歲機場（取行李、海關約1小時）</div>
-    
-    <div class="step"><span class="time">15:30 – 16:30</span>　JR快速Airport → 札幌站（約37分鐘）</div>
-    
-    <div class="step"><span class="time">16:45 – 17:15</span>　<strong>靴の名取川（Natori River Shoe Store）</strong><br>
-    札幌站附近（步行5–10分鐘），專賣冬季保暖防雪靴<br>
-    預計停留30分鐘，建議買好鞋子再去住宿</div>
-    
-    <div class="step"><span class="time">17:30</span>　酒店Check-in + 稍作休息</div>
-
-    <!-- 新增：Day 1 地點地圖 -->
-    <div style="margin:1.5rem 0; text-align:center;">
-        <strong>Day 1 札幌站周邊地點導覽地圖</strong>（含機場路線、鞋店、住宿、電視塔等）<br>
-        <iframe 
-            src="https://www.google.com/maps/d/u/0/embed?mid=17Lf-jcx4xoL1hhn6TW-W8WUChDXXk8k&ehbc=2E312F&ll=43.06607415786282%2C141.35283489999998&z=15"
-            width="100%" 
-            height="450" 
-            style="border:0;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,0.15);"
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-    </div>
-
-    <div class="step"><span class="time">20:00</span>　晚餐（兩種選擇，任選其一）</div>
-    <div style="margin-left:2rem; margin-bottom:1.5rem;">
-        1. <strong><a href="https://tabelog.com/hokkaido/A0101/A010103/1000008/" target="_blank">カリーサボイ (Curry Savoy)</a></strong><br>
-        經典濃郁湯咖喱，份量大，受當地人喜愛<br>
-        Tabelog 高評價（通常 3.7+）
+        <div class="step"><span class="time">14:20</span>　抵達新千歲機場（取行李、海關約1小時）</div>
         
-        <br><br>2. <strong><a href="https://tabelog.com/hokkaido/A0101/A010101/1041930/" target="_blank">スープカリー 奥芝商店</a></strong><br>
-        超人氣蝦湯咖喱，蝦子超大，湯頭濃厚（常排隊）<br>
-        札幌湯咖喱代表店之一
-    </div>
+        <div class="step"><span class="time">15:30 – 16:30</span>　JR快速Airport → 札幌站（約37分鐘）</div>
+        
+        <div class="step"><span class="time">16:45 – 17:15</span>　<strong>靴の名取川（Natori River Shoe Store）</strong><br>
+        札幌站附近（步行5–10分鐘），專賣冬季保暖防雪靴<br>
+        預計停留30分鐘，建議買好鞋子再去住宿</div>
+        
+        <div class="step"><span class="time">17:30</span>　酒店Check-in + 稍作休息</div>
+        
+        <div class="step"><span class="time">20:00</span>　晚餐（兩種選擇，任選其一）</div>
+        <div style="margin-left:2rem; margin-bottom:1.5rem;">
+            1. <strong><a href="https://tabelog.com/hokkaido/A0101/A010103/1000008/" target="_blank">カリーサボイ (Curry Savoy)</a></strong><br>
+            經典濃郁湯咖喱，份量大，受當地人喜愛
+            
+            <br><br>2. <strong><a href="https://tabelog.com/hokkaido/A0101/A010101/1041930/" target="_blank">スープカリー 奥芝商店</a></strong><br>
+            超人氣蝦湯咖喱，蝦子超大，湯頭濃厚（常排隊）
+        </div>
 
-    <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台（夜景最佳時間）</div>
-</div>`,
+        <div class="step"><span class="time">20:30 – 22:00</span>　札幌電視塔觀景台（夜景最佳時間）</div>
 
-        2: `<div class="detail-day">
-            <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 2　小樽運河&天狗山展望台浪漫一日</h2>
-            <div class="weather-box"><strong>1月31日天氣預報（長期平均）：</strong> 高溫 -3°C / 低溫 -10°C，輕雪為主</div>
-            <div class="snow-box"><strong>即時雪況預測：</strong> 小樽運河積雪約 50 cm，浪漫雪景（基於歷史長期平均，2026年實際天氣請靠近日期再查詢即時預報）</div>
-            <img src="https://rimage.gnst.jp/livejapan.com/public/article/detail/a/10/00/a1000055/img/basic/a1000055_main.jpg?20210222182701&q=80" class="hero-img" alt="小樽運河">
-            <div class="step"><span class="time">10:00</span>　從Airbnb出發前往小樽（JR快速，約35分鐘）</div>
-            <div class="step"><span class="time">10:45</span>　抵達後參觀船見阪（經典陡坡雪景）</div>
-            <div class="step"><span class="time">11:00</span>　三角市場 用午餐（新鮮海鮮丼或壽司）</div>
-            <div class="step"><span class="time">12:00</span>　前往堺町通商店街 自由逛街</div>
-            <div class="step"><span class="time">13:30</span>　LeTAO本店（雙層起司蛋糕 + 買手信）</div>
-            <div class="step"><span class="time">14:30</span>　搭纜車上天狗山展望台（俯瞰小樽全景）</div>
-            <div class="step"><span class="time">17:30</span>　下山返回小樽運河 散步</div>
-            <div class="step"><span class="time">18:30</span>　<span class="meal">晚餐：小樽世壺屋（高級懷石，需預約）</span></div>
-            <div class="step"><span class="time">20:00</span>　搭JR返回Airbnb</div>
-            <a href="https://tabelog.com/tw/hokkaido/A0106/A010601/1070911/" target="_blank" class="ticket-link">世壺屋預約（強烈建議提前1個月）</a>
-            <div class="links"><a href="https://www.google.com/maps/dir/Sapporo+Station/Otaru+Station" target="_blank" class="location-link">札幌 → 小樽路線</a></div>
-            </div>`,
+        <!-- Day 1 互動地圖 - 移到最底部 -->
+        <div style="margin:2.5rem 0 1rem; text-align:center;">
+            <strong>Day 1 札幌站周邊完整互動地圖</strong><br>
+            <small style="color:#666; display:block; margin:0.5rem 0;">
+                可自由縮放、拖曳、點擊標記查看細節、搜尋路線
+            </small>
+            <iframe 
+                src="https://www.google.com/maps/d/u/0/embed?mid=17Lf-jcx4xoL1hhn6TW-W8WUChDXXk8k&ehbc=2E312F"
+                width="100%" 
+                height="500" 
+                style="border:0; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.2);"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>`,
+
+    2: `<div class="detail-day">
+        <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 2　小樽運河&天狗山展望台浪漫一日</h2>
+
+        <div class="step"><span class="time">10:00</span>　從Airbnb出發前往小樽（JR快速，約35分鐘）</div>
+        <div class="step"><span class="time">10:45</span>　抵達後參觀船見阪（經典陡坡雪景）</div>
+        <div class="step"><span class="time">11:00</span>　三角市場 用午餐（新鮮海鮮丼或壽司）</div>
+        <div class="step"><span class="time">12:00</span>　前往堺町通商店街 自由逛街</div>
+        <div class="step"><span class="time">13:30</span>　LeTAO本店（雙層起司蛋糕 + 買手信）</div>
+        <div class="step"><span class="time">14:30</span>　搭纜車上天狗山展望台（俯瞰小樽全景）</div>
+        <div class="step"><span class="time">17:30</span>　下山返回小樽運河 散步</div>
+        <div class="step"><span class="time">18:30</span>　<span class="meal">晚餐：小樽世壺屋（高級懷石，需預約）</span></div>
+        <div class="step"><span class="time">20:00</span>　搭JR返回Airbnb</div>
+
+        <!-- Day 2 互動地圖 - 放在底部 -->
+        <div style="margin:2.5rem 0 1rem; text-align:center;">
+            <strong>Day 2 小樽全天路線互動地圖</strong><br>
+            <small style="color:#666; display:block; margin:0.5rem 0;">
+                可自由縮放、拖曳、點擊標記查看細節、搜尋路線
+            </small>
+            <iframe 
+                src="https://www.google.com/maps/d/u/0/embed?mid=1B4UsqKi94CEqa9RnnvxqZo_gEzJ57dc&ehbc=2E312F"
+                width="100%" 
+                height="500" 
+                style="border:0; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.2);"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>`,
 
         3: `<div class="detail-day">
             <h2 style="font-size:1.8rem;text-align:center;color:var(--romantic);margin-bottom:1rem;">Day 3　定山溪溫泉放空</h2>
